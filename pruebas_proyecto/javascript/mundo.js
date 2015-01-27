@@ -50,13 +50,9 @@ function Mundo(idCanvas, anchoCelda, altoCelda){
 }
 
 Mundo.prototype.dibujarMapa=function(){
-	var y=this.mapa.length;
-	var x=this.mapa[0].length;
+	var y = this.mapa.length;
+	var x = this.mapa[0].length;
 	for (var yi=0;yi<y;yi++)
-	{
 		for (var xi=0;xi<x;xi++)
-		{
 			this.conjuntoTiles[this.mapa[yi][xi]].dibujar(this.contexto,xi,yi);
-		}
-	}
 };

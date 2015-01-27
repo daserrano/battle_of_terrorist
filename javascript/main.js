@@ -27,10 +27,10 @@ var map2 = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
 var map3 = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0],
     [0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
     [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-    [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0],
+    [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3],
     [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0],
     [0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0],
     [0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0],
@@ -38,7 +38,7 @@ var map3 = [
     [0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0],
     [0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0],
     [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0]
     ];
 
 function game()
@@ -47,22 +47,25 @@ function game()
     var ctx = c.getContext("2d");
 
     var hierba = new Image();
-    hierba.src = "images/hierba.jpg";
+    hierba.src = "images/Captura.png";
     
     var arena = new Image();
-    arena.src = "images/arena.jpg";
+    arena.src = "images/champs.png";
 
     var acero = new Image();
-    acero.src = "images/acero.jpg";
+    acero.src = "images/movida.png";
 
     var acero_suelo = new Image();
     acero_suelo.src = "images/acero_suelo.jpg";
 
     for(var row=0; row<map3[row].length; row++)
     for(var col=0; col<map3[row].length; col++){
-	if(!map3[row][col]){
+	if(map3[row][col] == 0){
 	    ctx.drawImage(hierba, 40*col, 40*row, 40, 40);
     }
+	else if(map3[row][col] == 3){
+	    ctx.drawImage(acero, 40*col, 40*row, 40, 40);
+	}
 	else
 	    ctx.drawImage(arena, 40*col, 40*row, 40, 40);
 
