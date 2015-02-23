@@ -1,17 +1,30 @@
 body {
-    background-color: #123; /* Cambiar por imagen.*/
-}
-
-div#main {
+    background-color: #000; /* Cambiar por imagen.*/
 margin: 0 auto;
+	text-align: center;
 }
 
+div#footer {
+background-image: url("../images/web/fondoWeb.jpg");
+background-position: 0% 10%;
+height: 500px;
+}
+
+div#gameplay{
+    background-color: /*#00AFAA*/ #222;
+}
 canvas {
+/*
 border:10px solid #000;
+*/
+border-radius: 5px;
+width: 800px;
+height: 500px;
+	margin: 10px auto;
 }
 
 #menu {
-    padding-top: 30px;
+    padding-top: 50px;
 }
 
 #menu li {
