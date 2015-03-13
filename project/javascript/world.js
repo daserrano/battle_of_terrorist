@@ -18,5 +18,6 @@ var map = [
 
 		    for(var row=0; row<map[row].length; row++)
 		    for(var col=0; col<map[0].length; col++)
-		    if(
+		    if(map[row][col] == 3)
+                
 			}
