@@ -1,8 +1,8 @@
 body {
-    /*background-color: #000;  Cambiar por imagen.*/
-    background-image: url("../images/web/background.jpg");
-    background-position: 50% 0%;
-margin: 0 auto;
+	/*background-color: #000;  Cambiar por imagen.*/
+	background-image: url("../images/web/background.jpg");
+	background-position: 50% 0%;
+	margin: 0 auto;
 	text-align: center;
 	font-family: "Arial";
 	font-size: 20px;
@@ -10,41 +10,51 @@ margin: 0 auto;
 
 }
 
+img#Logo {
+	float: left;
+	margin-left: 10%;
+	width: 150px;
+	height: 75px;
+}
+
+div#menu {
+	/*padding: 20px;*/
+}
+
 div#footer {
-background-image: url("../images/web/fondoWeb.jpg");
-background-position: 0% 10%;
-height: 500px;
-border-top: 15px solid #111;
-border-bottom: 38px solid #111;
+	background-image: url("../images/web/fondoWeb.jpg");
+	background-position: 0% 10%;
+	height: 500px;
+	border-top: 15px solid #111;
+	border-bottom: 38px solid #111;
 }
 
 div#gameplay{
-    /*background-color: /*#00AFAA #222;*/
+	/*background-color: /*#00AFAA #222;*/
 }
 canvas {
 
-border:10px solid #000;
-border-top: 0px;
-border-radius: 5px;
-width:1000px;
-height: 500px;
+	border:10px solid #000;
+	border-top: 0px;
+	border-radius: 5px;
+	width:1000px;
+	height: 500px;
 	margin: 20px auto;
-		margin-top: 0px;
+	margin-top: 0px;
 }
 
 #menu {
-    padding-top: 30px;
+	padding-top: 30px;
 }
 
 #menu li {
-display:inline;
+	display:inline;
 }
 
 #menu li a {
-    background-color: /*#517FA4*/ #FFF;
-color: black;
-padding: 10px 20px;
-	 text-decoration: none;
-	 border-radius: 2px 2px 25px 2px;
+	background-color: /* #517FA4 */ #FFF;
+	color: black;
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 2px 2px 25px 2px;
 }
-

@@ -13,11 +13,16 @@ var map = [
     [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     ];
 
+var arrayImages = [
+[]
+];
+
+
     function drawWorld(ctx){
 
 
 		    for(var row=0; row<map[row].length; row++)
 		    for(var col=0; col<map[0].length; col++)
 		    if(map[row][col] == 3)
-                
+
 			}
