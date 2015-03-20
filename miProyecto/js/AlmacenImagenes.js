@@ -18,7 +18,7 @@ AlmacenImagenes.prototype.cargar=function(lista){
 		img.onload=function(){
 			self.imagenCargada();
 		};
-		this.lista[lista[i][0]]=img;
+		this.lista[lista[i][0]] = img;
 	}
 };
 AlmacenImagenes.prototype.imagenCargada=function(){

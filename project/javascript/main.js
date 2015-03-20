@@ -1,37 +1,20 @@
 function game(){
-    var c = document.getElementById("canvas");
-    var ctx = c.getContext("2d");
 
+    var images = new SaveImages();
+    var sprits = new SaveSprites();
+    var world;
 
-    ctx.anchoCelda = 40;
-    ctx.altoCelda = 40;
+    images.loading(  // Loading all the images that we need | Para cargar todas las imágenes que necesitamos.
+        [
+        ["Red1", "images/game/red1.png"]] // Red player. | Un jugador rojo.
+        );
 
-    ctx.arrayImagenes = new Array();
-
-    arrayImagenes[0] = new Image();
-    arrayImagenes[0].src = "../images/";
-
-    ctx.conjuntoTiles = [
-	new Tile(true, 1, ),
-	    new Tile(false, 2)
-		];
-
-    ctx.mapa = 
-	[
-	[1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1]
-	    ];
-
-    ctx.canvas.width = ctx.anchoCelda*ctx.mapa[0]length;
-    ctx.canvas.height = ctx.altoCelda*ctx.mapa.length;
-
-    ctx.jugador;
-
-    ctx.iniciarJugador();
-
+    Images.completed = function()
+    {
+        //var spritePlayer = new Sprite(images.get("Red1"));
+        //spritePlayer.createDireccion(4,4,0,5,0,0,{"up":3,"down":0,"right":2,"left":1});
+        //Sprites.add("player1", spritePlayer);
+        world = new World("canvas", "stop");
+    }
 
 }
-
-
