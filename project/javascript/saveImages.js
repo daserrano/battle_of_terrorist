@@ -1,11 +1,11 @@
-function SaveImages()
+function saveImages()
 {
 	this.list=[]; // To create a list of images | Para crear una lista de imagenes.
 	this.wait=0;  // To know the images are saving | Para saber cuantas imagenes hay que guardar.
 	this.load=0;  // To cross all the images | Para saber cuantas imagenes se han cargado.
 }
 
-SaveImages.prototype.loading = function(list)
+saveImages.prototype.loading = function(list)
 {
 	var self     = this; // References to this | Referencia para this
 	this.waiting = list.length;
@@ -21,7 +21,7 @@ SaveImages.prototype.loading = function(list)
 	}
 }
 
-SaveImages.prototype.imageLoad = function()
+saveImages.prototype.imageLoad = function()
 {
 	this.loading++;
 	if (this.loading == this.waiting) //If all the image are load, it is completed | Si todas las imagenes se han cargado, se ha completado.
@@ -36,4 +36,4 @@ SaveImages.prototype.get = function(id)
 	return this.list[id];
 };
 */
-SaveImages.prototype.completed = function(){};
+saveImages.prototype.completed = function(){};

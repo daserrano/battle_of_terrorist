@@ -39,7 +39,11 @@ function world(idCanvas, button)
 	var x = this.mapa[0].length;
 
 	for (var yi=0; yi < y; yi++)
-	    for(var xi=0, xi < x; xi++)
-		this.tiles[this.map[yi][xi]].dibujar(this.context, xi, yi);
+        {
+	    for(var xi=0; xi < x; xi++)
+            {
+                this.tiles[this.map[yi][xi]].dibujar(this.context, xi, yi);
+            }
+        }
     }
 }
