@@ -1,24 +1,31 @@
-function World(idCanvas, button)
+function World(idCanvas, ctx, button)
 {
-    console.log("ok2");
-    this.canvas  = document.getElementById(idCanvas);
-    this.context = this.canvas.getContext('2d');
+    this.canvas  = idCanvas;
+    this.context = ctx;
 
-    this.cellWidth  = 60;
-    this.cellHeight = 60;
+    this.cellWidth  = 100;
+    this.cellHeight = 100;
 
     this.tiles = [
     new Tile(this.cellWidth, this.cellHeight, true, "white"),
-    new Tile(this.cellWith, this.cellHeight, false, "blue") 
+    new Tile(this.cellWidth, this.cellHeight, false, "black") 
     ];
 
     this.map = 
     [
-    [0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 1, 1, 1, 0],
-    [0, 1, 0, 0, 0, 0, 1, 0],
-    [0, 1, 1, 1, 0, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0]
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
+    [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+    [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+    [1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ];
 
     this.canvas.width  = this.cellWidth*this.map[0].length;
@@ -38,12 +45,11 @@ function World(idCanvas, button)
 }
 World.prototype.drawMap = function()
 {
-    console.log("ok4");
     var y = this.map.length;
     var x = this.map[0].length;
 
     for (var yi=0; yi < y; yi++)
-       for(var xi=0; xi < x; xi++)
+     for(var xi=0; xi < x; xi++)
         this.tiles[this.map[yi][xi]].draw(this.context, xi, yi);
 }
 

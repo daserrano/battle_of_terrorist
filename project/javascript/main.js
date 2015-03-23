@@ -1,9 +1,11 @@
 function game(){
-    console.log("ok");
     
     var images = new saveImages();
     var sprits = new SaveSprites();
     var world;
+
+    this.canvas = document.getElementById('canvas');
+    this.ctx = this.canvas.getContext('2d');
 
     images.loading(  // Loading all the images that we need | Para cargar todas las imágenes que necesitamos.
         [
@@ -17,6 +19,6 @@ function game(){
         //Sprites.add("player1", spritePlayer);
         //world = new World("canvas", "stop");
     }
-    world = new World("canvas", "stop");
+    world = new World(this.canvas, this.ctx, "stop");
 
 }
