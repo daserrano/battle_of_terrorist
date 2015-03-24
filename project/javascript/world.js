@@ -31,8 +31,16 @@ function World(idCanvas, ctx, button)
     this.canvas.width  = this.cellWidth*this.map[0].length;
     this.canvas.height = this.cellHeight*this.map.length;
 
+    this.player1;
+    this.playerOn();
     this.drawMap(); 
-    
+}
+World.prototype.playerOn = function()
+{
+    this.player1 = new Player(this, 30, 30, 2.5, 1.5);
+    var self = this;
+};
+
     /*
     Mundo.prototype.casillaCaminable = function(px, py)
     {
@@ -42,9 +50,8 @@ function World(idCanvas, ctx, button)
        return this.tiles[this.map[x][y]].caminable;
    }
    */
-}
-World.prototype.drawMap = function()
-{
+   World.prototype.drawMap = function()
+   {
     var y = this.map.length;
     var x = this.map[0].length;
 

@@ -9,6 +9,10 @@ body {
 	letter-spacing: -3px;
 }
 
+.home {
+	background-image: url("../images/web/background.jpg");
+}
+
 #main {
 	margin: 0 auto;
 	text-align: center;
@@ -46,9 +50,12 @@ canvas {
 }
 
 #menu {
+	text-align: left;
+	position: static;
 	padding-top: 30px;
+	padding-left: 200px;
 	margin: 0 auto;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 #menu li {
@@ -58,7 +65,7 @@ canvas {
 #menu li a {
 	background-color: #FFF;
 	color: black;
-	padding: 10px 20px;
+	padding: 10px 50px;
 	text-decoration: none;
 	border-radius: 2px 2px 25px 2px;
 }
