@@ -1,4 +1,4 @@
-function World(idCanvas, ctx, button)
+function World(idCanvas, ctx)
 {
     this.canvas  = idCanvas;
     this.context = ctx;
@@ -39,6 +39,51 @@ World.prototype.playerOn = function()
 {
     this.player1 = new Player(this, 30, 30, 2.5, 1.5);
     var self = this;
+
+    document.body.onkeydown = function(e)
+    {
+        switch(e.keyCode)
+        {
+            case 38: //Up | Arriba
+            e.preventDefault();
+            self.player1.up = true;
+            break;
+            case 40: //Down | Abajo
+            e.preventDefault();
+            self.player1.down = true;
+            break;
+            case 39:
+            e.preventDefault();
+            self.player1.right = true;
+            break;
+            case 37:
+            e.preventDefault();
+            self.player1.left = true;
+            break;
+        }
+    };
+
+    document.body.onkeyup=function(e){
+        switch(e.keyCode)
+        {
+            case 38: //Up | Arriba
+            e.preventDefault();
+            self.player1.up = false;
+            break;
+            case 40: //Down | Abajo
+            e.preventDefault();
+            self.player1.down = false;
+            break;
+            case 39:
+            e.preventDefault();
+            self.player1.right = false;
+            break;
+            case 37:
+            e.preventDefault();
+            self.player1.left = false;
+            break;
+        }
+    };
 };
 
     /*
