@@ -1,5 +1,5 @@
 function game(){
-    
+
     var images = new saveImages();
     var sprits = new SaveSprites();
     var world;
@@ -18,8 +18,20 @@ function game(){
         var spritePlayer = new Sprite(images.get("Red1"));
         spritePlayer.createDireccion(4,4,0,5,0,0,{"up":3,"down":0,"right":2,"left":1});
         Sprites.add("player1", spritePlayer);
-        world = new World("canvas");
     }
-    world = new World(this.canvas, this.ctx);
+    ctx.fillStyle = '#F14';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "black";
+    ctx.font = "18pt Arial";
+    ctx.fillText("Jugar", 120, 80);
+    this.canvas.addEventListener("mousedown", doMouseDown, false);
+
+
+    function doMouseDown(event)
+    {
+        world = new World(event.canvas, event.ctx);
+
+    }
+
 
 }
