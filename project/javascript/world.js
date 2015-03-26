@@ -35,6 +35,11 @@ function World(idCanvas, ctx)
 
     this.player1;
     this.playerOn();
+
+    var self = this;
+    this.timeGame = new Date().getTime();
+    this.timeInterval = setInterval(function(){self.loop()}, 25);
+
     this.drawMap(); 
 }
 
@@ -55,18 +60,18 @@ World.prototype.playerOn = function()
             e.preventDefault();
             self.player1.down = true;
             break;
-            case 39:
+            case 39: //Right | Derecha
             e.preventDefault();
             self.player1.right = true;
             break;
-            case 37:
+            case 37: //Left | Izquierda
             e.preventDefault();
             self.player1.left = true;
             break;
         }
     };
 
-    document.body.onkeyup=function(e){
+    document.body.onkeyup = function(e){
         switch(e.keyCode)
         {
             case 38: //Up | Arriba
@@ -77,11 +82,11 @@ World.prototype.playerOn = function()
             e.preventDefault();
             self.player1.down = false;
             break;
-            case 39:
+            case 39: //Right | Derecha
             e.preventDefault();
             self.player1.right = false;
             break;
-            case 37:
+            case 37: //Left | Izquierda
             e.preventDefault();
             self.player1.left = false;
             break;
@@ -89,15 +94,6 @@ World.prototype.playerOn = function()
     };
 };
 
-    /*
-    Mundo.prototype.casillaCaminable = function(px, py)
-    {
-       var x = parseInt(px);
-       var y = parseInt(py);
-
-       return this.tiles[this.map[x][y]].caminable;
-   }
-   */
    World.prototype.drawMap = function()
    {
     var y = this.map.length;
@@ -106,5 +102,24 @@ World.prototype.playerOn = function()
     for (var yi=0; yi < y; yi++)
        for(var xi=0; xi < x; xi++)
         this.tiles[this.map[yi][xi]].draw(this.context, xi, yi);
-}
+};
 
+World.prototype.loop = function()
+{
+    var delta     = (new Date().getTime()) - this.timeGame;
+    this.timeGame = new Date().getTime();
+
+    this.movePlayer(delta);
+};
+
+World.prototype.movePlayer = function(delta)
+{
+    this.player1.move(delta);
+};
+
+World.walkedTile = function(px, py)
+{
+    var x = parseInt(px);
+    var y = parseInt(py);
+    return this.tiles[this.map[y][x]].walk;
+}
