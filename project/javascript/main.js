@@ -22,16 +22,15 @@ function game(){
     ctx.fillStyle = '#F14';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
+    
     ctx.font = "18pt Arial";
-    ctx.fillText("Jugar", 120, 80);
+    ctx.fillText("Inicio", 120, 80);
     this.canvas.addEventListener("mousedown", doMouseDown, false);
 
+}
 
     function doMouseDown(event)
     {
-        world = new World(event.canvas, event.ctx);
-
+        world = new World(canvas, ctx);
     }
 
-
-}

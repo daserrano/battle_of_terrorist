@@ -28,13 +28,16 @@ function World(idCanvas, ctx)
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     ];
 
-    this.canvas.width  = this.cellWidth*this.map[0].length;
-    this.canvas.height = this.cellHeight*this.map.length;
+    //this.canvas.width  = this.cellWidth*this.map[0].length;
+    //this.canvas.height = this.cellHeight*this.map.length;
+    canvas.width  = this.cellWidth*this.map[0].length;
+    canvas.height = this.cellHeight*this.map.length;
 
     this.player1;
     this.playerOn();
     this.drawMap(); 
 }
+
 World.prototype.playerOn = function()
 {
     this.player1 = new Player(this, 30, 30, 2.5, 1.5);
@@ -101,7 +104,7 @@ World.prototype.playerOn = function()
     var x = this.map[0].length;
 
     for (var yi=0; yi < y; yi++)
-     for(var xi=0; xi < x; xi++)
+       for(var xi=0; xi < x; xi++)
         this.tiles[this.map[yi][xi]].draw(this.context, xi, yi);
 }
 
