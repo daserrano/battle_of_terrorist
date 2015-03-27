@@ -2,7 +2,7 @@ function sprite(img)
 {
 	this.img        = img;
 	this.directions = [];
-}
+};
 
 sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceLe, spaceRi, directions)
 {
@@ -15,4 +15,9 @@ sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceL
 		for(var i=0; i<cols;i++)
 			this.directions[direction].push([i*width+spaceLe, directions[direction]*height+spaceUp, (i+1)*width-spaceRi,(directions[direction]+1)*alto-spaceDo]);
 	}
-}
+};
+
+sprite.prototype.getNumSprites = function(direction)
+{
+	return this.directions[direction].length;
+};

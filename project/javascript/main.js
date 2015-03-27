@@ -1,7 +1,7 @@
 function game(){
 
     var images = new saveImages();
-    var sprits = new SaveSprites();
+    var Sprites = new SaveSprites();
     var world;
     var width  = this.canvas.width;
     var height = this.canvas.height;
@@ -21,6 +21,7 @@ function game(){
         var spritePlayer = new Sprite(images.get("Red1"));
         spritePlayer.createDireccion(4,4,0,5,0,0,{"up":3,"down":0,"right":2,"left":1});
         Sprites.add("player1", spritePlayer);
+
     }
 
     my_gradient = ctx.createLinearGradient(0, 0, 0, 170);

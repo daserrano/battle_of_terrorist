@@ -94,13 +94,25 @@ World.prototype.playerOn = function()
     };
 };
 
-   World.prototype.drawMap = function()
-   {
+World.prototype.walkedTile = function(px, py)
+{
+    var x = parseInt(px);
+    var y = parseInt(py);
+    return this.Tile[this.map[y][x]].walk;
+}
+
+World.prototype.movePlayer = function(delta)
+{
+    this.player.move(delta);
+};
+
+World.prototype.drawMap = function()
+{
     var y = this.map.length;
     var x = this.map[0].length;
 
     for (var yi=0; yi < y; yi++)
-       for(var xi=0; xi < x; xi++)
+     for(var xi=0; xi < x; xi++)
         this.tiles[this.map[yi][xi]].draw(this.context, xi, yi);
 };
 
@@ -112,14 +124,10 @@ World.prototype.loop = function()
     this.movePlayer(delta);
 };
 
-World.prototype.movePlayer = function(delta)
-{
-    this.player1.move(delta);
-};
 
 World.walkedTile = function(px, py)
 {
     var x = parseInt(px);
     var y = parseInt(py);
     return this.tiles[this.map[y][x]].walk;
-}
+};

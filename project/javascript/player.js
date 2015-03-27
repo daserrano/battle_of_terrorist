@@ -1,11 +1,13 @@
-function Player(world, width, heigth, x, y)
+function Player(world, width, height, x, y)
 {
-	Character.call(this, world, width, heigth, x, y, sprites.get("player"));
+    Character.call(this, world, width, height, x, y, Sprites.get("player1"));
 	this.up    = false;
 	this.down  = false;
 	this.right = false;
 	this.left  = false;	
 }
+
+Player.prototype = new Character;
 
 Player.prototype.move = function(delta)
 {
