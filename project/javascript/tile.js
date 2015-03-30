@@ -1,7 +1,7 @@
-function Tile(width, heigth, walk, colour)
+function Tile(width, height, walk, colour)
 {
 	this.width = width;
-	this.heigth = heigth;
+	this.height = height;
 	this.walk   = walk;
 	this.colour = colour;
 }
@@ -9,7 +9,7 @@ function Tile(width, heigth, walk, colour)
 Tile.prototype.draw = function(context, x, y) 
 {
 	context.fillStyle = '#444';
-	context.fillRect(this.width*x, this.heigth*y, this.width, this.heigth);
+	context.fillRect(this.width*x, this.height*y, this.width, this.height);
 	context.fillStyle = this.colour;
-	context.fillRect(this.width*x+1, this.heigth*y+1, this.width-1, this.heigth-1);
+	context.fillRect(this.width*x+1, this.height*y+1, this.width-1, this.height-1);
 };

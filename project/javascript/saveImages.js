@@ -30,10 +30,9 @@ saveImages.prototype.imageLoad = function()
 	}
 };
 
-/*
-SaveImages.prototype.get = function(id)
+saveImages.prototype.get = function(id)
 {
 	return this.list[id];
 };
-*/
+
 saveImages.prototype.completed = function(){};

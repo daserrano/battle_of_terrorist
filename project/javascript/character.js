@@ -1,9 +1,9 @@
-function Character(world, width, heigth, x, y, sprite)
+function Character(world, width, height, x, y, sprite)
 {
 	this.world = world;
 
 	this.width  = width;
-	this.heigth = heigth;
+	this.height = height;
 	this.x = x;
 	this.y = y;
 
@@ -22,15 +22,15 @@ function Character(world, width, heigth, x, y, sprite)
 Character.prototype.validPosition = function(px, py)
 {
 	var width = this.width / (2 * world.cellWidth);
-	var heigth = this.heigth / (2 * world.cellHeigth);
+	var height = this.height / (2 * world.cellHeight);
 
-	if(!world.walkedTile(px-width, py-heigth))
+	if(!world.walkedTile(px-width, py-height))
 		return false;
-	if(!world.walkedTile(px+width, py-heigth))
+	if(!world.walkedTile(px+width, py-height))
 		return false;
-	if(!world.walkedTile(px-width, py+heigth))
+	if(!world.walkedTile(px-width, py+height))
 		return false;
-	if(!world.walkedTile(px+width, py+heigth))
+	if(!world.walkedTile(px+width, py+height))
 		return false;
 
 	return true;
@@ -44,8 +44,8 @@ Character.prototype.move = function(delta)
 		return;
 
 	var px = this.x + this.dx * this.velocity * delta;
-	var py = this.y + this.dy * this.velocity * delta;	
-alert(this.validPosition);
+	var py = this.y + this.dy * this.velocity * delta;
+	
 	if(!this.validPosition(px, this.y))
 		px = this.x;
 	if(!this.validPosition(this.x, py))
@@ -80,5 +80,15 @@ alert(this.validPosition);
 		this.spriteindex = (this.spriteindex+1)%this.sprite.getNumSprites(newDirection);
 	}
 };
+
+Character.prototype.draw = function(context)
+{
+	context.save();
+	context.translate(this.x*world.cellWidth, this.y*world.cellHeight);
+
+	this.sprite.draw(context, this.width, this.height, this.direction, this.SpriteIndex);
+
+context.restore();
+}
 
  
