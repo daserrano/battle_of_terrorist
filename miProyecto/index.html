@@ -19,11 +19,11 @@
 				Imagenes.cargar(
 					[
 						["calvo","img/personaje9mod2.png"],
-						["mario","img/pepino.png"]
+						["mario","img/Starling_animation_CS6.png"]
 					]);
 				Imagenes.completado=function(){
 					var spriteJugadorTrans=new Sprite(Imagenes.get("calvo"));
-					spriteJugadorTrans.createDireccion(4,4,0,5,0,0,{"arriba":3,"abajo":0,"derecha":2,"izquierda":1});
+					spriteJugadorTrans.createDireccion(5,3,0,5,0,0,{"arriba":3,"abajo":0,"derecha":2,"izquierda":1});
 					Sprites.add("jugador",spriteJugadorTrans);
 					mundo=new Mundo("micanvas","parar");
 					
@@ -52,7 +52,7 @@
 						mundo.detener();
 						
 						var spriteJugadorTrans=new Sprite(Imagenes.get("mario"));
-						spriteJugadorTrans.createDireccion(4,4,0,0,0,0,{"arriba":0,"abajo":2,"derecha":1,"izquierda":3});
+						spriteJugadorTrans.createDireccion(4,5,0,0,0,0,{"arriba":0,"abajo":0,"derecha":0,"izquierda":0});
 						Sprites.add("jugador",spriteJugadorTrans);
 						
 						mundo=new Mundo("micanvas","parar");

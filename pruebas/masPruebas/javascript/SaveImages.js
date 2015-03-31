@@ -1,13 +1,13 @@
 function SaveImages()
 {
-	this.list    = []; 
-	this.waiting = 0;
-	this.loaded  = 0;
+	this.list    = []; 	// Lista para guardar las imágenes.
+	this.waiting = 0; 	// Número de imágenes en espera.
+	this.loaded  = 0; 	// Imágenes cargadas.
 }
 
 SaveImages.prototype.load = function(list)
 {
-	var self = this;
+	var self     = this;
 	this.waiting = list.length;
 	for (var i=0; i<this.waiting; i++)
 	{
@@ -19,6 +19,7 @@ SaveImages.prototype.load = function(list)
 		};
 		this.list[list[i][0]] = img; // Se guardan los dos campos en lista.
 	}
+
 };
 
 SaveImages.prototype.imageLoaded = function()

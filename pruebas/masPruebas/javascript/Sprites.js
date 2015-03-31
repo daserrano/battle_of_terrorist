@@ -4,7 +4,25 @@ function Sprite(img)
 	this.directions = [];
 }
 
+//
+
+Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceLe, spaceRi, directions)
+{
+	var width  = this.img.width/cols;
+	var height = this.img.height/rows;
+
+	for (direction in directions)
+	{
+		this.directions[direction] = [];
+		for (var i=0; i< cols; i++) //Here.
+			this.directions[direction].push([i*width+spaceLe, 
+				directions[direction]*height+spaceUp, 
+				(i+1)*width-spaceRi,
+				(directions[direction]+1)*height-spaceUp]);
+	}
+};
+
 function SaveSprites()
 {
-	this.list = [];
+	this.list = []; //Lista de sprites.
 }
