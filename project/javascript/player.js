@@ -1,6 +1,6 @@
 function Player(world, width, height, x, y)
 {
-    Character.call(this, world, width, height, x, y/*, Sprites.get("player1")*/);
+    Character.call(this, world, width, height, x, y, SaveSprites.get("player1"));
 	this.up    = false;
 	this.down  = false;
 	this.right = false;

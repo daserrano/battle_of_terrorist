@@ -34,6 +34,11 @@ function World(idCanvas)
 
 	this.player;
 	this.initPlayer();
+
+	var self = this;
+	this.timePassed = new Date().getTime();
+	this.interval = setInterval(function()
+	{self.loop()},25);
 }
 
 World.prototype.initPlayer = function()
