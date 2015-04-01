@@ -86,7 +86,7 @@ Character.prototype.draw = function(context)
 	context.save();
 	context.translate(this.x*world.cellWidth, this.y*world.cellHeight);
 
-	this.sprite.draw(context, this.width, this.height, this.direction, this.SpriteIndex);
+	//this.sprite.draw(context, this.width, this.height, this.direction, this.SpriteIndex);
 
 context.restore();
 }

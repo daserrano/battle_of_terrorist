@@ -14,7 +14,7 @@ Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceL
 	for (direction in directions)
 	{
 		this.directions[direction] = [];
-		for (var i=0; i< cols; i++) //Here.
+		for (var i=0; i< cols; i++)
 			this.directions[direction].push([i*width+spaceLe, 
 				directions[direction]*height+spaceUp, 
 				(i+1)*width-spaceRi,
@@ -22,7 +22,18 @@ Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceL
 	}
 };
 
+//
+
+//
+
 function SaveSprites()
 {
 	this.list = []; //Lista de sprites.
 }
+
+SaveSprites.prototype.add = function(id, sprite)
+{
+	this.list[id] = sprite;
+};
+
+//
