@@ -44,13 +44,13 @@ Character.prototype.move = function(delta, other)
 	if(this.collisionPlayer(delta, other)) // Colisiones entre los jugadores.
 	{
 		if(this.x < other.x)
-			px = this.x-0.01;
+			px = this.x-0.005;
 		if(this.y < other.y)
-			py = this.y-0.01;
+			py = this.y-0.005;
 		if(other.x < this.x)
-			px = this.x+0.01;
+			px = this.x+0.005;
 		if(other.y < this.y)
-			py = this.y+0.01;
+			py = this.y+0.005;
 	}
 
 	this.x = px; //Se cambian las nuevas coordenadas.
@@ -88,30 +88,18 @@ Character.prototype.collisionPlayer = function(delta, other)
 	var widthOther  = other.width/(2*this.world.cellWidth)*(1-touchEnemy);
 	var heightOther = other.height/(2*this.world.cellHeight)*(1-touchEnemy);
 
-	if(this.x + widthThis  < other.x - widthOther)
+	if(this.x + widthThis  < other.x - widthOther/2)
 		return false;
 	if(this.y + heightThis < other.y - heightOther)
 		return false;
-	if(this.x - widthThis  > other.x + widthOther)
+	if(this.x - widthThis  > other.x + widthOther/2)
 		return false;
 	if(this.y - heightThis > other.y + heightOther)
 		return false;
 
 	return true;
 
-	//this.collisionatedPlayer(other);
-	//other.collisionatedPlayer(this);
 };
-
-/*Character.prototype.collisionatedPlayer = function(other)
-{
-	//alert("this.x: " + this.x + " this.y: " + this.y);
-	this.x = 3.5;
-	this.y = 4.5;
-	other.x = 12.5;
-	other.y = 2.5;
-//alert("this.x: " + this.x + " this.y: " + this.y + "\nother.x: " + other.x + " other.y: " + other.y);
-}*/
 
 Character.prototype.draw = function(context)
 {

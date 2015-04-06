@@ -151,13 +151,13 @@ World.prototype.initPlayer = function()
 
 			case 32: //Space
 			e.preventDefault();
-			self.shoots = new Bullet(self, self.player);
+			self.shoots = new Bullet(self, self.player, self.player2);
 			self.bullets.push(self.shoots);
 			break;
 
 			case 13: // Zero.
 			e.preventDefault();
-			self.shoots = new Bullet(self, self.player2);
+			self.shoots = new Bullet(self, self.player2, self.player);
 			self.bullets.push(self.shoots);
 			break;
 		}
