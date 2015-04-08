@@ -37,8 +37,8 @@ function World(idCanvas)
 
 	var self = this;
 	this.timePassed = new Date().getTime();
-	this.interval = setInterval(function()
-	{self.loop()},25);
+	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
+
 }
 
 World.prototype.initPlayer = function()
@@ -96,4 +96,27 @@ World.prototype.initPlayer = function()
 			break;
 		}
 	};
+};
+
+World.prototype.cellWalked = function(px, py)
+{
+	var x = parseInt(px);
+	var y = parseInt(py);
+
+	return this.allTiles[this.map[y][x]].walked;
+}
+
+World.prototype.moveCharacters = function(delta)
+{
+	this.player.move(delta);
+};
+
+World.prototype.loop = function()
+{
+	var delta = (new Date().getTime()) - this.timePassed;
+	this.timePassed = new Date().getTime();
+
+	this.moveCharacters(delta);
+	//
+	//
 };
