@@ -47,6 +47,46 @@ Character.prototype.move = function(delta)
 	var px = this.x+this.dx*this.velocity*delta;
 	var py = this.y+this.dy*this.velocity*delta;
 
-	if(!this.validPosition(px, this.y))
+	if(!this.validPosition(px, this.y)) //Comprobar si es una posicion valida.
 		px = this.x;
+	if(!this.validPosition(this.x, py))
+		py = this.y;
+
+	if(this.x==px && this.y==py) //Si no hay movimiento.
+		return;
+
+	this.x = px; //Se cambian las nuevas coordenadas.
+	this.y = py;
+
+	if(this.dy < 0)
+		newDirection = "up";
+	if(this.dy > 0)
+		newDirection = "down";
+	if(this.dx > 0)
+		newDirection = "right";
+	if(this.dx < 0)
+		newDirection = "left";
+
+	if(this.direction != newDirection)
+	{
+		this.transition  = 0; 
+		this.spriteIndex = 0; //Por que imagen empieza.
+		this.direction   = newDirection;
+	}
+	this.transition += delta;
+
+	if(this.transition>this.transitionSprite)
+	{
+		this.transition = 0;
+		this.spriteIndex = (this.spriteIndex + 1) % this.sprite.getNumSprites(newDirection); // Numero de sprites por direccion.
+	}
+};
+
+Character.prototype.draw = function(context)
+{
+	context.save();
+	context.translate(this.x * world.cellWidth, this.y*world.cellHeight);
+	this.sprite.draw(context, this.width, this.height, this.direction, this.spriteIndex);
+
+	context.restore();
 };

@@ -14,19 +14,19 @@ function Mundo(idCanvas, idBoton){
 	
 	this.mapa=
 	[
-		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-    [1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 	];
 	
 	this.canvas.width=this.anchoCelda*this.mapa[0].length;
@@ -48,28 +48,30 @@ Mundo.prototype.detener=function(){
 	clearInterval(this.intervalo);
 };
 Mundo.prototype.iniciarJugador=function(){
-	this.jugador=new Jugador(this,30, 30, 2.5, 1.5);
+	var x = Math.floor((Math.random() * 2) + 1);
+	var y = Math.floor((Math.random() * 3) + 1);
+	this.jugador=new Jugador(this,30, 30, x+0.5, y+0.5);
 	var self=this;
 	
 	document.body.onkeydown=function(e){
 		switch(e.keyCode)
 		{
 			case 38: //Arriba
-				e.preventDefault();
-				self.jugador.arriba=true;
-				break;
+			e.preventDefault();
+			self.jugador.arriba=true;
+			break;
 			case 40: //Abajo
-				e.preventDefault();
-				self.jugador.abajo=true;
-				break;
+			e.preventDefault();
+			self.jugador.abajo=true;
+			break;
 			case 39: //Derecha
-				e.preventDefault();
-				self.jugador.derecha=true;
-				break;
+			e.preventDefault();
+			self.jugador.derecha=true;
+			break;
 			case 37: //Izquierda
-				e.preventDefault();
-				self.jugador.izquierda=true;
-				break;
+			e.preventDefault();
+			self.jugador.izquierda=true;
+			break;
 			
 		}
 	};
@@ -77,21 +79,21 @@ Mundo.prototype.iniciarJugador=function(){
 		switch(e.keyCode)
 		{
 			case 38: //Arriba
-				e.preventDefault();
-				self.jugador.arriba=false;
-				break;
+			e.preventDefault();
+			self.jugador.arriba=false;
+			break;
 			case 40: //Abajo
-				e.preventDefault();
-				self.jugador.abajo=false;
-				break;
+			e.preventDefault();
+			self.jugador.abajo=false;
+			break;
 			case 39: //Derecha
-				e.preventDefault();
-				self.jugador.derecha=false;
-				break;
+			e.preventDefault();
+			self.jugador.derecha=false;
+			break;
 			case 37: //Izquierda
-				e.preventDefault();
-				self.jugador.izquierda=false;
-				break;
+			e.preventDefault();
+			self.jugador.izquierda=false;
+			break;
 			
 		}
 	};

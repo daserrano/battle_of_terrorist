@@ -4,7 +4,10 @@ function Sprite(img)
 	this.directions = [];
 }
 
-//
+Sprite.prototype.setDirection = function(direction, coord)
+{
+	this.directions[direction] = coord;
+};
 
 Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceLe, spaceRi, directions)
 {
@@ -22,9 +25,19 @@ Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceL
 	}
 };
 
-//
+Sprite.prototype.getNumSprites = function(direction)
+{
+	return this.directions[direction].length;
+};
 
-//
+Sprite.prototype.draw = function(context, width, height, direction, index)
+{
+	context.drawImage(this.img, this.directions[direction][index][0],
+								this.directions[direction][index][1],
+								this.directions[direction][index][2]-this.directions[direction][index][0],
+								this.directions[direction][index][3]-this.directions[direction][index][1],
+								-width/2, -height/2, width, height);
+};
 
 function SaveSprites()
 {

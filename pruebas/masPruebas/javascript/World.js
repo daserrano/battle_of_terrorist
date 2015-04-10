@@ -4,12 +4,12 @@ function World(idCanvas)
 	this.context = this.canvas.getContext('2d');
 
 	this.cellWidth  = 40;
-	this.cellheight = 40;
+	this.cellHeight = 40;
 
 	this.allTiles = 
 	[
-	new Tile(this.cellWidth, this.cellheight, true, "white"),
-	new Tile(this.cellWidth, this.cellheight, false, "black")
+	new Tile(this.cellWidth, this.cellHeight, true, "white"),
+	new Tile(this.cellWidth, this.cellHeight, false, "black")
 	];
 
 	this.map = 
@@ -30,7 +30,7 @@ function World(idCanvas)
 	];
 
 	this.canvas.width  = this.cellWidth*this.map[0].length;
-	this.canvas.height = this.cellheight*this.map.length;
+	this.canvas.height = this.cellHeight*this.map.length;
 
 	this.player;
 	this.initPlayer();
@@ -103,12 +103,27 @@ World.prototype.cellWalked = function(px, py)
 	var x = parseInt(px);
 	var y = parseInt(py);
 
-	return this.allTiles[this.map[y][x]].walked;
+	return this.allTiles[this.map[y][x]].walk;
 }
 
 World.prototype.moveCharacters = function(delta)
 {
 	this.player.move(delta);
+};
+
+World.prototype.drawMap = function()
+{
+	var y = this.map.length;
+	var x = this.map[0].length;
+
+	for(var yi=0; yi<y; yi++)
+		for(var xi=0; xi<x; xi++)
+			this.allTiles[this.map[yi][xi]].draw(this.context, xi, yi);
+};
+
+World.prototype.drawCharacters = function()
+{
+	this.player.draw(this.context);
 };
 
 World.prototype.loop = function()
@@ -117,6 +132,6 @@ World.prototype.loop = function()
 	this.timePassed = new Date().getTime();
 
 	this.moveCharacters(delta);
-	//
-	//
+	this.drawMap();
+	this.drawCharacters();
 };

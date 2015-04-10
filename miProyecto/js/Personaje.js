@@ -10,7 +10,7 @@ function Personaje(mundo, ancho, alto, x, y, sprite)
 	this.dx=0;
 	this.dy=0;
 	
-	this.velocidad=0.003;
+	this.velocidad=0.002;
 	
 	this.sprite=sprite;
 	this.direccion="abajo";
