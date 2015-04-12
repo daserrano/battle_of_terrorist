@@ -1,0 +1,12 @@
+int tamano;
+
+void setup(){
+size(200,200);
+tamano = 1;
+}
+void draw(){ 
+background(125, 0, 0);
+rect(0, 0, tamano, tamano);
+tamano += 0.02;
+tamano = tamano % width;
+}
