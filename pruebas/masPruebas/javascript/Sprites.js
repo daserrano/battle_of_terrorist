@@ -21,7 +21,7 @@ Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceL
 			this.directions[direction].push([i*width+spaceLe, 
 				directions[direction]*height+spaceUp, 
 				(i+1)*width-spaceRi,
-				(directions[direction]+1)*height-spaceUp]);
+				(directions[direction]+1)*height-spaceDo]);
 	}
 };
 

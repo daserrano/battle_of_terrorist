@@ -1,11 +1,11 @@
 function Player(world, width, height, x, y)
 {
-    Character.call(this, world, width, height, x, y, SaveSprites.get("player1"));
+	Character.call(this, world, width, height, x, y, Sprites.get("player1")); //Llama al método personaje para que tenga los mismos atributos.
 	this.up    = false;
 	this.down  = false;
 	this.right = false;
-	this.left  = false;	
-}
+	this.left  = false;
+} 
 
 Player.prototype = new Character;
 
@@ -15,13 +15,13 @@ Player.prototype.move = function(delta)
 	this.dy = 0;
 
 	if(this.up)
-		this.dy-=1;
+		this.dy -= 1;
 	if(this.down)
-		this.dy+=1;
-	if(this.left)
-		this.dx-=1;
+		this.dy += 1;
 	if(this.right)
-		this.dx+=1;
+		this.dx += 1;
+	if(this.left)
+		this.dx -= 1;
 
 	Character.prototype.move.call(this, delta);
 };

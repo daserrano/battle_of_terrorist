@@ -1,12 +1,12 @@
 function Sprite(img)
 {
-	this.img        = img;
+	this.img = img;
 	this.directions = [];
 }
 
-Sprite.prototype.setDirection = function(direction, coords)
+Sprite.prototype.setDirection = function(direction, coord)
 {
-	this.directions[direction] = coords;
+	this.directions[direction] = coord;
 };
 
 Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceLe, spaceRi, directions)
@@ -14,11 +14,14 @@ Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceL
 	var width  = this.img.width/cols;
 	var height = this.img.height/rows;
 
-	for(direction in directions)
+	for (direction in directions)
 	{
 		this.directions[direction] = [];
-		for(var i=0; i<cols;i++)
-			this.directions[direction].push([i*width+spaceLe, directions[direction]*height+spaceUp, (i+1)*width-spaceRi,(directions[direction]+1)*alto-spaceDo]);
+		for (var i=0; i< cols; i++)
+			this.directions[direction].push([i*width+spaceLe, 
+				directions[direction]*height+spaceUp, 
+				(i+1)*width-spaceRi,
+				(directions[direction]+1)*height-spaceDo]);
 	}
 };
 
@@ -30,15 +33,15 @@ Sprite.prototype.getNumSprites = function(direction)
 Sprite.prototype.draw = function(context, width, height, direction, index)
 {
 	context.drawImage(this.img, this.directions[direction][index][0],
-							this.directions[direction][index][1],
-							this.directions[direction][index][2]-this.directions[direction][index][0],
-							this.directions[direction][index][3]-this.directions[direction][index][1],
-							-width/2, -height/2, width, height);
+								this.directions[direction][index][1],
+								this.directions[direction][index][2]-this.directions[direction][index][0],
+								this.directions[direction][index][3]-this.directions[direction][index][1],
+								-width/2, -height/2, width, height);
 };
 
 function SaveSprites()
 {
-	this.list = [];
+	this.list = []; //Lista de sprites.
 }
 
 SaveSprites.prototype.add = function(id, sprite)
@@ -49,4 +52,4 @@ SaveSprites.prototype.add = function(id, sprite)
 SaveSprites.prototype.get = function(id)
 {
 	return this.list[id];
-}
+};

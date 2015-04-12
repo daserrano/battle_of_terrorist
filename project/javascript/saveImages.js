@@ -1,38 +1,37 @@
-function saveImages()
+function SaveImages()
 {
-	this.list=[]; // To create a list of images | Para crear una lista de imagenes.
-	this.wait=0;  // To know the images are saving | Para saber cuantas imagenes hay que guardar.
-	this.load=0;  // To cross all the images | Para saber cuantas imagenes se han cargado.
+	this.list    = []; 	// Lista para guardar las imágenes.
+	this.waiting = 0; 	// Número de imágenes en espera.
+	this.loaded  = 0; 	// Imágenes cargadas.
 }
 
-saveImages.prototype.loading = function(list)
+SaveImages.prototype.load = function(list)
 {
-	var self     = this; // References to this | Referencia para this
+	var self     = this;
 	this.waiting = list.length;
 	for (var i=0; i<this.waiting; i++)
 	{
-		var img = new Image(); // Each image must be save in list | Cada imagen debe ser guardada en la lista
+		var img = new Image();
 		img.src = list[i][1];
 		img.onload = function()
 		{
-			self.imageLoad(); // Self to references saveImages | self para nombrar a saveImages.
+			self.imageLoaded();
 		};
-		this.list[list[i][0]] = img; // Each position in array is the image | Cada posición del array tiene su imagen.
+		this.list[list[i][0]] = img; // Se guardan los dos campos en lista.
 	}
-}
 
-saveImages.prototype.imageLoad = function()
-{
-	this.loading++;
-	if (this.loading == this.waiting) //If all the image are load, it is completed | Si todas las imagenes se han cargado, se ha completado.
-	{
-		this.completed();
-	}
 };
 
-saveImages.prototype.get = function(id)
+SaveImages.prototype.imageLoaded = function()
+{
+	this.loaded++;
+	if(this.loaded == this.waiting)
+		this.completed();
+};
+
+SaveImages.prototype.get = function(id)
 {
 	return this.list[id];
 };
 
-saveImages.prototype.completed = function(){};
+SaveImages.prototype.completed = function(){};

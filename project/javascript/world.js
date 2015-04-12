@@ -1,131 +1,137 @@
-function World(idCanvas, ctx)
+function World(idCanvas)
 {
-    this.canvas  = idCanvas;
-    this.context = ctx;
+	this.canvas  = document.getElementById(idCanvas);
+	this.context = this.canvas.getContext('2d');
 
-    this.cellWidth  = 100;
-    this.cellHeight = 100;
+	this.cellWidth  = 40;
+	this.cellHeight = 40;
 
-    this.tiles = [
-    new Tile(this.cellWidth, this.cellHeight, true, "white"),
-    new Tile(this.cellWidth, this.cellHeight, false, "black") 
-    ];
+	this.allTiles = 
+	[
+	new Tile(this.cellWidth, this.cellHeight, true, "white"),
+	new Tile(this.cellWidth, this.cellHeight, false, "black")
+	];
 
-    this.map = 
-    [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-    [1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-    [1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    ];
+	this.map = 
+	[
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+	];
 
-    //this.canvas.width  = this.cellWidth*this.map[0].length;
-    //this.canvas.height = this.cellHeight*this.map.length;
-    canvas.width  = this.cellWidth*this.map[0].length;
-    canvas.height = this.cellHeight*this.map.length;
+	this.canvas.width  = this.cellWidth*this.map[0].length;
+	this.canvas.height = this.cellHeight*this.map.length;
 
-    this.player1;
-    this.playerOn();
+	this.player;
+	this.initPlayer();
 
-    var self = this;
-    this.timeGame = new Date().getTime();
-    this.timeInterval = setInterval(function(){self.loop()}, 25);
+	var self = this;
+	this.timePassed = new Date().getTime();
+	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
 
-    this.drawMap(); 
 }
 
-World.prototype.playerOn = function()
+World.prototype.initPlayer = function()
 {
-    this.player1 = new Player(this, 30, 30, 2.5, 1.5);
-    var self = this;
+	this.player = new Player(this, 30, 30, 2.5, 1.5);
+	var self    = this;
 
-    document.body.onkeydown = function(e)
-    {
-        switch(e.keyCode)
-        {
-            case 38: //Up | Arriba
-            e.preventDefault();
-            self.player1.up = true;
-            break;
-            case 40: //Down | Abajo
-            e.preventDefault();
-            self.player1.down = true;
-            break;
-            case 39: //Right | Derecha
-            e.preventDefault();
-            self.player1.right = true;
-            break;
-            case 37: //Left | Izquierda
-            e.preventDefault();
-            self.player1.left = true;
-            break;
-        }
-    };
+	document.body.onkeydown = function(e)
+	{
+		switch(e.keyCode)
+		{
+			case 38: // Up
+			e.preventDefault();
+			self.player.up = true;
+			break;
 
-    document.body.onkeyup = function(e){
-        switch(e.keyCode)
-        {
-            case 38: //Up | Arriba
-            e.preventDefault();
-            self.player1.up = false;
-            break;
-            case 40: //Down | Abajo
-            e.preventDefault();
-            self.player1.down = false;
-            break;
-            case 39: //Right | Derecha
-            e.preventDefault();
-            self.player1.right = false;
-            break;
-            case 37: //Left | Izquierda
-            e.preventDefault();
-            self.player1.left = false;
-            break;
-        }
-    };
+			case 40: // Down
+			e.preventDefault();
+			self.player.down = true;
+			break;
+
+			case 39: // Right
+			e.preventDefault();
+			self.player.right = true;
+			break;
+
+			case 37: //Left
+			e.preventDefault();
+			self.player.left = true;
+			break;
+		}
+	};
+	document.body.onkeyup = function(e)
+	{
+		switch(e.keyCode)
+		{
+			case 38: // Up
+			e.preventDefault();
+			self.player.up = false;
+			break;
+
+			case 40: // Down
+			e.preventDefault();
+			self.player.down = false;
+			break;
+
+			case 39: // Right
+			e.preventDefault();
+			self.player.right = false;
+			break;
+
+			case 37: //Left
+			e.preventDefault();
+			self.player.left = false;
+			break;
+		}
+	};
 };
 
-World.prototype.walkedTile = function(px, py)
+World.prototype.cellWalked = function(px, py)
 {
-    var x = parseInt(px);
-    var y = parseInt(py);
-    return this.tiles[this.map[y][x]].walk;
+	var x = parseInt(px);
+	var y = parseInt(py);
+
+	return this.allTiles[this.map[y][x]].walk;
 }
 
-World.prototype.moveCharacter = function(delta)
+World.prototype.moveCharacters = function(delta)
 {
-    this.player1.move(delta);
+	this.player.move(delta);
 };
 
 World.prototype.drawMap = function()
 {
-    var y = this.map.length;
-    var x = this.map[0].length;
+	var y = this.map.length;
+	var x = this.map[0].length;
 
-    for (var yi=0; yi < y; yi++)
-       for(var xi=0; xi < x; xi++)
-        this.tiles[this.map[yi][xi]].draw(this.context, xi, yi);
+	for(var yi=0; yi<y; yi++)
+		for(var xi=0; xi<x; xi++)
+			this.allTiles[this.map[yi][xi]].draw(this.context, xi, yi);
 };
 
-World.prototype.drawCharacter = function()
+World.prototype.drawCharacters = function()
 {
-    this.player1.draw(this.context);
+	this.player.draw(this.context);
 };
 
 World.prototype.loop = function()
 {
-    var delta     = (new Date().getTime()) - this.timeGame;
-    this.timeGame = new Date().getTime();
-    this.moveCharacter(delta);
-    this.drawMap();
-    this.drawCharacter();
+	var delta = (new Date().getTime()) - this.timePassed;
+	this.timePassed = new Date().getTime();
+
+	this.moveCharacters(delta);
+	this.drawMap();
+	this.drawCharacters();
 };
