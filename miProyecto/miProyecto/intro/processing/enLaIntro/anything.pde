@@ -1,19 +1,16 @@
 /* @pjs preload="1.png"; */
+PImage img;
 void setup()
 {
-  size(200,200);
- 
-  PFont fontA = loadFont("courier");
-  textFont(fontA, 14);
-   PImage im = loadImage("1.png");
- background(im);  
+   size(200, 200);
+   img = loadImage("1.png");
+
 }
 
 void draw(){  
+ 
+ 
+    background(img); 
 
- 
-  text("Hello Web!",20,20);
-  println("Hello ErrorLog!");
- 
 
 }
