@@ -5,6 +5,7 @@ function Player(world, width, height, x, y, id)
 	this.down  = false;
 	this.right = false;
 	this.left  = false;
+	this.shoot = false;
 } 
 
 Player.prototype = new Character;
@@ -24,4 +25,24 @@ Player.prototype.move = function(delta)
 		this.dx -= 1;
 
 	Character.prototype.move.call(this, delta);
+};
+
+Player.prototype.shooting = function(delta)
+{
+	this.bx = 0;
+	this.by = 0;
+
+	if(this.shoot)
+	{
+		if(this.up)
+			this.bx -= 1;
+		if(this.down)
+			this.by += 1;
+		if(this.right)
+			this.bx += 1;
+		if(this.left)
+			this.bx -= 1;
+	}
+
+	Character.prototype.shooting.call(this, delta);
 };

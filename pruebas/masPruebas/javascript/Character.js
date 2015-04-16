@@ -11,7 +11,8 @@ function Character(world, width, height, x, y, sprite)
 	this.dx = 0;
 	this.dy = 0;
 
-	this.velocity = 0.003;
+	this.velocity  = 0.003;
+	this.velBullet = 0.004;
 
 	this.sprite           = sprite;
 	this.direction        = "down";
@@ -80,6 +81,12 @@ Character.prototype.move = function(delta)
 		this.transition = 0;
 		this.spriteIndex = (this.spriteIndex + 1) % this.sprite.getNumSprites(newDirection); // Numero de sprites por direccion.
 	}
+};
+
+Character.prototype.shooting = function(delta)
+{
+	if(this.bx == 0 && this.by == 0)
+		return;
 };
 
 Character.prototype.draw = function(context)

@@ -47,8 +47,11 @@ World.prototype.initPlayer = function()
 	var x = Math.floor((Math.random()*2)+1);
 	var y = Math.floor((Math.random()*3)+1);
 
-	this.player = new Player(this, 30, 30, x+0.5, y+0.5,  "player1");
-	this.player2 = new Player(this, 30, 30, 22.5, 9.5, "player2");
+	var z = Math.floor((Math.random()*2)+22);
+	var t = Math.floor((Math.random()*3)+9);
+
+	this.player  = new Player(this, 30, 30, x+0.5, y+0.5, "player1");
+	this.player2 = new Player(this, 30, 30, z+0.5, t+0.5, "player2");
 	var self    = this;
 
 	document.body.onkeydown = function(e)
@@ -93,6 +96,11 @@ World.prototype.initPlayer = function()
 			case 65: //Left
 			e.preventDefault();
 			self.player.left = true;
+			break;
+
+			case 32: //Space
+			e.preventDefault();
+			self.player.shoot = true;
 			break;
 		}
 	};
@@ -139,6 +147,11 @@ World.prototype.initPlayer = function()
 			e.preventDefault();
 			self.player.left = false;
 			break;
+
+			case 32: //Space
+			e.preventDefault();
+			self.player.shoot = false;
+			break;
 		}
 	};
 };
@@ -155,6 +168,11 @@ World.prototype.moveCharacters = function(delta)
 {
 	this.player.move(delta);
 	this.player2.move(delta);
+};
+
+World.prototype.shootCharacters = function(delta)
+{
+	this.player.shooting(delta);
 };
 
 World.prototype.drawMap = function()
@@ -179,6 +197,7 @@ World.prototype.loop = function()
 	this.timePassed = new Date().getTime();
 
 	this.moveCharacters(delta);
+	this.shootCharacters(delta);
 	this.drawMap();
 	this.drawCharacters();
 };
