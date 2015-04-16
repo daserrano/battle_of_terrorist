@@ -29,14 +29,14 @@ Character.prototype.validPosition = function(px, py)
 		return false;
 	if(!world.cellWalked(px+width, py-height))
 		return false;
-	if(!world.cellWalked(px-width, py-height))
+	if(!world.cellWalked(px-width, py+height))
 		return false;
 	if(!world.cellWalked(px+width, py+height))
 		return false;
 
 	return true;
 
-}; //Here 08/04.
+};
 
 Character.prototype.move = function(delta)
 {
@@ -85,7 +85,7 @@ Character.prototype.move = function(delta)
 Character.prototype.draw = function(context)
 {
 	context.save();
-	context.translate(this.x * world.cellWidth, this.y*world.cellHeight);
+	context.translate(this.x*world.cellWidth, this.y*world.cellHeight);
 	this.sprite.draw(context, this.width, this.height, this.direction, this.spriteIndex);
 
 	context.restore();

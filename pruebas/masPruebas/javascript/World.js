@@ -33,6 +33,7 @@ function World(idCanvas)
 	this.canvas.height = this.cellHeight*this.map.length;
 
 	this.player;
+	this.player2;
 	this.initPlayer();
 
 	var self = this;
@@ -46,7 +47,8 @@ World.prototype.initPlayer = function()
 	var x = Math.floor((Math.random()*2)+1);
 	var y = Math.floor((Math.random()*3)+1);
 
-	this.player = new Player(this, 30, 30, x+0.5, y+0.5);
+	this.player = new Player(this, 30, 30, x+0.5, y+0.5,  "player1");
+	this.player2 = new Player(this, 30, 30, 22.5, 9.5, "player2");
 	var self    = this;
 
 	document.body.onkeydown = function(e)
@@ -55,20 +57,40 @@ World.prototype.initPlayer = function()
 		{
 			case 38: // Up
 			e.preventDefault();
-			self.player.up = true;
+			self.player2.up = true;
 			break;
 
 			case 40: // Down
 			e.preventDefault();
-			self.player.down = true;
+			self.player2.down = true;
 			break;
 
 			case 39: // Right
 			e.preventDefault();
-			self.player.right = true;
+			self.player2.right = true;
 			break;
 
 			case 37: //Left
+			e.preventDefault();
+			self.player2.left = true;
+			break;
+
+			case 87: // Up
+			e.preventDefault();
+			self.player.up = true;
+			break;
+
+			case 83: // Down
+			e.preventDefault();
+			self.player.down = true;
+			break;
+
+			case 68: //Right
+			e.preventDefault();
+			self.player.right = true;
+			break;
+
+			case 65: //Left
 			e.preventDefault();
 			self.player.left = true;
 			break;
@@ -80,20 +102,40 @@ World.prototype.initPlayer = function()
 		{
 			case 38: // Up
 			e.preventDefault();
-			self.player.up = false;
+			self.player2.up = false;
 			break;
 
 			case 40: // Down
 			e.preventDefault();
-			self.player.down = false;
+			self.player2.down = false;
 			break;
 
 			case 39: // Right
 			e.preventDefault();
-			self.player.right = false;
+			self.player2.right = false;
 			break;
 
 			case 37: //Left
+			e.preventDefault();
+			self.player2.left = false;
+			break;
+
+			case 87: // Up
+			e.preventDefault();
+			self.player.up = false;
+			break;
+
+			case 83: // Down
+			e.preventDefault();
+			self.player.down = false;
+			break;
+
+			case 68: // Right
+			e.preventDefault();
+			self.player.right = false;
+			break;
+
+			case 65: //Left
 			e.preventDefault();
 			self.player.left = false;
 			break;
@@ -112,6 +154,7 @@ World.prototype.cellWalked = function(px, py)
 World.prototype.moveCharacters = function(delta)
 {
 	this.player.move(delta);
+	this.player2.move(delta);
 };
 
 World.prototype.drawMap = function()
@@ -127,6 +170,7 @@ World.prototype.drawMap = function()
 World.prototype.drawCharacters = function()
 {
 	this.player.draw(this.context);
+	this.player2.draw(this.context);
 };
 
 World.prototype.loop = function()
