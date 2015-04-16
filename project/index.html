@@ -29,14 +29,21 @@
 		Images.load(
 			[
 			["green1", "images/game/playerGreen1.png"],
-			["red2", "images/game/playerRed2.png"]
+			["green2", "images/game/playerGreen2.png"],
+			["red1", "images/game/playerRed1.png"],
+			["red2", "images/game/playerRed2.png"],
+			["blue1", "images/game/playerBlue1.png"]
 			]);
 
 		Images.completed = function() 
 		{
-			var spritePlayer1 = new Sprite(Images.get("green1"));
-			spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0,"right":2, "left":1});
+			var spritePlayer1 = new Sprite(Images.get("blue1"));
+			spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 			Sprites.add("player1", spritePlayer1);
+
+			var spritePlayer2 = new Sprite(Images.get("red2"));
+			spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
+			Sprites.add("player2", spritePlayer2);
 			world = new World("canvas");
 		}
 	}
