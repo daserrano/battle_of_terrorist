@@ -39,7 +39,6 @@ function World(idCanvas)
 	var self = this;
 	this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
-
 }
 
 World.prototype.initPlayer = function()
@@ -102,12 +101,12 @@ World.prototype.initPlayer = function()
 			e.preventDefault();
 			self.player.shoot = true;
 			break;
-		}
-	};
-	document.body.onkeyup = function(e)
+	}
+};
+document.body.onkeyup = function(e)
+{
+	switch(e.keyCode)
 	{
-		switch(e.keyCode)
-		{
 			case 38: // Up
 			e.preventDefault();
 			self.player2.up = false;
@@ -173,6 +172,7 @@ World.prototype.moveCharacters = function(delta)
 World.prototype.shootCharacters = function(delta)
 {
 	this.player.shooting(delta);
+
 };
 
 World.prototype.drawMap = function()
@@ -183,21 +183,21 @@ World.prototype.drawMap = function()
 	for(var yi=0; yi<y; yi++)
 		for(var xi=0; xi<x; xi++)
 			this.allTiles[this.map[yi][xi]].draw(this.context, xi, yi);
-};
+	};
 
-World.prototype.drawCharacters = function()
-{
-	this.player.draw(this.context);
-	this.player2.draw(this.context);
-};
+	World.prototype.drawCharacters = function()
+	{
+		this.player.draw(this.context);
+		this.player2.draw(this.context);
+	};
 
-World.prototype.loop = function()
-{
-	var delta = (new Date().getTime()) - this.timePassed;
-	this.timePassed = new Date().getTime();
+	World.prototype.loop = function()
+	{
+		var delta = (new Date().getTime()) - this.timePassed;
+		this.timePassed = new Date().getTime();
 
-	this.moveCharacters(delta);
-	this.shootCharacters(delta);
-	this.drawMap();
-	this.drawCharacters();
-};
+		this.moveCharacters(delta);
+		this.shootCharacters(delta);
+		this.drawMap();
+		this.drawCharacters();
+	};

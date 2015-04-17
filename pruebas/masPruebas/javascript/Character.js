@@ -36,7 +36,6 @@ Character.prototype.validPosition = function(px, py)
 		return false;
 
 	return true;
-
 };
 
 Character.prototype.move = function(delta)
@@ -87,6 +86,9 @@ Character.prototype.shooting = function(delta)
 {
 	if(this.bx == 0 && this.by == 0)
 		return;
+
+	var px = this.x+this.bx*this.velBullet*delta;
+	var py = this.y+this.by*this.velBullet*delta;
 };
 
 Character.prototype.draw = function(context)
