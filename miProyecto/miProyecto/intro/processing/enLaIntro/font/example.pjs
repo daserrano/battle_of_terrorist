@@ -3,7 +3,7 @@ PFont myFont;
 
 void setup() {
   background(0);
-  size(200, 200);
+  size(1000, 520);
 
   myFont = createFont("transformer", 32);
   textFont(myFont);
