@@ -19,7 +19,7 @@
 		PFont font_name;
 		float xpos;
 		float ypos;
-		float drag = 05.0;
+		float drag = 1.1;
 		//Funcion setup
 		void setup() 
 		{
@@ -29,10 +29,10 @@
 			xpos = width/2;
 			ypos = height/2;
 
-			primerPersonaje = loadImage("img/1.png");
-			segundoPersonaje = loadImage("img/2.png");
-			tercerPersonaje = loadImage("img/3.png");
-			cuartoPersonaje = loadImage("img/4.png");
+			primerPersonaje = loadImage("img/1FIN.png");
+			segundoPersonaje = loadImage("img/2FIN.png");
+			tercerPersonaje = loadImage("img/3FIN.png");
+			cuartoPersonaje = loadImage("img/4FIN.png");
 			MOD = loadImage("img/raton5.png");	
 			logo = loadImage("img/logo1.png")
 			font_name = createFont("transformer", 65);
@@ -49,10 +49,11 @@
 
 			//background(0, 10, RGB);
 			background(0);
-
-			image(logo, 400, 25, 200, 100);
 			text("Elige un personsaje", 200, 250);
-			image(primerPersonaje, 100, 270, 50, 70);
+			image(logo, 400, 25, 200, 100, 7);
+			//rectMode(CENTER);
+            //rect(100,325,800,125);
+			image(primerPersonaje, 100, 270,50,70);
 			image(segundoPersonaje, 350, 270, 50, 70);
 			image(tercerPersonaje, 600, 270, 50, 70);
 			image(cuartoPersonaje, 850, 270, 50, 70);
@@ -68,26 +69,30 @@
 				ypos = constrain(ypos, 0, height-MOD.height);
 			}  
 
-  // Display the sprite at the position xpos, ypos
-  image(MOD, xpos, ypos);
+  			// Display the sprite at the position xpos, ypos
+  			image(MOD, xpos, ypos);
 
-			//text("futura in pjs", 20, 50);
-			if(mousePressed == true) {
-				noCursor();
-			} else {
-  //cursor(HAND);
-  noCursor();
+  			if(mousePressed == true) {
+  				noCursor();
+  			} else {
+
+  				noCursor();
+  			}
+  			
+
+
 }
-}
 
 
 
+		
 
-</script>
 
-<canvas width="1000" height="500" id="mycanvas">
+	</script>
 
-</canvas>
+	<canvas width="1000" height="500" id="mycanvas">
+
+	</canvas>
 
 </body>
 </html>

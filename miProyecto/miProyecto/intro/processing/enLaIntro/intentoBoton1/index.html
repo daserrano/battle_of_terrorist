@@ -23,14 +23,6 @@
 		RectButton buttonPersonaje1;
 		boolean locked = false;
 
-		//BOTON
-		int rectX, rectY;      // Position of square button
-		int rectSize = 50;     // Diameter of rect
-		color rectColor, baseColor;
-		color rectHighlight;
-		color currentColor;
-		boolean rectOver = false;
-
 
 		//Funcion setup
 		void setup() 
@@ -38,8 +30,8 @@
 			//Esta linea determinará el tamaño de nuestro canvas
 			size(1000, 500);
 			frameRate(60);
-			xpos = width/1.5;
-			ypos = height/1.5;
+			xpos = width/2;
+			ypos = height/2;
 
 			primerPersonaje = loadImage("img/1FIN.png");
 			segundoPersonaje = loadImage("img/2FIN.png");
@@ -53,12 +45,9 @@
 			textFont(font_name, 65);
 			fill(204, 204, 0);
 			//BOTON 1
-			rectColor = color(0);
-			rectHighlight = color(51);
-			baseColor = color(102);
-			currentColor = baseColor;
-			rectX = 100;
-			rectY = 380;
+			buttoncolor = color(204);
+			highlight = color(153); 
+			buttonPersonaje1 = new RectButton(130, 110, 24, buttoncolor, highlight);
 
 
 		}
@@ -66,6 +55,7 @@
 		void draw() 
 		{			 
 
+			//background(0, 10, RGB);
 			background(0);
 			text("Elige un personsaje", 200, 250);
 			image(logo, 400, 25, 200, 100, 7);
@@ -97,59 +87,138 @@
   				noCursor();
   			}
   			
-  			//BOTON
-  			update(mouseX, mouseY);
-  			if (rectOver) {
-  				//fill(rectHighlight);
-  				text("Elige un personsaje", 400, 380);
-
-  			} else {
-  				//fill(rectColor);
-  			}
-  			stroke(255);
-  			rect(rectX, rectY, rectSize, rectSize);
-  			
+  			//BOTON 1
+  			buttonPersonaje1.display();
 
 
   		}
 
+  		//Actualiza el BOTON
+  		void update(int x, int y)
+
+  		{
+
+  			if(locked == false) {
+  				buttonPersonaje1.update();
+  			} 
+  			else {
+  				locked = false;
+  			}
+  			if(mousePressed) {
+  				if(buttonPersonaje1.pressed()) {
+  					currentcolor = buttonPersonaje1.basecolor;
+  				} 
+  			}
+  		}
+
+  		//Clase BOTON
+
+  		class Button
+
+  		{
+  			int x, y;
+  			int size;
+  			color basecolor, highlightcolor;
+  			color currentcolor;
+  			boolean over = false;
+  			boolean pressed = false;   
 
 
-//BOTON
-void update(int x, int y) {
-	if ( overRect(rectX, rectY, rectSize, rectSize) ) {
-		rectOver = true;
-		
-	} else {
-		rectOver = false;
-	}
+  			void update() 
+
+  			{
+  				if(over()) {
+  					currentcolor = highlightcolor;
+  				} 
+  				else {
+  					currentcolor = basecolor;
+  				}
+  			}
+
+  			boolean pressed() 
+  			{
+  				if(over) {
+  					locked = true;
+  					return true;
+  				} 
+  				else {
+  					locked = false;
+  					return false;
+  				}    
+  			}
+
+
+
+  			boolean over() 
+  			{ 
+  				return true; 
+  			}
+
+  			boolean overRect(int x, int y, int width, int height) 
+  			{
+  				if (mouseX >= x && mouseX <= x+width && 
+  					mouseY >= y && mouseY <= y+height) {
+  					return true;
+  			} 
+  			else {
+  				return false;
+  			}
+  		}
 }
 
-void mousePressed() {
-	if (rectOver) {
-		currentColor = rectColor;
-	}
-}
+  		class RectButton extends Button
+
+  		{
+
+  			RectButton(int ix, int iy, int isize, color icolor, color ihighlight) 
+  			{
+  				x = ix;
+  				y = iy;
+  				size = isize;
+  				basecolor = icolor;
+  				highlightcolor = ihighlight;
+  				currentcolor = basecolor;
+  			}
+
+  			boolean over() 
+  			{
+  				if( overRect(x, y, size, size) ) {
+  					over = true;
+  					return true;
+  				} 
+  				else {
+  					over = false;
+  					return false;
+  				}
+  			}
+
+  			void display() 
+  			{
+  				stroke(255);
+  				fill(currentcolor);
+  				rect(x, y, size, size);
+  			}
+  		}
 
 
-boolean overRect(int x, int y, int width, int height)  {
-	if (mouseX >= x && mouseX <= x+width && 
-		mouseY >= y && mouseY <= y+height) {
-		return true;
-} else {
-	return false;
-}
-}
 
 
 
 
 
-</script>
 
-<canvas width="1000" height="500" id="mycanvas">
 
-</canvas>
 
-</body>
-</html>
+
+
+
+
+
+  	</script>
+
+  	<canvas width="1000" height="500" id="mycanvas">
+
+  	</canvas>
+
+  </body>
+  </html>

@@ -1,0 +1,16 @@
+		/* @pjs font="transformer-webfont.ttf" */
+PFont myFont;
+
+void setup() {
+  background(0);
+  size(1000, 520);
+
+  myFont = createFont("transformer", 32);
+  textFont(myFont);
+  text("hello", 52, 60);
+
+  myFont = loadFont("transformer-webfont.ttf");
+  textFont(myFont, 32);
+  text("world!", 50, 100);
+}
+
