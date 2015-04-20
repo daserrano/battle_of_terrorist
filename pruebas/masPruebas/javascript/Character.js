@@ -12,13 +12,12 @@ function Character(world, width, height, x, y, sprite)
 	this.dy = 0;
 
 	this.velocity  = 0.003;
-	this.velBullet = 0.004;
 
 	this.sprite           = sprite;
 	this.direction        = "down";
-	this.spriteIndex      =  0;
-	this.transitionSprite = 50;
-	this.transition       =  0;
+	this.spriteIndex      =  0; // Indice del sprite.
+	this.transitionSprite = 70; // Tiempo que transcurre entre sprite y sprite.
+	this.transition       =  0; // Tiempo que transcurre.
 }
 
 Character.prototype.validPosition = function(px, py)
@@ -80,15 +79,6 @@ Character.prototype.move = function(delta)
 		this.transition = 0;
 		this.spriteIndex = (this.spriteIndex + 1) % this.sprite.getNumSprites(newDirection); // Numero de sprites por direccion.
 	}
-};
-
-Character.prototype.shooting = function(delta)
-{
-	if(this.bx == 0 && this.by == 0)
-		return;
-
-	var px = this.x+this.bx*this.velBullet*delta;
-	var py = this.y+this.by*this.velBullet*delta;
 };
 
 Character.prototype.draw = function(context)

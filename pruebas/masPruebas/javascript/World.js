@@ -3,8 +3,8 @@ function World(idCanvas)
 	this.canvas  = document.getElementById(idCanvas);
 	this.context = this.canvas.getContext('2d');
 
-	this.cellWidth  = 40;
-	this.cellHeight = 40;
+	this.cellWidth  = 50;
+	this.cellHeight = 50;
 
 	this.allTiles = 
 	[
@@ -36,9 +36,13 @@ function World(idCanvas)
 	this.player2;
 	this.initPlayer();
 
+	this.shoots;
+	this.bullets = [];
+
 	var self = this;
 	this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
+
 }
 
 World.prototype.initPlayer = function()
@@ -49,8 +53,8 @@ World.prototype.initPlayer = function()
 	var z = Math.floor((Math.random()*2)+22);
 	var t = Math.floor((Math.random()*3)+9);
 
-	this.player  = new Player(this, 30, 30, x+0.5, y+0.5, "player1");
-	this.player2 = new Player(this, 30, 30, z+0.5, t+0.5, "player2");
+	this.player  = new Player(this, 40, 40, x+0.5, y+0.5, "player1");
+	this.player2 = new Player(this, 40, 40, z+0.5, t+0.5, "player2");
 	var self    = this;
 
 	document.body.onkeydown = function(e)
@@ -99,14 +103,13 @@ World.prototype.initPlayer = function()
 
 			case 32: //Space
 			e.preventDefault();
-			self.player.shoot = true;
 			break;
-	}
-};
-document.body.onkeyup = function(e)
-{
-	switch(e.keyCode)
+		}
+	};
+	document.body.onkeyup = function(e)
 	{
+		switch(e.keyCode)
+		{
 			case 38: // Up
 			e.preventDefault();
 			self.player2.up = false;
@@ -149,7 +152,8 @@ document.body.onkeyup = function(e)
 
 			case 32: //Space
 			e.preventDefault();
-			self.player.shoot = false;
+			self.shoots = new Bullet(self);
+			self.bullets.push(self.shoots);
 			break;
 		}
 	};
@@ -169,10 +173,9 @@ World.prototype.moveCharacters = function(delta)
 	this.player2.move(delta);
 };
 
-World.prototype.shootCharacters = function(delta)
+World.prototype.moveShoots = function(delta)
 {
-	this.player.shooting(delta);
-
+	this.shoots.move(delta);
 };
 
 World.prototype.drawMap = function()
@@ -191,13 +194,34 @@ World.prototype.drawMap = function()
 		this.player2.draw(this.context);
 	};
 
+	World.prototype.drawScore = function()
+	{
+		this.context.fillStyle="blue";
+		this.context.font = "bold 30px ARIAL";
+		this.context.fillText("0",this.canvas.width/2-30,35);
+		this.context.fillText("100%",0,35);
+		this.context.fillStyle = "red";
+		this.context.fillText("0",this.canvas.width/2+14,35);
+		this.context.fillText("100%",this.canvas.width-80,35);
+	};
+
+	World.prototype.drawBullet = function()
+	{
+		this.shoots.draw(this.context); 
+	};
+
 	World.prototype.loop = function()
 	{
 		var delta = (new Date().getTime()) - this.timePassed;
 		this.timePassed = new Date().getTime();
 
 		this.moveCharacters(delta);
-		this.shootCharacters(delta);
 		this.drawMap();
 		this.drawCharacters();
+		this.drawScore();
+		if(this.shoots)
+		{
+			this.moveShoots(delta);
+			this.drawBullet();
+		}
 	};
