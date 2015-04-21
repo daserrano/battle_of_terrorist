@@ -42,7 +42,6 @@ function World(idCanvas)
 	var self = this;
 	this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
-
 }
 
 World.prototype.initPlayer = function()
@@ -159,6 +158,7 @@ World.prototype.initPlayer = function()
 			case 13: // Intro
 			e.preventDefault();
 			self.shoots = new Bullet(self, self.player2);
+			self.bullets.push(self.shoots);
 			break;
 		}
 	};
@@ -179,8 +179,10 @@ World.prototype.moveCharacters = function(delta)
 };
 
 World.prototype.moveShoots = function(delta)
-{
-	this.shoots.move(delta);
+{	for(var i=0; i<this.bullets.length; i++)
+	{
+		this.bullets[i].move(delta);
+	}
 };
 
 World.prototype.drawMap = function()
@@ -202,34 +204,33 @@ World.prototype.drawMap = function()
 	World.prototype.drawScore = function()
 	{
 		this.context.fillStyle="blue";
-		this.context.font = "bold 30px ARIAL";
+		this.context.font = "bold 30px arial";
 		this.context.fillText("0",this.canvas.width/2-30,35);
-		this.context.fillText("100%",0,35);
+		this.context.fillText("100%",45,35);
 		this.context.fillStyle = "red";
 		this.context.fillText("0",this.canvas.width/2+14,35);
-		this.context.fillText("100%",this.canvas.width-80,35);
+		this.context.fillText("100%",this.canvas.width-125,35);
 	};
 
 	World.prototype.drawBullet = function()
 	{
 		if(!this.shoots)
 			return;
-		else
-			this.shoots.draw(this.context); 
-	};
+		else 
+			for(var i=0; i<this.bullets.length; i++)
+				this.bullets[i].draw(this.context);
+		};
 
-	World.prototype.loop = function()
-	{
-		var delta = (new Date().getTime()) - this.timePassed;
-		this.timePassed = new Date().getTime();
-
-		this.moveCharacters(delta);
-		if(this.shoots)
+		World.prototype.loop = function()
 		{
-			this.moveShoots(delta);
-		}
-		this.drawMap();
-		this.drawCharacters();
-		this.drawScore();
-		this.drawBullet();
-	};
+			var delta = (new Date().getTime()) - this.timePassed;
+			this.timePassed = new Date().getTime();
+
+			this.moveCharacters(delta);
+			if(this.shoots)
+				this.moveShoots(delta);
+			this.drawMap();
+			this.drawScore();
+			this.drawCharacters();
+			this.drawBullet();
+		};
