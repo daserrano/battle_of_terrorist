@@ -3,8 +3,8 @@ function World(idCanvas)
 	this.canvas  = document.getElementById(idCanvas);
 	this.context = this.canvas.getContext('2d');
 
-	this.cellWidth  = 40;
-	this.cellHeight = 40;
+	this.cellWidth  = 50;
+	this.cellHeight = 50;
 
 	this.allTiles = 
 	[
@@ -36,6 +36,9 @@ function World(idCanvas)
 	this.player2;
 	this.initPlayer();
 
+	this.shoots;
+	this.bullets = [];
+
 	var self = this;
 	this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
@@ -47,8 +50,11 @@ World.prototype.initPlayer = function()
 	var x = Math.floor((Math.random()*2)+1);
 	var y = Math.floor((Math.random()*3)+1);
 
-	this.player = new Player(this, 30, 30, x+0.5, y+0.5,  "player1");
-	this.player2 = new Player(this, 30, 30, 22.5, 9.5, "player2");
+	var z = Math.floor((Math.random()*2)+22);
+	var t = Math.floor((Math.random()*3)+9);
+
+	this.player  = new Player(this, 40, 40, x+0.5, y+0.5, "player1");
+	this.player2 = new Player(this, 40, 40, z+0.5, t+0.5, "player2");
 	var self    = this;
 
 	document.body.onkeydown = function(e)
@@ -93,6 +99,10 @@ World.prototype.initPlayer = function()
 			case 65: //Left
 			e.preventDefault();
 			self.player.left = true;
+			break;
+
+			case 32: //Space
+			e.preventDefault();
 			break;
 		}
 	};
@@ -139,6 +149,17 @@ World.prototype.initPlayer = function()
 			e.preventDefault();
 			self.player.left = false;
 			break;
+
+			case 32: //Space
+			e.preventDefault();
+			self.shoots = new Bullet(self, self.player);
+			self.bullets.push(self.shoots);
+			break;
+
+			case 13: // Intro
+			e.preventDefault();
+			self.shoots = new Bullet(self, self.player2);
+			break;
 		}
 	};
 };
@@ -157,6 +178,11 @@ World.prototype.moveCharacters = function(delta)
 	this.player2.move(delta);
 };
 
+World.prototype.moveShoots = function(delta)
+{
+	this.shoots.move(delta);
+};
+
 World.prototype.drawMap = function()
 {
 	var y = this.map.length;
@@ -165,20 +191,45 @@ World.prototype.drawMap = function()
 	for(var yi=0; yi<y; yi++)
 		for(var xi=0; xi<x; xi++)
 			this.allTiles[this.map[yi][xi]].draw(this.context, xi, yi);
-};
+	};
 
-World.prototype.drawCharacters = function()
-{
-	this.player.draw(this.context);
-	this.player2.draw(this.context);
-};
+	World.prototype.drawCharacters = function()
+	{
+		this.player.draw(this.context);
+		this.player2.draw(this.context);
+	};
 
-World.prototype.loop = function()
-{
-	var delta = (new Date().getTime()) - this.timePassed;
-	this.timePassed = new Date().getTime();
+	World.prototype.drawScore = function()
+	{
+		this.context.fillStyle="blue";
+		this.context.font = "bold 30px ARIAL";
+		this.context.fillText("0",this.canvas.width/2-30,35);
+		this.context.fillText("100%",0,35);
+		this.context.fillStyle = "red";
+		this.context.fillText("0",this.canvas.width/2+14,35);
+		this.context.fillText("100%",this.canvas.width-80,35);
+	};
 
-	this.moveCharacters(delta);
-	this.drawMap();
-	this.drawCharacters();
-};
+	World.prototype.drawBullet = function()
+	{
+		if(!this.shoots)
+			return;
+		else
+			this.shoots.draw(this.context); 
+	};
+
+	World.prototype.loop = function()
+	{
+		var delta = (new Date().getTime()) - this.timePassed;
+		this.timePassed = new Date().getTime();
+
+		this.moveCharacters(delta);
+		if(this.shoots)
+		{
+			this.moveShoots(delta);
+		}
+		this.drawMap();
+		this.drawCharacters();
+		this.drawScore();
+		this.drawBullet();
+	};

@@ -5,6 +5,7 @@ function Player(world, width, height, x, y, id)
 	this.down  = false;
 	this.right = false;
 	this.left  = false;
+	this.shoot = false;
 } 
 
 Player.prototype = new Character;

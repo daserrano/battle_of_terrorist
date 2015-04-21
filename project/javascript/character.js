@@ -11,13 +11,13 @@ function Character(world, width, height, x, y, sprite)
 	this.dx = 0;
 	this.dy = 0;
 
-	this.velocity = 0.003;
+	this.velocity  = 0.003;
 
 	this.sprite           = sprite;
 	this.direction        = "down";
-	this.spriteIndex      =  0;
-	this.transitionSprite = 50;
-	this.transition       =  0;
+	this.spriteIndex      =  0; // Indice del sprite.
+	this.transitionSprite = 70; // Tiempo que transcurre entre sprite y sprite.
+	this.transition       =  0; // Tiempo que transcurre.
 }
 
 Character.prototype.validPosition = function(px, py)
@@ -35,7 +35,6 @@ Character.prototype.validPosition = function(px, py)
 		return false;
 
 	return true;
-
 };
 
 Character.prototype.move = function(delta)

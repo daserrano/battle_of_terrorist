@@ -152,8 +152,13 @@ World.prototype.initPlayer = function()
 
 			case 32: //Space
 			e.preventDefault();
-			self.shoots = new Bullet(self);
+			self.shoots = new Bullet(self, self.player);
 			self.bullets.push(self.shoots);
+			break;
+
+			case 13: // Intro
+			e.preventDefault();
+			self.shoots = new Bullet(self, self.player2);
 			break;
 		}
 	};
@@ -207,7 +212,10 @@ World.prototype.drawMap = function()
 
 	World.prototype.drawBullet = function()
 	{
-		this.shoots.draw(this.context); 
+		if(!this.shoots)
+			return;
+		else
+			this.shoots.draw(this.context); 
 	};
 
 	World.prototype.loop = function()
@@ -216,12 +224,12 @@ World.prototype.drawMap = function()
 		this.timePassed = new Date().getTime();
 
 		this.moveCharacters(delta);
-		this.drawMap();
-		this.drawCharacters();
-		this.drawScore();
 		if(this.shoots)
 		{
 			this.moveShoots(delta);
-			this.drawBullet();
 		}
+		this.drawMap();
+		this.drawCharacters();
+		this.drawScore();
+		this.drawBullet();
 	};

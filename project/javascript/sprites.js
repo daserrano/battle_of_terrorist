@@ -4,10 +4,7 @@ function Sprite(img)
 	this.directions = [];
 }
 
-Sprite.prototype.setDirection = function(direction, coord)
-{
-	this.directions[direction] = coord;
-};
+Sprite.prototype.setDirection = function(direction, coord){	this.directions[direction] = coord; };
 
 Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceLe, spaceRi, directions)
 {
@@ -25,10 +22,7 @@ Sprite.prototype.createDirection = function(rows, cols, spaceUp, spaceDo, spaceL
 	}
 };
 
-Sprite.prototype.getNumSprites = function(direction)
-{
-	return this.directions[direction].length;
-};
+Sprite.prototype.getNumSprites = function(direction){ return this.directions[direction].length; };
 
 Sprite.prototype.draw = function(context, width, height, direction, index)
 {
@@ -39,17 +33,8 @@ Sprite.prototype.draw = function(context, width, height, direction, index)
 								-width/2, -height/2, width, height);
 };
 
-function SaveSprites()
-{
-	this.list = []; //Lista de sprites.
-}
+function SaveSprites(){	this.list = []; /* Lista de sprites. */ }
 
-SaveSprites.prototype.add = function(id, sprite)
-{
-	this.list[id] = sprite;
-};
+SaveSprites.prototype.add = function(id, sprite){ this.list[id] = sprite; };
 
-SaveSprites.prototype.get = function(id)
-{
-	return this.list[id];
-};
+SaveSprites.prototype.get = function(id){ return this.list[id]; };
