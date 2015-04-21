@@ -27,7 +27,6 @@
 		float drag = 1;
 		RectButton buttonPersonaje1;
 		boolean locked = false;
-		int rectColor;
 
 		//BOTON
 
@@ -65,7 +64,7 @@
 			textFont(font_name);
 			font_name = loadFont("transformer.ttf");
 			textFont(font_name, 65);
-			//fill(rectColor);
+			fill(204, 204, 0);
 			
 			//BOTON 
 			//Se dan los valores de X e Y donde comenzaran los botones(rect)
@@ -89,8 +88,6 @@
 		{			 
 			//Damos valor color(0) al fondo
 			background(0);
-			noCursor();
-
 			text("Elige un personsaje", 200, 250);
 
 			//Dibujamos las imagenes que estaran contenidas en nuestro canvas
@@ -114,92 +111,111 @@
   			// Display the sprite at the position xpos, ypos
   			image(MOD, xpos, ypos);
 
-  			//if(mousePressed == true) {
-  			//	noCursor();
-  			//} else {
-  			//	noCursor();
-  			//}
+  			if(mousePressed == true) {
+  				noCursor();
+  			} else {
+  				noCursor();
+  			}
   			
+  			//BOTON
+  			update(mouseX, mouseY);
+  			fill(204, 204, 0);
+  			
+  			if (rectOver1) {
+  				//fill(255);
+  				text("JACK", 60, 395);
+  				noFill();
+  				
+				//rectOver1 = false;
+			} 
+			update(mouseX, mouseY);  				
+			if (rectOver2) {
+				text("PUNK", 310, 395);
+				noFill();
+
+  				//rectOver2 = false;
+
+  			} 
+  			update(mouseX, mouseY);  				
+  			if (rectOver3) {
+  				text("SPOK", 560, 395);
+  								noFill();
+
+  				//rectOver3 = false;
+
+  			} 
+				//update(mouseX, mouseY);  				
+				if (rectOver4) {
+					text("BILL", 810, 395);
+									noFill();
+
+  				//rectOver4 = false;
+
+  			} 
+				//update(mouseX, mouseY);  				
+
+				if(rectOver1 == false && rectOver2 == false && rectOver3 == false && rectOver4 == false){
+					fill(204, 204, 0);
+				}
+
+				//update(mouseX, mouseY);  				
+
+
   			//Se crean los rectangulos
+
   			stroke(255);
   			rect(rectX1, rectY1, 150, 50, 10);
   			rect(rectX2, rectY2, 150, 50, 10);
   			rect(rectX3, rectY3, 150, 50, 10);
   			rect(rectX4, rectY4, 150, 50, 10);
-  			//BOTON
-  			update(mouseX, mouseY);
-  			
-  			if (rectOver1) {
-  				text("JACK", 60, 395);
-  				text("  ?  ", 310, 395);
-  				text("  ?  ", 560, 395);
-  				text("  ?  ", 810, 395);
-  				noFill();
-  			} 
-  			if (rectOver2) {
-  				text("  ?  ", 60, 395);
-  				text("PUNK", 310, 395);
-  				text("  ?  ", 560, 395);
-  				text("  ?  ", 810, 395);
-  				noFill();
-  			} 
-  			if (rectOver3) {
-  				text("  ?  ", 60, 395);
-  				text("  ?  ", 310, 395);
-  				text("SPOK", 560, 395);
-  				text("  ?  ", 810, 395);
-  				noFill();
-  			} 
-  			if (rectOver4) {
-  				text("  ?  ", 60, 395);
-  				text("  ?  ", 310, 395);
-  				text("  ?  ", 560, 395);
-  				text("BILL", 810, 395);
-  				noFill();
-  			} 
 
-  			if(rectOver1 == false && rectOver2 == false && rectOver3 == false && rectOver4 == false){
-  				fill(204, 204, 0);
-  			}
+
+  			fill(204, 204, 0);
 
 
   		}
 
 
 
-		//BOTON
-		void update(int x, int y) {
+	//BOTON
+	void update(int x, int y) {
 
 
 
-			if(overRect(rectX1, rectY1, 150, 50)){
-				rectOver1 = true;
-				//PRUEBAS text("BILL", 810, 200);
-				//        noFill();
+		if(overRect(rectX1, rectY1, 150, 50)){
+			rectOver1 = true;
+								text("BILL", 810, 200);
 
-			}
-			else if (overRect(rectX2, rectY2, 150, 50)) {
-				rectOver2 = true;
-			}
-			else if (overRect(rectX3, rectY3, 150, 50)) {
-				rectOver3 = true;
-			}
-			else if(overRect(rectX4, rectY4, 150, 50)){
-				rectOver4 = true;
-			}
-			if( overRect(rectX1, rectY1, 150, 50) == false && 
-				overRect(rectX2, rectY2, 150, 50) == false && 
-				overRect(rectX3, rectY3, 150, 50) == false && 
-				overRect(rectX4, rectY4, 150, 50) == false){
 
-				rectOver1 = rectOver2 = rectOver3 = rectOver4 = false;
 		}
+		else if (overRect(rectX2, rectY2, 150, 50)) {
+			rectOver2 = true;
+								text("BILL", 810, 200);
+
+		}
+		else if (overRect(rectX3, rectY3, 150, 50)) {
+			rectOver3 = true;
+								text("BILL", 810, 200);
+
+		}
+		else if(overRect(rectX4, rectY4, 150, 50)){
+			rectOver4 = true;
+								text("BILL", 810, 200);
+		}
+		if(overRect(rectX1, rectY1, 150, 50) == false && overRect(rectX2, rectY2, 150, 50) == false && overRect(rectX3, rectY3, 150, 50) == false && overRect(rectX4, rectY4, 150, 50) == false){
+			rectOver1 = rectOver2 = rectOver3 = rectOver4 = false;
+
+		}
+		//else if{
+		//    rectOver1 = rectOver2 = rectOver3 = rectOver4 = false;	
+		//}
 	}
 
 	void mousePressed() {
 		if (rectOver1) {
-			text("JUGAR", 810, 450);
-			//mycanvas.width = mycanvas.width;
+											text("JUGAR", 810, 450);
+											//mycanvas.width = mycanvas.width;
+
 		}
 	}
 
@@ -211,6 +227,7 @@
 	} 
 	else {
 		//fill(204, 204, 0);
+
 		return false;
 	}
 }
