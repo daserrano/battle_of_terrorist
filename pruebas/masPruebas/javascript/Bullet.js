@@ -4,12 +4,15 @@ function Bullet(world, player)
 	this.height = 10;
 	this.velocity  = 0.025; // Velocidad de la bala.
 	this.direction = player.direction; // Direccion.
-	this.px = world.player.x; // Posición de la bala.
-	this.py = world.player.y;
+	this.px = player.x; // Posición de la bala.
+	this.py = player.y;
+	this.used = false; // Si colisiona con algo.
+	this.player = player;
 
+//alert(this.px + " " + this.py);
 	//alert(world.player.x + " " + world.player.y + " " + this.px + " " + this.py);
-
-/*	if(this.direction == "right" || this.direction == "left")
+/*
+	if(this.direction == "right" || this.direction == "left")
 		this.py -= 5;
 	if(this.direction == "left")
 		this.px -= 5;
@@ -22,14 +25,21 @@ function Bullet(world, player)
 
 Bullet.prototype.move = function(delta)
 {
-	var colX = new Collision(this.px, world.player.y);
-	var colY = new Collision(world.player.x, this.py);
+	var colX = new Collision(this.px, this.player.y);
+	var colY = new Collision(this.player.x, this.py);
 
-	if(!colX.validPosition(this, this.px, world.player.y))
-		//px = this.x;
-	if(!colY.validPosition(this, world.player.x, this.py))
-		//py = this.y;
-alert(this.py + " " + this.px);	
+if(this.used == false )
+{
+	if(!colX.validPosition(this, this.px, this.player.y))
+	{
+		//alert(this.px);
+		this.used = true;
+	}
+		//this.px = this.x;
+	if(!colY.validPosition(this, this.player.x, this.py))
+		this.used = true;
+		//this.py = this.y;
+//alert(this.py + " " + this.px);	
 	if(this.direction == "up")
 		this.py -= this.velocity*delta;
 	else if(this.direction == "down")
@@ -38,7 +48,7 @@ alert(this.py + " " + this.px);
 		this.px += this.velocity*delta;
 	else if(this.direction == "left")
 		this.px -= this.velocity*delta;
-
+}
 	//alert("px: " + px + " py: " + py);
 
 };
