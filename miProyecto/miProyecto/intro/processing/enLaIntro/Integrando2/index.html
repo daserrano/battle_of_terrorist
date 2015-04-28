@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+	<meta charset = "UTF-8">
+	<title> Official Site | Battle of terrorist </title>
+	<link rel = "stylesheet" href = "style/main.css"/>
+	<link rel = "stylesheet" href = "style/hover.css" media="all"/>
+	<link rel = "icon" type = "image/png" href = "images/web/iconGun.png" />
+	<script src="processing.js"></script>
+	<script type="text/javascript" src="javascript/SaveImages.js"></script>
+	<script type="text/javascript" src="javascript/Sprites.js"></script>
+	<script type="text/javascript" src="javascript/Tile.js"></script>
+	<script type="text/javascript" src="javascript/Character.js"></script>
+	<script type="text/javascript" src="javascript/Player.js"></script>
+	<script type="text/javascript" src="javascript/World.js"></script>
+	<script type="text/javascript" src="javascript/Bullet.js"></script>
+
+	<script>
+          window.setTimeout(1000 / 60);
+
+		var world;
+		var Sprites;
+		var Images;
+
+		window.onload = function()
+		{
+			Images  = new SaveImages();
+			Sprites = new SaveSprites();
+
+			Images.load(
+				[
+				["green1", 		"images/game/playerGreen1.png"],
+				["green2", 		"images/game/playerGreen2.png"],
+				["red1",   		"images/game/playerRed1.png"],
+				["red2",   		"images/game/playerRed2.png"],
+				["blue1", 		"images/game/playerBlue1.png"],
+				["bulletRight", "images/game/playerShootRight.png"],
+				["bulletLeft",  "images/game/playerShootLeft.png"],
+				["bulletUp",    "images/game/playerShootUp.png"],
+				["bulletDown",  "images/game/playerShootDown.png"],
+				["bulletMain",  "images/game/playerShootMain.png"]
+				]);
+
+			Images.completed = function() 
+			{
+				var spritePlayer1 = new Sprite(Images.get("blue1"));
+				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
+				Sprites.add("player1", spritePlayer1);
+
+				var spritePlayer2 = new Sprite(Images.get("red2"));
+				spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
+				Sprites.add("player2", spritePlayer2);
+				world = new World("canvas");
+			}
+		}
+
+	</script>
+</head>
+<body> <!-- To load canvas --> 
+	<div id = "main" > <!-- All the page -->
+		<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
+		<ul id="menu">
+			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOME</a></li>
+			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
+			<li><a href = "#" class = "hvr-shutter-out-vertical"> NEWS </a></li>
+		</ul>
+		<div id = "footer"> </div>
+		<div id = "gameplay"> <!-- The game goes here -->
+			<!-- <canvas id = "canvas" data-processing-sources="intro.pde"> </canvas> -->
+			<canvas id = "canvas" data-processing-sources="intro.pde"> </canvas>
+		</div> <!-- ***End gameplay*** -->
+	</br></br></br></br></br></br></br></br></br>
+
+</div> <!-- ***End main*** -->
+
+</body>
+</html>

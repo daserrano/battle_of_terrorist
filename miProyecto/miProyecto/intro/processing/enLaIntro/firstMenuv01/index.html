@@ -12,25 +12,37 @@
 	<!-- Se crea el script indicando de que tipo es processing.js !-->
 	<script type="application/processing" data-processing-target="mycanvas">
 		/* @pjs font="transformer.ttf" */
-		/* @pjs preload="img/arma1.jpg"; */
 		//Se da la orden de precarga de la fuente que vamos a utilizar
 		//se crean las variables que vamos a utilizar
 
 		//VARIABLES DE TIPO PImage
-		PImage primerPersonaje, logo, segundoPersonaje, tercerPersonaje, cuartoPersonaje, MOD, img;
+		PImage primerPersonaje, logo, segundoPersonaje, tercerPersonaje, cuartoPersonaje, MOD;
 
 		//VARIABLES DE TIPO PFont
 		PFont font_name;
 
+
 		float xpos;
 		float ypos;
 		float drag = 1;
+		RectButton buttonPersonaje1;
+		boolean locked = false;
+		int rectColor;
+
+		//BOTON
 
 		//Variables que indican la posicion de X e Y donde empezaran los rect
-		int rectX1, rectY1, rectX2, rectY2, rectX3, rectY3, rectX4, rectY4, rectJUGARX, rectJUGARY; 
+		int rectX1, rectY1, rectX2, rectY2, rectX3, rectY3, rectX4, rectY4; 
 		
+		//Aqui se configuran las opciones de los rect
+		color rectColor, baseColor;
+		color rectHighlight;
+		color currentColor;
+
 		//Se crea el boleano que indicara si el raton esta encima del rect o no
-		boolean rectOver = false, rectOver1 = false, rectOver2 = false, rectOver3 = false, rectOver4 = false, texto = false;
+		boolean rectOver = false, rectOver1 = false, rectOver2 = false, rectOver3 = false, rectOver4 = false;
+
+
 
 		//Funcion setup
 		void setup() 
@@ -52,7 +64,8 @@
 			font_name = createFont("transformer", 65);
 			textFont(font_name);
 			font_name = loadFont("transformer.ttf");
-			textFont(font_name);
+			textFont(font_name, 65);
+			//fill(rectColor);
 			
 			//BOTON 
 			//Se dan los valores de X e Y donde comenzaran los botones(rect)
@@ -69,23 +82,19 @@
 			rectX4 = 970;
 			rectY4 = 430;
 
-			rectJUGARX = 325; 
-			rectJUGARY = 550; 
 
-			
 		}
 
 		//Funcion draw
 		void draw() 
 		{		
 
-
+			//Damos valor color(0) al fondo
 			background(0);
 
 			noCursor();
 			text("Elige un personsaje", 310, 310);
-
-			image(MOD, xpos, ypos);
+  			image(MOD, xpos, ypos);
 
 			//Dibujamos las imagenes que estaran contenidas en nuestro canvas
 			image(logo, 475, 25, 300, 150, 7);
@@ -93,7 +102,6 @@
 			image(segundoPersonaje, 465, 350, 50, 70);
 			image(tercerPersonaje, 740, 350, 50, 70);
 			image(cuartoPersonaje, 1020, 350, 50, 70);
-			
 			float difx = mouseX - xpos-MOD.width/2;
 			if(abs(difx) > 1.0) {
 				xpos = xpos + difx/drag;
@@ -106,6 +114,15 @@
 				ypos = constrain(ypos, 0, height-MOD.height);
 			}  
 
+  			// Display the sprite at the position xpos, ypos
+  			//image(MOD, xpos, ypos);
+
+  			//if(mousePressed == true) {
+  			//	noCursor();
+  			//} else {
+  			//	noCursor();
+  			//}
+  			
   			//Se crean los rectangulos
   			stroke(255);
   			rect(rectX1, rectY1, 150, 50, 10);
@@ -156,8 +173,13 @@
 		//BOTON
 		void update(int x, int y) {
 
+
+
 			if(overRect(rectX1, rectY1, 150, 50)){
 				rectOver1 = true;
+				//PRUEBAS text("BILL", 810, 200);
+				//        noFill();
+
 			}
 			else if (overRect(rectX2, rectY2, 150, 50)) {
 				rectOver2 = true;
@@ -175,21 +197,12 @@
 
 				rectOver1 = rectOver2 = rectOver3 = rectOver4 = false;
 		}
-		if (texto == true) {
-
-			//text("JUGAR", 625, 600);
-			//rect(rectJUGARX, rectJUGARY, 600, 50, 10);
-			//triangle(0,450,0,450,100,650);
-
-		}
 	}
 
-
-
 	void mousePressed() {
-	//void mouseClicked() {
 		if (rectOver1) {
-  			salir();
+			text("JUGAR", 810, 450);
+			//mycanvas.width = mycanvas.width;
 		}
 	}
 
@@ -205,19 +218,13 @@
 	}
 }
 
-function salir(){
 
-	  exit(); 
-	  size(500, 450);
-	  //text("JUGAR", 250, 225);
-}
 
 
 
 </script>
 
 <canvas width="1250" height="650" id="mycanvas">
-
 
 </canvas>
 
