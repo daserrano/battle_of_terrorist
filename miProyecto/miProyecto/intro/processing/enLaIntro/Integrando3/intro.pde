@@ -138,13 +138,14 @@ fill(204, 204, 0);
 }
 
 
-boolean salir(){
-
-
-	  exit(); 
-	  //size(500, 450);
-	  //text("JUGAR", 250, 225);
-}
+//void salir(){
+//
+//
+//	  exit(); 
+//	  canvas();
+//	  //size(500, 450);
+//	  //text("JUGAR", 250, 225);
+//}
 
 
 //BOTON
@@ -183,7 +184,9 @@ if (texto == true) {
 void mousePressed() {
 	//void mouseClicked() {
 		if (rectOver1) {
-  			salir();
+  			//salir();
+			exit();
+			canvas();
 		}
 	}
 
