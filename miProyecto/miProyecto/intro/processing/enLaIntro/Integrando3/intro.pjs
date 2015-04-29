@@ -135,6 +135,7 @@ noFill();
 if(rectOver1 == false && rectOver2 == false && rectOver3 == false && rectOver4 == false){
 fill(204, 204, 0);
 }
+						//noLoop();
 
 }
 
@@ -187,7 +188,6 @@ void mousePressed() {
 		if (rectOver1) {
   			//salir();
 			exit();
-			//cambia();
 			//textoNuevo();
 
 		}
