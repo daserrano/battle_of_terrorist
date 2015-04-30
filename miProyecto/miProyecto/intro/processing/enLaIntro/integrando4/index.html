@@ -5,24 +5,20 @@
 	<title> Official Site | Battle of terrorist </title>
 	<script src="processing.js"></script>
 
-	<script>
-
-	(function(processing) {
-   function setup() {
-     processing.size(200, 200);
-     processing.background(100);
-     processing.stroke(255);
-     processing.ellipse(50, 50, 25, 25);
-     processing.println("hello web!");
-   }
-   processing.setup = setup;
- })
-	
-
-
-	</script>
 </head>
 <body> <!-- To load canvas --> 
-	<canvas id = "canvas"> </canvas>
+<canvas id = "canvas" data-processing-sources="anything.pjs"> </canvas>
+	<script>
+var x = Processing.getInstanceById("canvas");
+
+	function hola(){
+		canvas.width = canvas.width;
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		ctx.fillText("Hello World", 10, 50);
+		ctx.font = "30px Arial";
+}
+//x.loop();
+	</script>
 </body>
 </html>

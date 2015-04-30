@@ -20,47 +20,45 @@ int rectX1, rectY1, rectX2, rectY2, rectX3, rectY3, rectX4, rectY4, rectJUGARX, 
 boolean rectOver = false, rectOver1 = false, rectOver2 = false, rectOver3 = false, rectOver4 = false, texto = false;
 
 //Funcion setup
-void setup() 
-{						
+void setup()  	
+{
+	//Estas lineas determinarán el tamaño y el framerate de nuestro canvas
+	size(1250, 650);
+	frameRate(60);
 
-//Estas lineas determinarán el tamaño y el framerate de nuestro canvas
-size(1250, 650);
-frameRate(60);
+	xpos = width/1.5;
+	ypos = height/1.5;
 
-xpos = width/1.5;
-ypos = height/1.5;
+	//Empezamos a cargar los elementos del canvas
+	primerPersonaje = loadImage("img/1FIN.png");
+	segundoPersonaje = loadImage("img/2FIN.png");
+	tercerPersonaje = loadImage("img/3FIN.png");
+	cuartoPersonaje = loadImage("img/4FIN.png");
+	MOD = loadImage("img/ratonMOD.png");	
+	logo = loadImage("img/logo1.png")
+	font_name = createFont("transformer", 65);
+	textFont(font_name);
+	font_name = loadFont("transformer.ttf");
+	textFont(font_name);
+	
+	//BOTON 
+	//Se dan los valores de X e Y donde comenzaran los botones(rect)
+	rectX1 = 130;
+	rectY1 = 430;
 
-//Empezamos a cargar los elementos del canvas
-primerPersonaje = loadImage("img/1FIN.png");
-segundoPersonaje = loadImage("img/2FIN.png");
-tercerPersonaje = loadImage("img/3FIN.png");
-cuartoPersonaje = loadImage("img/4FIN.png");
-MOD = loadImage("img/ratonMOD.png");	
-logo = loadImage("img/logo1.png")
-font_name = createFont("transformer", 65);
-textFont(font_name);
-font_name = loadFont("transformer.ttf");
-textFont(font_name);
-
-//BOTON 
-//Se dan los valores de X e Y donde comenzaran los botones(rect)
-rectX1 = 130;
-rectY1 = 430;
-
-rectX2 = 410;
-rectY2 = 430;
+	rectX2 = 410;
+	rectY2 = 430;
 
 
-rectX3 = 690;
-rectY3 = 430;
+	rectX3 = 690;
+	rectY3 = 430;
 
-rectX4 = 970;
-rectY4 = 430;
+	rectX4 = 970;
+	rectY4 = 430;
 
-rectJUGARX = 325; 
-rectJUGARY = 550; 
-noLoop();
-
+	rectJUGARX = 325; 
+	rectJUGARY = 550; 
+	noLoop();
 }
 
 //Funcion draw
@@ -68,24 +66,24 @@ void draw()
 {		
 
 
-background(0);
+	background(0);
 
-noCursor();
-text("Elige un personaje", 310, 310);
+	noCursor();
+	text("Elige un personsaje", 310, 310);
 
-image(MOD, xpos, ypos);
+	image(MOD, xpos, ypos);
 
-//Dibujamos las imagenes que estaran contenidas en nuestro canvas
-image(logo, 475, 25, 300, 150, 7);
-image(primerPersonaje, 185, 350,50,70);
-image(segundoPersonaje, 465, 350, 50, 70);
-image(tercerPersonaje, 740, 350, 50, 70);
-image(cuartoPersonaje, 1020, 350, 50, 70);
-
-float difx = mouseX - xpos-MOD.width/2;
-if(abs(difx) > 1.0) {
-xpos = xpos + difx/drag;
-xpos = constrain(xpos, 0, width-MOD.width);
+	//Dibujamos las imagenes que estaran contenidas en nuestro canvas
+	image(logo, 475, 25, 300, 150, 7);
+	image(primerPersonaje, 185, 350,50,70);
+	image(segundoPersonaje, 465, 350, 50, 70);
+	image(tercerPersonaje, 740, 350, 50, 70);
+	image(cuartoPersonaje, 1020, 350, 50, 70);
+	
+	float difx = mouseX - xpos-MOD.width/2;
+	if(abs(difx) > 1.0) {
+	xpos = xpos + difx/drag;
+	xpos = constrain(xpos, 0, width-MOD.width);
 }  
 
 float dify = mouseY - ypos-MOD.height/2;
@@ -183,41 +181,14 @@ if (texto == true) {
 
 
 void mousePressed() {
-//void mouseClicked() {
-if (rectOver1) {
-//salir();
 exit();
-noLoop();
-World(canvas);
-//textoNuevo();
-
-}
-if (rectOver2) {
-//salir();
-exit();
-noLoop();
-World(canvas);
-//textoNuevo();
-
-}
-if (rectOver3) {
-//salir();
-exit();
-noLoop();
-World(canvas);
-//textoNuevo();
-
-}
-if (rectOver4) {
-//salir();
-exit();
-noLoop();
-World(canvas);
-//textoNuevo();
-
-}
-
-}
+	//void mouseClicked() {
+		if (rectOver1) {
+  			//salir();
+			exit();
+			canvas();
+		}
+	}
 
 
 
