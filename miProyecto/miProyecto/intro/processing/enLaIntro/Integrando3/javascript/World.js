@@ -2,53 +2,53 @@ var a = null
 
 function World(idCanvas)
 {
-				
+
 				//canvas.width = canvas.width;
 
-	var x = Processing.getInstanceById("canvas");
+				var x = Processing.getInstanceById("canvas");
 			//x.loop();
 
-	this.canvas  = document.getElementById(idCanvas);
-	this.context = this.canvas.getContext('2d');
+			this.canvas  = document.getElementById(idCanvas);
+			this.context = this.canvas.getContext('2d');
 
-	this.cellWidth  = 50;
-	this.cellHeight = 50;
+			this.cellWidth  = 50;
+			this.cellHeight = 50;
 
-	this.allTiles = 
-	[
-	new Tile(this.cellWidth, this.cellHeight, true, "white"),
-	new Tile(this.cellWidth, this.cellHeight, false, "black")
-	];
+			this.allTiles = 
+			[
+			new Tile(this.cellWidth, this.cellHeight, true, "white"),
+			new Tile(this.cellWidth, this.cellHeight, false, "black")
+			];
 
-	this.map = 
-	[
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
-	[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-	[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-	[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-	];
+			this.map = 
+			[
+			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+			[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+			[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
+			[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+			[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+			[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+			[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+			[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+			[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+			[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+			[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+			];
 
-	this.canvas.width  = this.cellWidth*this.map[0].length;
-	this.canvas.height = this.cellHeight*this.map.length;
+			this.canvas.width  = this.cellWidth*this.map[0].length;
+			this.canvas.height = this.cellHeight*this.map.length;
 
-	this.player;
-	this.player2;
-	this.initPlayer();
+			this.player;
+			this.player2;
+			this.initPlayer();
 
-	this.shoots;
-	this.bullets = [];
+			this.shoots;
+			this.bullets = [];
 
-	var self = this;
-	this.timePassed = new Date().getTime();
+			var self = this;
+			this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
 	a = Processing.getInstanceById('canvas');
 
@@ -230,14 +230,16 @@ World.prototype.drawMap = function()
 			for(var i=0; i<this.bullets.length; i++)
 				this.bullets[i].draw(this.context);
 		};
-			a.loop();
+		//a.loop();
 
 		World.prototype.loop = function()
 		{
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
-a.loop();
-			//this.moveCharacters(delta);
+			a.loop();
+			if(a.can == true)
+				World("canvas");		
+	//this.moveCharacters(delta);
 			//if(this.shoots)
 			//	this.moveShoots(delta);
 			//this.drawMap();
