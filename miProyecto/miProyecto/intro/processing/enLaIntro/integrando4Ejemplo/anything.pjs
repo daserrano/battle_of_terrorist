@@ -23,7 +23,7 @@ void setup()
   rectX = width/2-rectSize-10;
   rectY = height/2-rectSize/2;
   ellipseMode(CENTER);
-  noLoop();
+  //noLoop();
 }
 
 void draw()

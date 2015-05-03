@@ -1,0 +1,51 @@
+<html>
+<head>
+  <script src="processing.js"></script>
+</head>
+<body><h1>Processing.js</h1>
+  <h2>Simple processing.js via JavaScript</h2>
+  <p>Clock</p>
+
+  <p><canvas id="canvas1" width="200" height="200"></canvas></p>
+
+  <script id="script1" type="text/javascript">
+
+// Simple way to attach js code to the canvas is by using a function
+function sketchProc(processing) {
+  var y = 100;
+    processing.size(200, 200);  // Size should be the first statement
+  processing.stroke(255);     // Set stroke color to white
+  processing.noLoop();
+  // Override draw function, by default it will be called 60 times per second
+  processing.draw = function() { 
+      processing.background(0);   // Set the background to black
+      processing.line(0, y, processing.width, y);  
+
+      y = y - 1; 
+      if (y < 0) { 
+        y = processing.height; 
+      } 
+    };
+
+    processing.l = 9;
+    processing.mousePressed = function()
+    {
+      processing.loop();
+      processing.p = 54;
+    }
+
+  }
+//var a = null;
+ // a = Processing.getInstanceById('canvas');
+
+ // a.processing.l = 7;
+
+ var canvas = document.getElementById("canvas1");
+// attaching the sketchProc function to the canvas
+var p = new Processing(canvas, sketchProc);
+p.l = 8;
+  alert(p.l);
+// p.exit(); to detach it
+</script>
+</body>
+</html>

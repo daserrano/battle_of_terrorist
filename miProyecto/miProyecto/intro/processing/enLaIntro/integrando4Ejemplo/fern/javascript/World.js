@@ -1,57 +1,49 @@
 var a = null
-
 function World(idCanvas)
 {
+	this.canvas  = document.getElementById(idCanvas);
+	this.context = this.canvas.getContext('2d');
 
-				//canvas.width = canvas.width;
+	this.cellWidth  = 50;
+	this.cellHeight = 50;
 
-				var x = Processing.getInstanceById("canvas");
-			//x.loop();
+	this.allTiles = 
+	[
+	new Tile(this.cellWidth, this.cellHeight, true, "white"),
+	new Tile(this.cellWidth, this.cellHeight, false, "black")
+	];
 
-			this.canvas  = document.getElementById(idCanvas);
-			this.context = this.canvas.getContext('2d');
+	this.map = 
+	[
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+	];
 
-			this.cellWidth  = 50;
-			this.cellHeight = 50;
+	this.canvas.width  = this.cellWidth*this.map[0].length;
+	this.canvas.height = this.cellHeight*this.map.length;
 
-			this.allTiles = 
-			[
-			new Tile(this.cellWidth, this.cellHeight, true, "white"),
-			new Tile(this.cellWidth, this.cellHeight, false, "black")
-			];
+	this.player;
+	this.player2;
+	this.initPlayer();
 
-			this.map = 
-			[
-			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-			[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-			[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
-			[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-			[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-			[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-			[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-			[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-			[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-			[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-			[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-			[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-			];
+	this.shoots;
+	this.bullets = [];
 
-			this.canvas.width  = this.cellWidth*this.map[0].length;
-			this.canvas.height = this.cellHeight*this.map.length;
-
-			this.player;
-			this.player2;
-			this.initPlayer();
-
-			this.shoots;
-			this.bullets = [];
-
-			var self = this;
-			this.timePassed = new Date().getTime();
+	var self = this;
+	this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
 	a = Processing.getInstanceById('canvas');
-
 }
 
 World.prototype.initPlayer = function()
@@ -230,22 +222,18 @@ World.prototype.drawMap = function()
 			for(var i=0; i<this.bullets.length; i++)
 				this.bullets[i].draw(this.context);
 		};
-		//a.loop();
 
 		World.prototype.loop = function()
 		{
-			//if(a.can == true){
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
-			//a.loop();
-				//World("canvas");		
 
-				this.moveCharacters(delta);
-				if(this.shoots)
-					this.moveShoots(delta);
-				this.drawMap();
-				this.drawScore();
-				this.drawCharacters();
-				this.drawBullet();
-			//}
+            //a.setup()
+			this.moveCharacters(delta);
+			if(this.shoots)
+				this.moveShoots(delta);
+			this.drawMap();
+			this.drawScore();
+			this.drawCharacters();
+			this.drawBullet();
 		};
