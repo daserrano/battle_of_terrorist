@@ -1,12 +1,7 @@
-var a = null
 
 function World(idCanvas)
 {
 
-				//canvas.width = canvas.width;
-
-				var x = Processing.getInstanceById("canvas");
-			//x.loop();
 
 			this.canvas  = document.getElementById(idCanvas);
 			this.context = this.canvas.getContext('2d');
@@ -50,7 +45,6 @@ function World(idCanvas)
 			var self = this;
 			this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
-	a = Processing.getInstanceById('canvas');
 
 }
 
@@ -230,15 +224,13 @@ World.prototype.drawMap = function()
 			for(var i=0; i<this.bullets.length; i++)
 				this.bullets[i].draw(this.context);
 		};
-		//a.loop();
 
 		World.prototype.loop = function()
 		{
-			//if(a.can == true){
+			
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
-			//a.loop();
-				//World("canvas");		
+			
 
 				this.moveCharacters(delta);
 				if(this.shoots)
@@ -247,5 +239,4 @@ World.prototype.drawMap = function()
 				this.drawScore();
 				this.drawCharacters();
 				this.drawBullet();
-			//}
 		};
