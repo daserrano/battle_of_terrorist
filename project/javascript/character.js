@@ -20,23 +20,6 @@ function Character(world, width, height, x, y, sprite)
 	this.transition       =  0; // Tiempo que transcurre.
 }
 
-Character.prototype.validPosition = function(px, py)
-{
-	var width  = this.width/(2*world.cellWidth);
-	var height = this.height/(2*world.cellHeight);
-
-	if(!world.cellWalked(px-width, py-height))
-		return false;
-	if(!world.cellWalked(px+width, py-height))
-		return false;
-	if(!world.cellWalked(px-width, py+height))
-		return false;
-	if(!world.cellWalked(px+width, py+height))
-		return false;
-
-	return true;
-};
-
 Character.prototype.move = function(delta)
 {
 	var newDirection = "";
@@ -46,9 +29,12 @@ Character.prototype.move = function(delta)
 	var px = this.x+this.dx*this.velocity*delta;
 	var py = this.y+this.dy*this.velocity*delta;
 
-	if(!this.validPosition(px, this.y)) //Comprobar si es una posicion valida.
+	var colX = new Collision(px, this.y);
+	var colY = new Collision(this.x, py);
+
+	if(!colX.validPosition(this, px, this.y))
 		px = this.x;
-	if(!this.validPosition(this.x, py))
+	if(!colY.validPosition(this, this.x, py))
 		py = this.y;
 
 	if(this.x==px && this.y==py) //Si no hay movimiento.
