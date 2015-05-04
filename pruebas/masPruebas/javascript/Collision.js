@@ -12,6 +12,7 @@ Collision.prototype.validPosition = function(obj, px, py)
 
 //alert("width: " + width + "height: " + height + "this.px: " + this.px + "this.py: " + this.py);
 
+
 	if(!world.cellWalked(this.px-width, this.py-height))
 		return false;
 	if(!world.cellWalked(this.px+width, this.py-height))

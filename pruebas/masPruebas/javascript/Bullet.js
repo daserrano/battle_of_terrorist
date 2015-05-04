@@ -7,6 +7,8 @@ function Bullet(world, player)
 	this.px        = player.x; // Posición de la bala.
 	this.py        = player.y;
 	this.used      = false; // Si colisiona con algo.
+	//this.pxi = player.x;
+	//this.pyi = player.y;
 	//this.player    = player;
 
 //alert(this.px + " " + this.py);
@@ -55,17 +57,17 @@ Bullet.prototype.draw = function(context)
 {
 
 	context.save();
-	//this.sprite.drawBullet(context, this.width, this.height, this.direction);
-	//context.drawImage(Sprites.get("bulletRight"), this.px, this.py);
-	//context.fillRect(x,y,anchura,altura)
-	//t.translate(this.x*world.cellWidth, this.y*world.cellHeight);
-
-	//world.sprite.drawBullet(context, this.width, this.height, this.direction);
-	context.translate(this.px*world.cellWidth, this.py*world.cellHeight);
-
-	//context.drawImage(Sprites.get("bulletRight"), this.px, this.py, this.width, this.height);
-
-	context.fillRect(this.px, this.py, this.width, this.height);
+	//context.drawImage(Images.get("bulletMain"), this.pxi*world.cellWidth, this.pyi*world.cellHeight, this.width, this.height);
+	if(this.direction == "right")
+	{
+		context.drawImage(Images.get("bulletRight"), this.px*world.cellWidth, this.py*world.cellHeight, this.width, this.height);
+	}
+	if(this.direction == "down")
+		context.drawImage(Images.get("bulletDown"), this.px*world.cellWidth, this.py*world.cellHeight, this.width, this.height);
+	if(this.direction == "left")
+		context.drawImage(Images.get("bulletLeft"), this.px*world.cellWidth, this.py*world.cellHeight, this.width, this.height);
+	if(this.direction == "up")
+		context.drawImage(Images.get("bulletUp"), this.px*world.cellWidth, this.py*world.cellHeight, this.width, this.height);
 
 	context.restore();
 }
