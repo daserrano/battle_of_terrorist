@@ -35,6 +35,10 @@ Bullet.prototype.move = function(delta)
 		if(!colX.validPosition(this, this.px, this.py))
 		{
 			this.used = true;
+			this.px = 0; //Mirar esto de otra forma de hacer.
+			this.py = 0;
+			//canvas.width = canvas.width;
+			//world.context.clearRect(0, 0, canvas.width, canvas.height);
 		}
 		if(!colY.validPosition(this, this.px, this.py))
 			this.used = true;
