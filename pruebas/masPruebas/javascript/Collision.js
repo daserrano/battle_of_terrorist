@@ -5,10 +5,10 @@ function Collision(px, py)
 
 }
 
-Collision.prototype.validPosition = function(obj, px, py)
+Collision.prototype.validPosition = function(player, px, py)
 	{
-	var width  = obj.width/(3*world.cellWidth); //0.4
-	var height = obj.height/(3*world.cellHeight);
+	var width  = player.width/(3*world.cellWidth); //0.4
+	var height = player.height/(3*world.cellHeight);
 
 //alert("width: " + width + "height: " + height + "this.px: " + this.px + "this.py: " + this.py);
 

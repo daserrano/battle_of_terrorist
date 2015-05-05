@@ -29,6 +29,7 @@ Character.prototype.move = function(delta)
 	var px = this.x+this.dx*this.velocity*delta;
 	var py = this.y+this.dy*this.velocity*delta;
 
+    //Colisiones.
 	var colX = new Collision(px, this.y);
 	var colY = new Collision(this.x, py);
 
@@ -66,6 +67,30 @@ Character.prototype.move = function(delta)
 		this.spriteIndex = (this.spriteIndex + 1) % this.sprite.getNumSprites(newDirection); // Numero de sprites por direccion.
 	}
 };
+
+
+Character.prototype.collisionPlayer = function(other)
+{
+	var touchEnemy  = 0.4; //Cuando penetra en el enemigo.
+	var widthThis   = this.width/(2*this.world.cellWidth)*(1-touchEnemy);
+	var heightThis  = this.height/(2*this.world.cellHeight)*(1-touchEnemy);
+	var widthOther  = other.width/(2*this.world.cellWidth)*(1-touchEnemy);
+	var heightOther = other.height/(2*this.world.cellHeight)*(1-touchEnemy);
+
+	if(this.x + widthThis < other.x - widthOther)
+		return;
+	if(this.y + heightThis < other.y - heightOther)
+		return;
+	if(this.x - widthThis > other.x + widthOther)
+		return;
+	if(this.y - heightThis > other.y + heightOther)
+		return;
+
+	/*this.collisionatedPlayer(other);
+	this.collisionatedPlayer(this);*/
+};
+
+//Character.prototype.collisionatedPlayer = function(other) {};
 
 Character.prototype.draw = function(context)
 {

@@ -47,7 +47,7 @@ function World(idCanvas)
 World.prototype.initPlayer = function()
 {
 	var x = Math.floor((Math.random()*2)+1);
-	var y = Math.floor((Math.random()*3)+1);
+	var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
 	var z = Math.floor((Math.random()*2)+22);
 	var t = Math.floor((Math.random()*3)+9);
@@ -155,7 +155,7 @@ World.prototype.initPlayer = function()
 			self.bullets.push(self.shoots);
 			break;
 
-			case 13: // Intro
+			case 13: // Zero.
 			e.preventDefault();
 			self.shoots = new Bullet(self, self.player2);
 			self.bullets.push(self.shoots);
