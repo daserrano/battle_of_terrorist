@@ -1,8 +1,5 @@
-
 function World(idCanvas)
 {
-
-
 	this.canvas  = document.getElementById(idCanvas);
 	this.context = this.canvas.getContext('2d');
 
@@ -45,7 +42,6 @@ function World(idCanvas)
 	var self = this;
 	this.timePassed = new Date().getTime();
 	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
-
 }
 
 World.prototype.initPlayer = function()
@@ -227,10 +223,8 @@ World.prototype.drawMap = function()
 
 		World.prototype.loop = function()
 		{
-			
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
-			
 
 			this.moveCharacters(delta);
 			if(this.shoots)

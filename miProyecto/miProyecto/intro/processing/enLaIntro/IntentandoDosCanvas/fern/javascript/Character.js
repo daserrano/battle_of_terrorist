@@ -37,8 +37,7 @@ Character.prototype.validPosition = function(px, py)
 	return true;
 };
 
-//Character.prototype.move = function(delta)
-function dios(delta)
+Character.prototype.move = function(delta)
 {
 	var newDirection = "";
 	if(this.dx == 0 && this.dy == 0)
