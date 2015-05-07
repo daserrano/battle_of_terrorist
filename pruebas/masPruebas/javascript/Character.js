@@ -20,7 +20,7 @@ function Character(world, width, height, x, y, sprite)
 	this.transition       =  0; // Tiempo que transcurre.
 }
 
-Character.prototype.move = function(delta)
+Character.prototype.move = function(delta, other)
 {
 	var newDirection = "";
 	if(this.dx == 0 && this.dy == 0)
@@ -29,17 +29,32 @@ Character.prototype.move = function(delta)
 	var px = this.x+this.dx*this.velocity*delta;
 	var py = this.y+this.dy*this.velocity*delta;
 
-    //Colisiones.
-	var colX = new Collision(px, this.y);
-	var colY = new Collision(this.x, py);
+	var pxOther = other.x+other.dx*other.velocity*delta;
+	var pyOther = other.y+other.dy*other.velocity*delta;
 
-	if(!colX.validPosition(this, px, this.y))
-		px = this.x;
-	if(!colY.validPosition(this, this.x, py))
-		py = this.y;
+    //Colisiones.
+    var colX = new Collision(px, this.y);
+    var colY = new Collision(this.x, py);
+
+    if(!colX.validPosition(this, px, this.y))
+    	px = this.x;
+    if(!colY.validPosition(this, this.x, py))
+    	py = this.y;
 
 	if(this.x==px && this.y==py) //Si no hay movimiento.
 		return;
+
+	if(this.collisionPlayer(delta, other))
+	{
+		if(this.x < other.x)
+			px = this.x-0.01;
+		if(this.y < other.y)
+			py = this.y-0.01;
+		if(other.x < this.x)
+			px = this.x+0.01;
+		if(other.y < this.y)
+			py = this.y+0.01;
+	}
 
 	this.x = px; //Se cambian las nuevas coordenadas.
 	this.y = py;
@@ -68,29 +83,38 @@ Character.prototype.move = function(delta)
 	}
 };
 
-
-Character.prototype.collisionPlayer = function(other)
+Character.prototype.collisionPlayer = function(delta, other)
 {
-	var touchEnemy  = 0.4; //Cuando penetra en el enemigo.
+	var touchEnemy  = 0.1;//Cuando penetra en el enemigo.
 	var widthThis   = this.width/(2*this.world.cellWidth)*(1-touchEnemy);
 	var heightThis  = this.height/(2*this.world.cellHeight)*(1-touchEnemy);
 	var widthOther  = other.width/(2*this.world.cellWidth)*(1-touchEnemy);
 	var heightOther = other.height/(2*this.world.cellHeight)*(1-touchEnemy);
 
-	if(this.x + widthThis < other.x - widthOther)
-		return;
+	if(this.x + widthThis < other.x )
+		return false;
 	if(this.y + heightThis < other.y - heightOther)
-		return;
+		return false;
 	if(this.x - widthThis > other.x + widthOther)
-		return;
+		return false;
 	if(this.y - heightThis > other.y + heightOther)
-		return;
+		return false;
 
-	/*this.collisionatedPlayer(other);
-	this.collisionatedPlayer(this);*/
+	return true;
+
+	//this.collisionatedPlayer(other);
+	//other.collisionatedPlayer(this);
 };
 
-//Character.prototype.collisionatedPlayer = function(other) {};
+/*Character.prototype.collisionatedPlayer = function(other)
+{
+	//alert("this.x: " + this.x + " this.y: " + this.y);
+	this.x = 3.5;
+	this.y = 4.5;
+	other.x = 12.5;
+	other.y = 2.5;
+//alert("this.x: " + this.x + " this.y: " + this.y + "\nother.x: " + other.x + " other.y: " + other.y);
+}*/
 
 Character.prototype.draw = function(context)
 {

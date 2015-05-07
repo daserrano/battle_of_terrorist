@@ -10,7 +10,7 @@ function Player(world, width, height, x, y, id)
 
 Player.prototype = new Character;
 
-Player.prototype.move = function(delta)
+Player.prototype.move = function(delta, other)
 {
 	this.dx = 0;
 	this.dy = 0;
@@ -24,5 +24,5 @@ Player.prototype.move = function(delta)
 	if(this.left)
 		this.dx -= 1;
 
-	Character.prototype.move.call(this, delta);
+	Character.prototype.move.call(this, delta, other);
 };

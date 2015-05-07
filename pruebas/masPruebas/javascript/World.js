@@ -49,11 +49,11 @@ World.prototype.initPlayer = function()
 	var x = Math.floor((Math.random()*2)+1);
 	var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
-	var z = Math.floor((Math.random()*2)+22);
-	var t = Math.floor((Math.random()*3)+9);
+	/*var z = Math.floor((Math.random()*2)+22);
+	var t = Math.floor((Math.random()*3)+9);*/
 
 	this.player  = new Player(this, 40, 40, x+0.5, y+0.5, "player1");
-	this.player2 = new Player(this, 40, 40, z+0.5, t+0.5, "player2");
+	this.player2 = new Player(this, 40, 40, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
 	var self    = this;
 
 	document.body.onkeydown = function(e)
@@ -174,8 +174,8 @@ World.prototype.cellWalked = function(px, py)
 
 World.prototype.moveCharacters = function(delta)
 {
-	this.player.move(delta);
-	this.player2.move(delta);
+	this.player.move(delta, this.player2);
+	this.player2.move(delta, this.player);
 };
 
 World.prototype.moveShoots = function(delta)
