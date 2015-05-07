@@ -9,8 +9,8 @@ function Bullet(world, player)
 	this.px        = player.x; // Posición de la bala.
 	this.py        = player.y;
 	this.used      = false; // Si colisiona con algo.
-	this.pxi = player.x;
-	this.pyi = player.y;
+	//this.pxi = player.x;
+	//this.pyi = player.y;
 	this.damage = Math.floor((Math.random()*3)+t);	
 
 }
@@ -29,7 +29,6 @@ Bullet.prototype.move = function(delta)
 			this.width    = 0;
 			this.height   = 0;
 		}
-
 		/*if(!colY.validPosition(this, this.px, this.py))
 		this.used = true;*/
 

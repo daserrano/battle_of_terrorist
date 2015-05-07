@@ -182,6 +182,9 @@ World.prototype.moveShoots = function(delta)
 {	for(var i=0; i<this.bullets.length; i++)
 	{
 		this.bullets[i].move(delta);
+	
+	if(this.bullets[i].used == true)
+		this.bullets.splice(i, 1);
 	}
 };
 

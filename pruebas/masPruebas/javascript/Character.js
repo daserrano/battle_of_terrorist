@@ -29,9 +29,6 @@ Character.prototype.move = function(delta, other)
 	var px = this.x+this.dx*this.velocity*delta;
 	var py = this.y+this.dy*this.velocity*delta;
 
-	var pxOther = other.x+other.dx*other.velocity*delta;
-	var pyOther = other.y+other.dy*other.velocity*delta;
-
     //Colisiones.
     var colX = new Collision(px, this.y);
     var colY = new Collision(this.x, py);
@@ -44,7 +41,7 @@ Character.prototype.move = function(delta, other)
 	if(this.x==px && this.y==py) //Si no hay movimiento.
 		return;
 
-	if(this.collisionPlayer(delta, other))
+	if(this.collisionPlayer(delta, other)) // Colisiones entre los jugadores.
 	{
 		if(this.x < other.x)
 			px = this.x-0.01;
