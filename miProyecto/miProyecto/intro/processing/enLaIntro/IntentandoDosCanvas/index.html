@@ -8,63 +8,64 @@
   <script type="text/javascript" src="javascript/Sprites.js"></script>
   <script type="text/javascript" src="javascript/Tile.js"></script>
   <script type="text/javascript" src="javascript/Character.js"></script>
+  <script type="text/javascript" src="javascript/Collision.js"></script>
   <script type="text/javascript" src="javascript/Player.js"></script>
-  <script type="text/javascript" src="javascript/World.js"></script>
   <script type="text/javascript" src="javascript/Bullet.js"></script>
-	<meta charset = "UTF-8">
-	<title> Official Site | Battle of terrorist </title>
-	<script src="processing.js"></script>
-<style>
+  <script type="text/javascript" src="javascript/World.js"></script>
+  <meta charset = "UTF-8">
+  <title> Official Site | Battle of terrorist </title>
+  <script src="processing.js"></script>
+  <style>
   @font-face{
     font-family: "transformer";
     src: url("transformer.ttf");
   } 
-</style>
+  </style>
 </head>
 <body> <!-- To load canvas --> 
-		<canvas id="layer1"
-		style="z-index: 2;
-		position:absolute;
-		left:0px;
-		top:0px;
-		" height="1250" width="600">
-		This text is displayed if your browser does not support HTML5 Canvas.
-	</canvas>
-	<canvas id="canvas"
-	style="z-index: 1;
-	position:absolute;
-	left:0px;
-	top:0px;
-		" height="1250" width="600">
-	This text is displayed if your browser does not support HTML5 Canvas.
+  <canvas id="layer1"
+  style="z-index: 2;
+  position:absolute;
+  left:0px;
+  top:0px;
+  " height="1250" width="600">
+  This text is displayed if your browser does not support HTML5 Canvas.
+</canvas>
+<canvas id="canvas"
+style="z-index: 1;
+position:absolute;
+left:0px;
+top:0px;
+" height="1250" width="600">
+This text is displayed if your browser does not support HTML5 Canvas.
 </canvas>
 <script>
-	function init() {
-		
+function init() {
+  
 	
 
-		
-		drawAll();
+  
+  drawAll();
 		//setInterval(drawAll, 20);
 	}
-function drawAll() {
-		draw1();
-		draw2();
-	}
+  function drawAll() {
+    draw1();
+    draw2();
+  }
 
 
-function draw1(){
+  function draw1(){
 
 
-		function sketchProc(processing) {
+    function sketchProc(processing) {
 
-			var xpos;
-			var ypos;
-			var drag = 1;
-			var can = false;
-			var rectX1, rectY1, rectX2, rectY2, rectX3, rectY3, rectX4, rectY4, rectJUGARX, rectJUGARY;
-			var rectOver = false, rectOver1 = false, rectOver2 = false, rectOver3 = false, rectOver4 = false, texto = false;
-			var transformer;
+     var xpos;
+     var ypos;
+     var drag = 1;
+     var can = false;
+     var rectX1, rectY1, rectX2, rectY2, rectX3, rectY3, rectX4, rectY4, rectJUGARX, rectJUGARY;
+     var rectOver = false, rectOver1 = false, rectOver2 = false, rectOver3 = false, rectOver4 = false, texto = false;
+     var transformer;
 
 
       //SETUP Processing
@@ -189,33 +190,33 @@ function draw1(){
 
    		rectOver1 = rectOver2 = rectOver3 = rectOver4 = false;
    }
-}  
+ }  
 
 
-processing.mousePressed = function() {
+ processing.mousePressed = function() {
 
-	if (rectOver1) {
-		processing.exit();
-		processing.noLoop();
-		can = true;
-		canvas.width = canvas.width;
+   if (rectOver1) {
+    processing.exit();
+    processing.noLoop();
+    can = true;
+    canvas.width = canvas.width;
     //World(canvas);
-}
-if (rectOver2) {
-	processing.exit();
-	processing.noLoop();
+  }
+  if (rectOver2) {
+   processing.exit();
+   processing.noLoop();
     //World(canvas);
-}
-if (rectOver3) {
-	processing.exit();
-	processing.noLoop();
+  }
+  if (rectOver3) {
+   processing.exit();
+   processing.noLoop();
     //World(canvas);
-}
-if (rectOver4) {
-	processing.exit();
-	processing.noLoop();
+  }
+  if (rectOver4) {
+   processing.exit();
+   processing.noLoop();
     //World(canvas);
-}
+  }
 }
 
 
@@ -226,16 +227,16 @@ function overRect( x,  y,  width,  height)  {
    if (processing.mouseX >= x && processing.mouseX <= x+width && 
    	processing.mouseY >= y && processing.mouseY <= y+height) {
    	return true;
-} 
-else {
-	return false;
+ } 
+ else {
+   return false;
+ }
 }
 }
-}
-	var canvas = document.getElementById("layer1");
-		var p = new Processing(canvas, sketchProc);
-		var sketch = p.externals.sketch; 
-		sketch.options.crispLines = true;
+var canvas = document.getElementById("layer1");
+var p = new Processing(canvas, sketchProc);
+var sketch = p.externals.sketch; 
+sketch.options.crispLines = true;
 }
 
 
@@ -244,40 +245,40 @@ function draw2(){
 	var Sprites;
 	var Images;
 	var canvas2 = document.getElementById("canvas");
-		ctx2 = canvas2.getContext("2d");
-	
-		Images  = new SaveImages();
-		Sprites = new SaveSprites();
+  ctx2 = canvas2.getContext("2d");
+  
+  Images  = new SaveImages();
+  Sprites = new SaveSprites();
 
-		Images.load(
-			[
-			["green1", 		"images/game/playerGreen1.png"],
-			["green2", 		"images/game/playerGreen2.png"],
-			["red1",   		"images/game/playerRed1.png"],
-			["red2",   		"images/game/playerRed2.png"],
-			["blue1", 		"images/game/playerBlue1.png"],
-			["bulletRight", "images/game/playerShootRight.png"],
-			["bulletLeft",  "images/game/playerShootLeft.png"],
-			["bulletUp",    "images/game/playerShootUp.png"],
-			["bulletDown",  "images/game/playerShootDown.png"],
-			["bulletMain",  "images/game/playerShootMain.png"]
-			]);
+  Images.load(
+   [
+   ["green1", 		"images/game/playerGreen1.png"],
+   ["green2", 		"images/game/playerGreen2.png"],
+   ["red1",   		"images/game/playerRed1.png"],
+   ["red2",   		"images/game/playerRed2.png"],
+   ["blue1", 		"images/game/playerBlue1.png"],
+   ["bulletRight", "images/game/playerShootRight.png"],
+   ["bulletLeft",  "images/game/playerShootLeft.png"],
+   ["bulletUp",    "images/game/playerShootUp.png"],
+   ["bulletDown",  "images/game/playerShootDown.png"],
+   ["bulletMain",  "images/game/playerShootMain.png"]
+   ]);
 
-		Images.completed = function() 
-		{
-			var spritePlayer1 = new Sprite(Images.get("blue1"));
-			spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
-			Sprites.add("player1", spritePlayer1);
+  Images.completed = function() 
+  {
+   var spritePlayer1 = new Sprite(Images.get("blue1"));
+   spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
+   Sprites.add("player1", spritePlayer1);
 
-			var spritePlayer2 = new Sprite(Images.get("red2"));
-			spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
-			Sprites.add("player2", spritePlayer2);
-			world = new World("canvas");
-		
-	}
+   var spritePlayer2 = new Sprite(Images.get("red2"));
+   spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
+   Sprites.add("player2", spritePlayer2);
+   world = new World("canvas");
+   
+ }
 }
 
-	
+
 
 
 init();

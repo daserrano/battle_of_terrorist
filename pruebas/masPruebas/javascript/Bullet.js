@@ -9,41 +9,54 @@ function Bullet(world, player)
 	this.px        = player.x; // Posición de la bala.
 	this.py        = player.y;
 	this.used      = false; // Si colisiona con algo.
+	this.who       = player;
+
 	//this.pxi = player.x;
 	//this.pyi = player.y;
 	this.damage = Math.floor((Math.random()*3)+t);	
-
 }
 
-Bullet.prototype.move = function(delta)
+Bullet.prototype.move = function(delta, world)
 {
-	var colX = new Collision(this.px, this.py);
-	//var colY = new Collision(this.px, this.py);
+	var col = new Collision(this.px, this.py);
 	
 	if(this.used == false )
 	{
-		if(!colX.validPosition(this, this.px, this.py))
+		if(!col.validPosition(this) || this.detectPlayer(world))
 		{
 			this.used     = true;
 			this.velocity = 0;
-			this.width    = 0;
-			this.height   = 0;
 		}
-		/*if(!colY.validPosition(this, this.px, this.py))
-		this.used = true;*/
 
-//Dependiendo de la direccion la bala va en una dirección o va en otra.	
-if(this.direction == "up")
-	this.py -= this.velocity*delta;
-if(this.direction == "down")
-	this.py += this.velocity*delta;
-if(this.direction == "right")
-	this.px += this.velocity*delta;
-if(this.direction == "left")
-	this.px -= this.velocity*delta;
-}
+		//Dependiendo de la direccion la bala va en una dirección o va en otra.	
+		if(this.direction == "up")
+			this.py -= this.velocity*delta;
+		if(this.direction == "down")
+			this.py += this.velocity*delta;
+		if(this.direction == "right")
+			this.px += this.velocity*delta;
+		if(this.direction == "left")
+			this.px -= this.velocity*delta;
+	}
 	//alert("px: " + px + " py: " + py);
+};
 
+Bullet.prototype.detectPlayer = function(world)
+{
+	var touchEnemy   = 0.1; //Cuando penetra en el enemigo.
+	var widthThis    = this.width/(2*world.cellWidth)*(1-touchEnemy);
+	var heightThis   = this.height/(2*world.cellHeight)*(1-touchEnemy);
+	var widthPlayer  = world.player.width/(2*world.cellWidth)*(1-touchEnemy);
+	var heightPlayer = world.player.height/(2*world.cellHeight)*(1-touchEnemy);
+	//var widthPlayer2  = world.player2.width/(2*world.cellWidth)*(1-touchEnemy);
+	//var heightPlayer2 = world.player2.height/(2*world.cellHeight)*(1-touchEnemy);
+		/*if(this.x + widthThis  < other.x - widthOther)
+		return false;*/
+
+		if((this.px > world.player2.x-widthPlayer)/* && parseInt(this.py) == parseInt(world.player2.y)*/)
+			return;
+		/*if((this.px+widthThis>world.player.x-widthPlayer) && parseInt(this.py) == parseInt(world.player.y))
+			return true;*/
 };
 
 Bullet.prototype.draw = function(context)

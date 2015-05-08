@@ -88,11 +88,11 @@ Character.prototype.collisionPlayer = function(delta, other)
 	var widthOther  = other.width/(2*this.world.cellWidth)*(1-touchEnemy);
 	var heightOther = other.height/(2*this.world.cellHeight)*(1-touchEnemy);
 
-	if(this.x + widthThis < other.x )
+	if(this.x + widthThis  < other.x - widthOther)
 		return false;
 	if(this.y + heightThis < other.y - heightOther)
 		return false;
-	if(this.x - widthThis > other.x + widthOther)
+	if(this.x - widthThis  > other.x + widthOther)
 		return false;
 	if(this.y - heightThis > other.y + heightOther)
 		return false;

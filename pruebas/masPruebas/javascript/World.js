@@ -179,9 +179,11 @@ World.prototype.moveCharacters = function(delta)
 };
 
 World.prototype.moveShoots = function(delta)
-{	for(var i=0; i<this.bullets.length; i++)
+{	
+	for(var i=0; i<this.bullets.length; i++)
 	{
-		this.bullets[i].move(delta);
+		this.bullets[i].move(delta, world);
+		//this.bullets[i].detectPlayer(this.player, this.player2);
 	
 	if(this.bullets[i].used == true)
 		this.bullets.splice(i, 1);
@@ -230,8 +232,8 @@ World.prototype.drawMap = function()
 			this.timePassed = new Date().getTime();
 
 			this.moveCharacters(delta);
-			if(this.shoots)
-				this.moveShoots(delta);
+			//if(this.shoots)
+			this.moveShoots(delta);
 			this.drawMap();
 			this.drawScore();
 			this.drawCharacters();
