@@ -48,21 +48,30 @@ Bullet.prototype.detectPlayer = function(world)
 	var heightThis   = this.height/(2*world.cellHeight)*(1-touchEnemy);
 	var widthPlayer  = world.player.width/(2*world.cellWidth)*(1-touchEnemy);
 	var heightPlayer = world.player.height/(2*world.cellHeight)*(1-touchEnemy);
-	//var widthPlayer2  = world.player2.width/(2*world.cellWidth)*(1-touchEnemy);
-	//var heightPlayer2 = world.player2.height/(2*world.cellHeight)*(1-touchEnemy);
-		/*if(this.x + widthThis  < other.x - widthOther)
-		return false;*/
+	var widthPlayer2  = world.player2.width/(2*world.cellWidth)*(1-touchEnemy);
+	var heightPlayer2 = world.player2.height/(2*world.cellHeight)*(1-touchEnemy);
 
-		if((this.px > world.player2.x-widthPlayer)/* && parseInt(this.py) == parseInt(world.player2.y)*/)
-			return;
-		/*if((this.px+widthThis>world.player.x-widthPlayer) && parseInt(this.py) == parseInt(world.player.y))
-			return true;*/
-};
+	/*if (objects[x].collidableWith === obj[y].type &&
+		(objects[x].x < obj[y].x + obj[y].width &&
+			objects[x].x + objects[x].width > obj[y].x &&
+			objects[x].y < obj[y].y + obj[y].height &&
+			objects[x].y + objects[x].height > obj[y].y)) {
+		objects[x].isColliding = true;
+	obj[y].isColliding = true;*/
 
-Bullet.prototype.draw = function(context)
-{
+	if((this.px === world.player2.y ) &&
+		(this.px < world.player2.x + widthPlayer2 &&
+			this.px + widthThis))
+		return	true;
 
-	context.save();
+		/*if((this.px > world.player2.x-widthPlayer) && 
+			(parseInt(this.py) == parseInt(world.player2.y) &&)
+			return false;*/
+		};
+
+		Bullet.prototype.draw = function(context)
+		{
+			context.save();
 	//context.drawImage(Images.get("bulletMain"), this.pxi*world.cellWidth, this.pyi*world.cellHeight, this.width, this.height);
 
 	if(this.direction == "right")

@@ -184,9 +184,9 @@ World.prototype.moveShoots = function(delta)
 	{
 		this.bullets[i].move(delta, world);
 		//this.bullets[i].detectPlayer(this.player, this.player2);
-	
-	if(this.bullets[i].used == true)
-		this.bullets.splice(i, 1);
+		
+		if(this.bullets[i].used == true)
+			this.bullets.splice(i, 1);
 	}
 };
 
