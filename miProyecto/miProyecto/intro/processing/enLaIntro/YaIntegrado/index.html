@@ -7,7 +7,7 @@
 	<link rel = "stylesheet" href = "style/hover.css" media="all"/>
 	<link rel = "icon" type = "image/png" href = "images/web/iconGun.png" />
 	<script src="processing.js"></script>
-		<script type="text/javascript" src="javascript/pr.js"></script>
+	<script type="text/javascript" src="javascript/processingFunction.js"></script>
 	<script type="text/javascript" src="javascript/SaveImages.js"></script>
 	<script type="text/javascript" src="javascript/Sprites.js"></script>
 	<script type="text/javascript" src="javascript/Tile.js"></script>
@@ -18,24 +18,27 @@
 	<script type="text/javascript" src="javascript/Collision.js"></script>
 
 
-<style>
-  @font-face{
-    font-family: "transformer";
-    src: url("transformer.ttf");
-  } 
-</style>
+	<style>
+		@font-face{
+			font-family: "transformer";
+			src: url("transformer.ttf");
+		} 
+	</style>
 	<script>
 
-	var world;
-	var Sprites;
-	var Images;
+		var world;
+		var Sprites;
+		var Images;
+		var personaje;
 
-
-
+		function dime(){
+			 personaje = 2;
+		}
 
 	// window.onload = function()
 	function prueba()
 	{
+
 		Images  = new SaveImages();
 		Sprites = new SaveSprites();
 
@@ -55,7 +58,11 @@
 
 		Images.completed = function() 
 		{
-			var spritePlayer1 = new Sprite(Images.get("blue1"));
+			if (personaje == 1)
+				var spritePlayer1 = new Sprite(Images.get("red1"));
+			if (personaje == 2)
+				var spritePlayer1 = new Sprite(Images.get("blue1"));
+					
 			spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 			Sprites.add("player1", spritePlayer1);
 
@@ -67,11 +74,10 @@
 	}
 
 
-	</script>
+</script>
 </head>
 
-<body onload="p2();"> <!-- To load canvas -->
-<!-- <p><canvas id="canvas1" width="1250" height="650"></canvas></p>  -->
+<body onload="cargarCanvas();"> <!-- To load canvas -->
 	<div id = "main" > <!-- All the page -->
 		<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
 		<ul id="menu">
