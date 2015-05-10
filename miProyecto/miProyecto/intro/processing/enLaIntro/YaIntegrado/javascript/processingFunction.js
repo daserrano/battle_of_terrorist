@@ -9,9 +9,10 @@ function sketchProc(processing) {
   var rectOver = false, rectOver1 = false, rectOver2 = false, rectOver3 = false, rectOver4 = false,rectOver5 = false,rectOver6 = false,rectOver7 = false, texto = false;
   var transformer;
   var crearRectangulos = false;
-  var mira = false;
+  var revisionColores = false;
   var personaje;
   var color;
+  var mostrarPersonaje1 = false, mostrarPersonaje2= false, mostrarPersonaje3= false, mostrarPersonaje4= false;
 
       //SETUP Processing
       processing.size(1250, 650);
@@ -82,73 +83,69 @@ function sketchProc(processing) {
     update(processing.mouseX, processing.mouseY);
 
     if (rectOver1) {
-      processing.text("JACK", 145, 475);
-      processing.text("  ?  ", 405, 475);
-      processing.text("  ?  ", 685, 475);
-      processing.text("  ?  ", 965, 475);
+      mostrarPersonaje1 = true;
+      estoyEnUno = true;
+      escribeTexto();
       processing.noFill();
     } 
+    estoyEnUno = false;
+    mostrarPersonaje1 = false;
     if (rectOver2) {
-      processing.text("  ?  ", 125, 475);
-      processing.text("ELLIE", 415, 475);
-      processing.text("  ?  ", 685, 475);
-      processing.text("  ?  ", 965, 475);
+      mostrarPersonaje2 = true;
+      estoyEnUno = true;
+      escribeTexto();
       processing.noFill();
     } 
+    estoyEnUno = false;
+    mostrarPersonaje2 = false;
     if (rectOver3) {
-      processing.text("  ?  ", 125, 475);
-      processing.text("  ?  ", 405, 475);
-      processing.text("PAUL", 705, 475);
-      processing.text("  ?  ", 965, 475);
+      mostrarPersonaje3 = true;
+      estoyEnUno = true;
+      escribeTexto();
       processing.noFill();
     } 
+    estoyEnUno = false;
+    mostrarPersonaje3 = false;
     if (rectOver4) {
-      processing.text("  ?  ", 125, 475);
-      processing.text("  ?  ", 405, 475);
-      processing.text("  ?  ", 685, 475);
-      processing.text("BILLY", 980, 475);
+      mostrarPersonaje4 = true;
+      estoyEnUno = true;
+      escribeTexto();
       processing.noFill();
     } 
-    if(mira == true){
+    mostrarPersonaje4 = false;
+    estoyEnUno = false;
+
+
+
+    if(revisionColores == true){
       if (rectOver5){
-        processing.text("  ?  ", 125, 475);
-        processing.text("  ?  ", 405, 475);
-        processing.text("  ?  ", 685, 475);
-        processing.text("  ?  ", 980, 475);
+        escribeTexto();
         processing.fill(235, 0, 0);
         processing.text(" ROJO ", 240, 595);
         processing.noFill();
       } 
       if (rectOver6){
-        processing.text("  ?  ", 125, 475);
-        processing.text("  ?  ", 405, 475);
-        processing.text("  ?  ", 685, 475);
-        processing.text("  ?  ", 980, 475);
+        escribeTexto();
         processing.fill(0, 0, 235);
         processing.text(" AZUL ", 521, 595);
         processing.noFill();
       } 
       if (rectOver7){
-        processing.text("  ?  ", 125, 475);
-        processing.text("  ?  ", 405, 475);
-        processing.text("  ?  ", 685, 475);
-        processing.text("  ?  ", 980, 475);
+        escribeTexto();
         processing.fill(0, 210, 0);
         processing.text("VERDE ", 820, 595);
         processing.noFill();
       } 
-}
-      if(rectOver1 == false && rectOver2 == false && rectOver3 == false && rectOver4 == false && rectOver5 == false && rectOver6 == false && rectOver7 == false){
-        processing.fill(204, 204, 0);
-      }
-      if(crearRectangulos == true){
+    }
+    if(rectOver1 == false && rectOver2 == false && rectOver3 == false && rectOver4 == false && rectOver5 == false && rectOver6 == false && rectOver7 == false){
+      processing.fill(204, 204, 0);
+    }
+    if(crearRectangulos == true){
     //processing.fill(255, 0, 0);
-    mira = true;
+    revisionColores = true;
     processing.rect(rectX5, rectY5, 213, 50, 22);
     processing.rect(rectX6, rectY6, 213, 50, 22);
     processing.rect(rectX7, rectY7, 213, 50, 22);
-
-
   }
 
 
@@ -157,40 +154,69 @@ function sketchProc(processing) {
 
    //FUNCTIONS
 
-
-   function update(x, y) {
-
-    if(overRect(rectX1, rectY1, 160, 50)){
-      rectOver1 = true;
+   function escribeTexto(){
+    if(mostrarPersonaje1 || personaje == 1 && estoyEnUno == false){
+      processing.text("JACK", 145, 475);
+      processing.text("  ?  ", 405, 475);
+      processing.text("  ?  ", 685, 475);
+      processing.text("  ?  ", 965, 475);
     }
-    else if (overRect(rectX2, rectY2, 160, 50)) {
-      rectOver2 = true;
-    }
-    else if (overRect(rectX3, rectY3, 160, 50)) {
-      rectOver3 = true;
-    }
-    else if(overRect(rectX4, rectY4, 160, 50)){
-      rectOver4 = true;
-    }
-    else if(overRect(rectX5, rectY5, 213, 50)){
-      rectOver5 = true;
-    }
-    else if(overRect(rectX6, rectY6, 213, 50)){
-      rectOver6 = true;
-    }
-    else if(overRect(rectX7, rectY7, 213, 50)){
-      rectOver7 = true;
-    }
-    if( overRect(rectX1, rectY1, 160, 50) == false && 
-      overRect(rectX2, rectY2, 160, 50) == false && 
-      overRect(rectX3, rectY3, 160, 50) == false && 
-      overRect(rectX4, rectY4, 160, 50) == false &&
-      overRect(rectX5, rectY5, 213, 50) == false &&
-      overRect(rectX6, rectY6, 213, 50) == false &&
-      overRect(rectX7, rectY7, 213, 50) == false ){
-
-      rectOver1 = rectOver2 = rectOver3 = rectOver4 = rectOver5 = rectOver6 = rectOver7 = false;
+    if(mostrarPersonaje2 || personaje == 2 && estoyEnUno == false){
+     processing.text("  ?  ", 125, 475);
+     processing.text("ELLIE", 415, 475);
+     processing.text("  ?  ", 685, 475);
+     processing.text("  ?  ", 965, 475);
+   }
+   if(mostrarPersonaje3 || personaje == 3 && estoyEnUno == false){
+    processing.text("  ?  ", 125, 475);
+    processing.text("  ?  ", 405, 475);
+    processing.text("PAUL", 705, 475);
+    processing.text("  ?  ", 965, 475);
   }
+  if(mostrarPersonaje4 || personaje == 4 && estoyEnUno == false){
+    processing.text("  ?  ", 125, 475);
+    processing.text("  ?  ", 405, 475);
+    processing.text("  ?  ", 685, 475);
+    processing.text("BILLY", 980, 475);
+  }
+
+}
+
+
+
+function update(x, y) {
+
+  if(overRect(rectX1, rectY1, 160, 50)){
+    rectOver1 = true;
+  }
+  else if (overRect(rectX2, rectY2, 160, 50)) {
+    rectOver2 = true;
+  }
+  else if (overRect(rectX3, rectY3, 160, 50)) {
+    rectOver3 = true;
+  }
+  else if(overRect(rectX4, rectY4, 160, 50)){
+    rectOver4 = true;
+  }
+  else if(overRect(rectX5, rectY5, 213, 50)){
+    rectOver5 = true;
+  }
+  else if(overRect(rectX6, rectY6, 213, 50)){
+    rectOver6 = true;
+  }
+  else if(overRect(rectX7, rectY7, 213, 50)){
+    rectOver7 = true;
+  }
+  if( overRect(rectX1, rectY1, 160, 50) == false && 
+    overRect(rectX2, rectY2, 160, 50) == false && 
+    overRect(rectX3, rectY3, 160, 50) == false && 
+    overRect(rectX4, rectY4, 160, 50) == false &&
+    overRect(rectX5, rectY5, 213, 50) == false &&
+    overRect(rectX6, rectY6, 213, 50) == false &&
+    overRect(rectX7, rectY7, 213, 50) == false ){
+
+    rectOver1 = rectOver2 = rectOver3 = rectOver4 = rectOver5 = rectOver6 = rectOver7 = false;
+}
 } //update
 
 
@@ -198,47 +224,43 @@ processing.mousePressed = function() {
 
   if (rectOver1) {
     crearRectangulos = true;
-    processing.personaje = 1;
+    personaje = 1;
+  }
+  if (rectOver2) {    
+   crearRectangulos = true;
+   personaje = 2;
+ }
+ if (rectOver3) {
+  crearRectangulos = true;
+  personaje = 3;
+}
+if (rectOver4) {
+  crearRectangulos = true;
+  personaje = 4;
+}
+if (rectOver5) {
+  color = "rojo";
+  processing.exit();
+  processing.noLoop();
+  dime(personaje,color);
+  prueba();
+    //World(canvas);
+  }
+  if (rectOver6) {
+    color = "azul";
     processing.exit();
     processing.noLoop();
-    dime();
+    dime(personaje,color);
     prueba();
-    //canvas.width = canvas.width;
-    //prueba();
     //World(canvas);
   }
-  if (rectOver2) {
-    //processing.exit();
-    //processing.noLoop();
-    hapasado = 1;
-    processing.redraw();
-    //World(canvas);
-  }
-  if (rectOver3) {
+  if (rectOver7) {
+    color = "verde";
     processing.exit();
     processing.noLoop();
-    //World(canvas);
-  }
-  if (rectOver4) {
-    processing.exit();
-    processing.noLoop();
-    //World(canvas);
-  }
-   if (rectOver5) {
-    processing.exit();
-    processing.noLoop();
-    //World(canvas);
-  }
-   if (rectOver6) {
-    color = rojo;
-    processing.exit();
-    processing.noLoop();
-    seleccion(personaje, color);
-    //World(canvas);
-  }
-   if (rectOver7) {
-    processing.exit();
-    processing.noLoop();
+    dime(personaje,color);
+    prueba();
+
     //World(canvas);
   }
 }
