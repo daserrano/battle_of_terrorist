@@ -156,6 +156,8 @@ function sketchProc(processing) {
 
    function escribeTexto(){
     if(mostrarPersonaje1 || personaje == 1 && estoyEnUno == false){
+            processing.textFont(transformer, 65);
+
       processing.text("JACK", 145, 475);
       processing.text("  ?  ", 405, 475);
       processing.text("  ?  ", 685, 475);

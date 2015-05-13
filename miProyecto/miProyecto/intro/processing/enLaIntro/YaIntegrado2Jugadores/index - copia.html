@@ -84,7 +84,6 @@
 						var spritePlayer1 = new Sprite(Images.get("blue1"));
 					if (colorJugador == "verde")
 						var spritePlayer1 = new Sprite(Images.get("green1"));
-					break;
 				}
 				case 2:{
 					if (colorJugador == "rojo")
@@ -93,7 +92,6 @@
 						var spritePlayer1 = new Sprite(Images.get("blue2"));
 					if (colorJugador == "verde")
 						var spritePlayer1 = new Sprite(Images.get("green2"));
-					break;
 				}
 				case 3:{
 					if (colorJugador == "rojo")
@@ -102,7 +100,33 @@
 						var spritePlayer1 = new Sprite(Images.get("blue3"));
 					if (colorJugador == "verde")
 						var spritePlayer1 = new Sprite(Images.get("green3"));
-					break;
+				
+				}
+				case 5:{
+					if (colorJugador == "rojo")
+						var spritePlayer2 = new Sprite(Images.get("red1"));
+					if (colorJugador == "azul")
+						var spritePlayer2 = new Sprite(Images.get("blue1"));
+					if (colorJugador == "verde")
+						var spritePlayer2 = new Sprite(Images.get("green1"));
+				
+				}
+				case 6:{
+					if (colorJugador == "rojo")
+						var spritePlayer2 = new Sprite(Images.get("red2"));
+					if (colorJugador == "azul")
+						var spritePlayer2 = new Sprite(Images.get("blue2"));
+					if (colorJugador == "verde")
+						var spritePlayer2 = new Sprite(Images.get("green2"));
+				
+				}
+				case 7:{
+					if (colorJugador == "rojo")
+						var spritePlayer2 = new Sprite(Images.get("red3"));
+					if (colorJugador == "azul")
+						var spritePlayer2 = new Sprite(Images.get("blue3"));
+					if (colorJugador == "verde")
+						var spritePlayer2 = new Sprite(Images.get("green3"));
 				
 				}
 			}
@@ -110,7 +134,7 @@
 				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player1", spritePlayer1);
 
-				var spritePlayer2 = new Sprite(Images.get("red1"));
+				//var spritePlayer2 = new Sprite(Images.get("red1"));
 				spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player2", spritePlayer2);
 				world = new World("canvas1");
