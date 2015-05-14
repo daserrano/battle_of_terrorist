@@ -19,7 +19,7 @@
 	<style>
 		@font-face{
 			font-family: "transformer";
-			src: url("transformer.ttf");
+			src: url("style/transformer.ttf");
 		} 
 	</style>
 	<script>
@@ -57,12 +57,15 @@
 				["green1", 		"images/game/personaje1_verde.png"],
 				["green2", 		"images/game/personaje2_verde.png"],
 				["green3", 		"images/game/personaje3_verde.png"],
+				["green4", 		"images/game/personaje4_verde.png"],
 				["red1",   		"images/game/personaje1_rojo.png"],
 				["red2",   		"images/game/personaje2_rojo.png"],
 				["red3",   		"images/game/personaje3_rojo.png"],
+				["red4",   		"images/game/personaje4_rojo.png"],
 				["blue1", 		"images/game/personaje1_azul.png"],
 				["blue2", 		"images/game/personaje2_azul.png"],
 				["blue3", 		"images/game/personaje3_azul.png"],
+				["blue4", 		"images/game/personaje4_azul.png"],
 				["bulletRight", "images/game/playerShootRight.png"],
 				["bulletLeft",  "images/game/playerShootLeft.png"],
 				["bulletUp",    "images/game/playerShootUp.png"],
@@ -105,6 +108,16 @@
 						break;
 
 					}
+					case 4:{
+						if (color1 == "rojo")
+							var spritePlayer1 = new Sprite(Images.get("red4"));
+						if (color1 == "azul")
+							var spritePlayer1 = new Sprite(Images.get("blue4"));
+						if (color1 == "verde")
+							var spritePlayer1 = new Sprite(Images.get("green4"));
+						break;
+
+					}
 				}
 				switch(persona2){
 					case 5:{
@@ -134,6 +147,16 @@
 							var spritePlayer2 = new Sprite(Images.get("blue3"));
 						if (color2 == "verde")
 							var spritePlayer2 = new Sprite(Images.get("green3"));
+						break;
+
+					}
+					case 8:{
+						if (color2 == "rojo")
+							var spritePlayer2 = new Sprite(Images.get("red4"));
+						if (color2 == "azul")
+							var spritePlayer2 = new Sprite(Images.get("blue4"));
+						if (color2 == "verde")
+							var spritePlayer2 = new Sprite(Images.get("green4"));
 						break;
 
 					}
