@@ -183,7 +183,6 @@ World.prototype.moveShoots = function(delta)
 	for(var i=0; i<this.bullets.length; i++)
 	{
 		this.bullets[i].move(delta, world);
-		//this.bullets[i].detectPlayer(this.player, this.player2);
 		
 		if(this.bullets[i].used == true)
 			this.bullets.splice(i, 1);
@@ -206,15 +205,25 @@ World.prototype.drawMap = function()
 		this.player2.draw(this.context);
 	};
 
-	World.prototype.drawScore = function()
+	World.prototype.drawScore = function(player1, player2)
 	{
-		this.context.fillStyle="blue";
-		this.context.font = "bold 30px arial";
-		this.context.fillText("0",this.canvas.width/2-30,35);
-		this.context.fillText("100%",45,35);
+		var vida = 10;
+		
+		this.context.font = "bold 20px arial"; //Estilo de letra y tamaño.
+
+		this.context.fillStyle = "yellow"; //Para mostrar la vida.
+		this.context.fillRect(50,15, vida*30, 25);
+		this.context.fillRect(this.canvas.width-50,15, -vida*30, 25);
+
 		this.context.fillStyle = "red";
-		this.context.fillText("0",this.canvas.width/2+14,35);
-		this.context.fillText("100%",this.canvas.width-125,35);
+		this.context.fillRect(50,15, player1*30, 25);
+		this.context.fillRect(this.canvas.width-50,15, -player2*30, 25);
+
+		this.context.fillStyle = "white"; // Mostrar el numero de vida.
+		this.context.fillText(player1*10 + ".0", 60,35);
+		this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
+
+		this.context.fillStyle = "black";
 	};
 
 	World.prototype.drawBullet = function()
@@ -235,7 +244,7 @@ World.prototype.drawMap = function()
 			//if(this.shoots)
 			this.moveShoots(delta);
 			this.drawMap();
-			this.drawScore();
+			this.drawScore(this.player.life, this.player2.life);
 			this.drawCharacters();
 			this.drawBullet();
 		};

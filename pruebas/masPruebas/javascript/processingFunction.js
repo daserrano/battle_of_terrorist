@@ -271,29 +271,29 @@ if (rectOverCuadroConfirmacion1){
     if(mostrarPersonaje1 || personaje == 1 && estoyEnUno == false){
       processing.textFont(transformer, 25);
       processing.text("JACK", 70, 465);
-      processing.text("  ?  ", 210, 465);
-      processing.text("  ?  ", 354, 465);
-      processing.text("  ?  ", 495, 465);
+      processing.text("      ", 210, 465);
+      processing.text("      ", 354, 465);
+      processing.text("      ", 495, 465);
     }
     if(mostrarPersonaje2 || personaje == 2 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 65, 465);
+      processing.text("     ", 65, 465);
       processing.text("ELLIE", 210, 465);
-      processing.text("  ?  ", 354, 465);
-      processing.text("  ?  ", 495, 465);
+      processing.text("     ", 354, 465);
+      processing.text("     ", 495, 465);
     }
     if(mostrarPersonaje3 || personaje == 3 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 210, 465);
-      processing.text("  ?  ", 65, 465);
+      processing.text("     ", 210, 465);
+      processing.text("     ", 65, 465);
       processing.text("PAUL", 354, 465);
-      processing.text("  ?  ", 495, 465);
+      processing.text("     ", 495, 465);
     }
     if(mostrarPersonaje4 || personaje == 4 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 65, 465);
-      processing.text("  ?  ", 210, 465);
-      processing.text("  ?  ", 354, 465);
+      processing.text("     ", 65, 465);
+      processing.text("     ", 210, 465);
+      processing.text("     ", 354, 465);
       processing.text("BILLY", 500, 465);
     }
 
@@ -304,29 +304,29 @@ if (rectOverCuadroConfirmacion1){
     if(mostrarPersonaje1_2 || personaje == 5 && estoyEnUno == false){
       processing.textFont(transformer, 25);
       processing.text("JACK", 695, 465);
-      processing.text("  ?  ", 825, 465);
-      processing.text("  ?  ", 970, 465);
-      processing.text("  ?  ", 1116, 465);
+      processing.text("     ", 825, 465);
+      processing.text("     ", 970, 465);
+      processing.text("     ", 1116, 465);
     }
     if(mostrarPersonaje2_2 || personaje == 6 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 695, 465);
+      processing.text("     ", 695, 465);
       processing.text("ELLIE", 830, 465);
-      processing.text("  ?  ", 970, 465);
-      processing.text("  ?  ", 1116, 465);
+      processing.text("     ", 970, 465);
+      processing.text("     ", 1116, 465);
     }
     if(mostrarPersonaje3_2 || personaje == 7 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 695, 465);
-      processing.text("  ?  ", 825, 465);
+      processing.text("     ", 695, 465);
+      processing.text("     ", 825, 465);
       processing.text("PAUL", 970, 465);
-      processing.text("  ?  ", 1116, 465);
+      processing.text("     ", 1116, 465);
     }
     if(mostrarPersonaje4_2 || personaje == 8 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 695, 465);
-      processing.text("  ?  ", 825, 465);
-      processing.text("  ?  ", 970, 465);
+      processing.text("     ", 695, 465);
+      processing.text("     ", 825, 465);
+      processing.text("     ", 970, 465);
       processing.text("BILLY", 1116, 465);
     }
 

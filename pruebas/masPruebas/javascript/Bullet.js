@@ -1,6 +1,6 @@
 function Bullet(world, player, enemy)
 {
-	var t = Math.floor((Math.random()*2));
+	var t = Math.floor((Math.random()*2)+1);
 
 	this.width     = 10; // Tamaño de la bala.
 	this.height    = 10;
@@ -20,7 +20,7 @@ Bullet.prototype.move = function(delta, world)
 	
 	if(this.used == false )
 	{
-		if(!col.validPosition(this) || this.detectPlayer())
+		if(!col.validPosition(this) || this.detectPlayer()) // Si colisiona con objetos o enemigo.
 		{
 			this.used     = true;
 			this.velocity = 0;
@@ -40,35 +40,20 @@ Bullet.prototype.move = function(delta, world)
 
 Bullet.prototype.detectPlayer = function()
 {
-	/*	
-	var touchEnemy   = 0.1; //Cuando penetra en el enemigo.
-	var widthThis    = this.width/(2*world.cellWidth)*(1-touchEnemy);
-	var heightThis   = this.height/(2*world.cellHeight)*(1-touchEnemy);
-	var widthPlayer  = world.player.width/(2*world.cellWidth)*(1-touchEnemy);
-	var heightPlayer = world.player.height/(2*world.cellHeight)*(1-touchEnemy);
-	var widthPlayer2  = world.player2.width/(2*world.cellWidth)*(1-touchEnemy);
-	var heightPlayer2 = world.player2.height/(2*world.cellHeight)*(1-touchEnemy);
-	*/
 
-	/*
-		if (objects[x].collidableWith === obj[y].type &&
-		(objects[x].x < obj[y].x + obj[y].width &&
-			objects[x].x + objects[x].width > obj[y].x &&
-			objects[x].y < obj[y].y + obj[y].height &&
-			objects[x].y + objects[x].height > obj[y].y)) {
-		objects[x].isColliding = true;
-		obj[y].isColliding = true;
-		*/
+	if(parseInt(this.px) == parseInt(this.enemy.x) && parseInt(this.py) == parseInt(this.enemy.y))
+	{
+		this.enemy.life -= this.damage;
+		//alert("Player1: " + world.player.life + "\nPlayer2: " + world.player2.life);
+		return true;
+	}
+	return false;
 
-		/*if((this.px > world.player2.x-widthPlayer) && 
-			(parseInt(this.py) == parseInt(world.player2.y) &&)
-			return false;
-			*/
-		};
+};
 
-		Bullet.prototype.draw = function(context)
-		{
-			context.save();
+Bullet.prototype.draw = function(context)
+{
+	context.save();
 			//context.drawImage(Images.get("bulletMain"), this.pxi*world.cellWidth, this.pyi*world.cellHeight, this.width, this.height);
 
 			if(this.direction == "right")

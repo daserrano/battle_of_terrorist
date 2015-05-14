@@ -18,6 +18,8 @@ function Character(world, width, height, x, y, sprite)
 	this.spriteIndex      =  0; // Indice del sprite.
 	this.transitionSprite = 70; // Tiempo que transcurre entre sprite y sprite.
 	this.transition       =  0; // Tiempo que transcurre.
+
+	this.life = 10;
 }
 
 Character.prototype.move = function(delta, other)
