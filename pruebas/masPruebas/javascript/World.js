@@ -219,9 +219,28 @@ World.prototype.drawMap = function()
 		this.context.fillRect(50,15, player1*30, 25);
 		this.context.fillRect(this.canvas.width-50,15, -player2*30, 25);
 
-		this.context.fillStyle = "white"; // Mostrar el numero de vida.
-		this.context.fillText(player1*10 + ".0", 60,35);
-		this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
+		
+
+		if(player1*10 <= 20)
+		{
+			this.context.fillStyle = "black";
+			this.context.fillText(player1*10 + ".0", 60,35);
+		}
+		if(player2*10 <= 20)
+		{
+			this.context.fillStyle = "black";
+			this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
+		}
+		if(player1*10 > 20)
+		{
+			this.context.fillStyle = "white"; // Mostrar el numero de vida.
+			this.context.fillText(player1*10 + ".0", 60,35);
+		}
+		if(player2*10 > 20)	
+		{
+			this.context.fillStyle = "white"; // Mostrar el numero de vida.
+			this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
+		}
 
 		this.context.fillStyle = "black";
 	};
