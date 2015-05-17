@@ -6,8 +6,6 @@
 	<link rel = "stylesheet" href = "style/main.css"/>
 	<link rel = "stylesheet" href = "style/hover.css" media="all"/>
 	<link rel = "icon" type = "image/png" href = "images/web/iconGun.png" />
-	<script src="javascript/processing.js"></script>
-	<script type="text/javascript" src="javascript/processingFunction.js"></script>
 	<script type="text/javascript" src="javascript/SaveImages.js"></script>
 	<script type="text/javascript" src="javascript/Sprites.js"></script>
 	<script type="text/javascript" src="javascript/Tile.js"></script>
@@ -32,7 +30,7 @@
 		var spritePlayer1;
 		var persona1, persona2;
 		var	contador = 0;
-		
+		gameInit();
 
 		function dime(pers, col){
 			contador++;
@@ -72,11 +70,7 @@
 				["bulletDown",  "images/game/playerShootDown.png"],
 				["bulletMain",  "images/game/playerShootMain.png"],
 				["ground",  "images/game/suelo1.png"],
-				["ground2",  "images/game/suelo2.png"],
-				["ground3",  "images/game/suelo3.png"],
-				["ground4",  "images/game/suelo4.png"],
-				["ground5",  "images/game/suelo5.png"],
-				["ground6",  "images/game/suelo6.png"]
+				["ground2",  "images/game/suelo2.png"]
 				]);
 
 			Images.completed = function() 
@@ -167,9 +161,11 @@
 
 					}
 				}
+							var spritePlayer1 = new Sprite(Images.get("green1"));
 
 				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player1", spritePlayer1);
+							var spritePlayer2 = new Sprite(Images.get("green4"));
 
 				//var spritePlayer2 = new Sprite(Images.get("red1"));
 				spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});

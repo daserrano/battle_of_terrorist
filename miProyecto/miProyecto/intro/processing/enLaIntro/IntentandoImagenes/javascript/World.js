@@ -3,13 +3,15 @@ function World(idCanvas)
 	this.canvas  = document.getElementById(idCanvas);
 	this.context = this.canvas.getContext('2d');
 
-	this.cellWidth  = 51;
-	this.cellHeight = 51;
+	this.cellWidth  = 50;
+	this.cellHeight = 50;
 
 	this.allTiles = 
 	[
-	new Tile(this.cellWidth, this.cellHeight, true),
-	new Tile(this.cellWidth, this.cellHeight, false)
+	//new Tile(this.cellWidth, this.cellHeight, true),
+	//new Tile(this.cellWidth, this.cellHeight, false)
+	new Tile(this.cellWidth, this.cellHeight, true, "white"),
+	new Tile(this.cellWidth, this.cellHeight, false, "black")
 	];
 
 	this.map = 
@@ -28,6 +30,7 @@ function World(idCanvas)
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 	];
+
 
 	this.canvas.width  = this.cellWidth*this.map[0].length;
 	this.canvas.height = this.cellHeight*this.map.length;
@@ -219,28 +222,9 @@ World.prototype.drawMap = function()
 		this.context.fillRect(50,15, player1*30, 25);
 		this.context.fillRect(this.canvas.width-50,15, -player2*30, 25);
 
-		
-
-		if(player1*10 <= 20)
-		{
-			this.context.fillStyle = "black";
-			this.context.fillText(player1*10 + ".0", 60,35);
-		}
-		if(player2*10 <= 20)
-		{
-			this.context.fillStyle = "black";
-			this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
-		}
-		if(player1*10 > 20)
-		{
-			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(player1*10 + ".0", 60,35);
-		}
-		if(player2*10 > 20)	
-		{
-			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
-		}
+		this.context.fillStyle = "white"; // Mostrar el numero de vida.
+		this.context.fillText(player1*10 + ".0", 60,35);
+		this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
 
 		this.context.fillStyle = "black";
 	};

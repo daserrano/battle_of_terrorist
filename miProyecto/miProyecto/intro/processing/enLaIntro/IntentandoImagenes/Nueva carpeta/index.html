@@ -1,0 +1,70 @@
+<html>
+	<head>
+		<title>Ejemplo Tile 02</title>
+		<script type="text/javascript" src="js/AlmacenImagenes.js"></script>
+		<script type="text/javascript" src="js/Sprites.js"></script>
+		<script type="text/javascript" src="js/Tile.js"></script>
+		<script type="text/javascript" src="js/Personaje.js"></script>
+		<script type="text/javascript" src="js/Jugador.js"></script>
+		<script type="text/javascript" src="js/Mundo.js"></script>
+		<script>
+			var mundo;
+			var Sprites;
+			var Imagenes;
+			
+			window.onload=function(){
+				Imagenes=new AlmacenImagenes();
+				Sprites=new AlmacenSprites();
+				
+				Imagenes.cargar(
+					[
+						["calvo","img/personaje10_rojo.png"],
+						["mario","img/pepino.png"],
+						["mapa","img/prueba2.png"]
+					]);
+				Imagenes.completado=function(){
+					var spriteJugadorTrans=new Sprite(Imagenes.get("calvo"));
+					spriteJugadorTrans.createDireccion(4,4,0,5,0,0,{"arriba":3,"abajo":0,"derecha":2,"izquierda":1});
+					Sprites.add("jugador",spriteJugadorTrans);
+					mundo=new Mundo("micanvas","parar");
+					
+					document.getElementById("transparente").onclick=function(){
+						mundo.detener();
+						
+						var spriteJugadorTrans=new Sprite(Imagenes.get("calvo"));
+						spriteJugadorTrans.createDireccion(4,4,0,5,0,0,{"arriba":3,"abajo":0,"derecha":2,"izquierda":1});
+						Sprites.add("jugador",spriteJugadorTrans);
+						
+						mundo=new Mundo("micanvas","parar");
+					};
+					
+				};
+
+
+				var spriteMapa = new Sprite(Imagenes.get("mapa"));
+
+				mapa.createDireccion(2,8,0,0,0,0,){
+					"baldosa1":0,"baldosa2":1,"baldosa3":2,"baldosa4":3
+				});
+
+
+
+
+							
+			};
+			function log(texto,nueva){
+				var capa=document.getElementById("log");
+				if (nueva)
+					capa.innerHTML+="<br/>"+texto;
+				else
+					capa.innerHTML=texto;
+			}
+		</script>
+	</head>
+
+	<body>
+		<canvas id="micanvas"></canvas>
+		<div id ="log"></div>
+		<button id="transparente">Sprite transparente</button><button id="puntoapunto">Sprite Punto a punto</button><button id="coloreado">Sprite coloreado</button><button id="parar">Parar</button>
+	</body>
+</html>
