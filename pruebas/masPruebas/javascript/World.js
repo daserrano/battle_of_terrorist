@@ -3,8 +3,8 @@ function World(idCanvas)
 	this.canvas  = document.getElementById(idCanvas);
 	this.context = this.canvas.getContext('2d');
 
-	this.cellWidth  = 51;
-	this.cellHeight = 51;
+	this.cellWidth  = 50;
+	this.cellHeight = 50;
 
 	this.allTiles = 
 	[
