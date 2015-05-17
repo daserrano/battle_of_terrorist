@@ -1,15 +1,12 @@
-function Tile(width, height, walk)
+function Tile(width, height, walk, image)
 {
 	this.width  = width;
 	this.height = height;
 	this.walk   = walk;
+	this.image = image;
 }
 
 Tile.prototype.draw = function(context, x, y)
 {
-	if(this.walk == true)
-		context.drawImage(Images.get("ground"), this.width*x, this.height*y, this.width, this.height);
-	if(this.walk == false)
-		context.drawImage(Images.get("ground2"), this.width*x+1, this.height*y+1, this.width-1, this.height-1);
-
+		context.drawImage(this.image, this.width*x, this.height*y, this.width, this.height);
 };

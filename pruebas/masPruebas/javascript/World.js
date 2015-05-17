@@ -8,8 +8,8 @@ function World(idCanvas)
 
 	this.allTiles = 
 	[
-	new Tile(this.cellWidth, this.cellHeight, true),
-	new Tile(this.cellWidth, this.cellHeight, false)
+	new Tile(this.cellWidth, this.cellHeight, true, Images.get("ground6")),
+	new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3"))
 	];
 
 	this.map = 
