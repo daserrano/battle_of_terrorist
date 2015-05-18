@@ -1,56 +1,60 @@
-function World(idCanvas)
-{
-	this.canvas  = document.getElementById(idCanvas);
-	this.context = this.canvas.getContext('2d');
+	function World(idCanvas)
+	{
 
-	this.cellWidth  = 50;
-	this.cellHeight = 50;
+		this.canvas  = document.getElementById(idCanvas);
+		this.context = this.canvas.getContext('2d');
 
-	this.allTiles = 
-	[
-	new Tile(this.cellWidth, this.cellHeight, true, Images.get("ground6")),
-	new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3"))
-	];
+		this.cellWidth  = 50;
+		this.cellHeight = 50;
 
-	this.map = 
-	[
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
-	[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-	[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-	[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-	];
+		this.allTiles = 
+		[
+		new Tile(this.cellWidth, this.cellHeight, true, Images.get("ground6")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3"))
+		];
 
-	this.canvas.width  = this.cellWidth*this.map[0].length;
-	this.canvas.height = this.cellHeight*this.map.length;
+		this.map = 
+		[
+		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+		[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+		[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
+		[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+		[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+		[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+		[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+		[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+		[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+		[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+		[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		];
 
-	this.player;
-	this.player2;
-	this.initPlayer();
+		this.canvas.width  = this.cellWidth*this.map[0].length;
+		this.canvas.height = this.cellHeight*this.map.length;
 
-	this.shoots;
-	this.bullets = [];
+		this.player;
+		this.player2;
+		this.initPlayer();
 
-	var self = this;
-	this.timePassed = new Date().getTime();
-	this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
-}
+		this.contadorPlayer1 = 0;
+		this.contadorPlayer2 = 0;
 
-World.prototype.initPlayer = function()
-{
-	var x = Math.floor((Math.random()*2)+1);
+		this.shoots;
+		this.bullets = [];
+
+		var self = this;
+		this.timePassed = new Date().getTime();
+		this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
+	}
+
+	World.prototype.initPlayer = function()
+	{
+		var x = Math.floor((Math.random()*2)+1);
 	var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
-	/*var z = Math.floor((Math.random()*2)+22);
-	var t = Math.floor((Math.random()*3)+9);*/
+	var z = Math.floor((Math.random()*2)+22);
+	var t = Math.floor((Math.random()*3)+9);
 
 	this.player  = new Player(this, 40, 40, x+0.5, y+0.5, "player1");
 	this.player2 = new Player(this, 40, 40, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
@@ -252,12 +256,42 @@ World.prototype.drawMap = function()
 				this.bullets[i].draw(this.context);
 		};
 
+		World.prototype.drawResults = function(player1, player2)
+		{
+			var that = this;
+			this.context.font = "100px transformer";	
+
+			this.context.drawImage(Images.get("team1"), this.canvas.width/2-250,this.canvas.height/2-150, 150, 150);
+			this.context.drawImage(Images.get("team2"), this.canvas.width/2+100,this.canvas.height/2-150, 150, 150);
+			
+			this.context.fillStyle = "black";
+			this.context.fillText(player1, this.canvas.width/2-193, this.canvas.height/2+125);
+			this.context.fillStyle = "orange";
+			this.context.fillText(player1, this.canvas.width/2-200, this.canvas.height/2+125);
+
+			this.context.fillStyle = "black";
+			this.context.fillText(player2, this.canvas.width/2+150, this.canvas.height/2+125);
+			this.context.fillStyle = "orange";
+			this.context.fillText(player2, this.canvas.width/2+143, this.canvas.height/2+125);
+
+			setTimeout(this.nextRound, 3000);
+
+			this.nextRound = function()
+			{
+				that.initPlayer();
+			}
+		}
+
 		World.prototype.gameOver = function()
 		{
 			if(this.player.life <= 0 || this.player2.life <=0)
 			{
-				this.player.life  = 0;
-				this.player2.life = 0;
+				if(this.player.life <= 0)
+					this.contadorPlayer2++;
+				if(this.player2.life <= 0)
+					this.contadorPlayer1++;
+
+				this.drawResults(this.contadorPlayer1, this.contadorPlayer2);
 				return true;
 			}
 
@@ -272,32 +306,11 @@ World.prototype.drawMap = function()
 			if(!this.gameOver())
 			{
 				this.moveCharacters(delta);
-			//if(this.shoots)
-			this.moveShoots(delta);
-			this.drawMap();
-			this.drawScore(this.player.life, this.player2.life);
-			this.drawCharacters();
-			this.drawBullet();
-		}
-		else
-		{
-			this.context.font = "100px transformer";	
-
-			this.context.drawImage(Images.get("team1"), this.canvas.width/2-250,this.canvas.height/2-150, 150, 150);
-			this.context.drawImage(Images.get("team2"), this.canvas.width/2+100,this.canvas.height/2-150, 150, 150);
-			
-			this.context.fillStyle = "black";
-			this.context.fillText(this.player.life, this.canvas.width/2-193, this.canvas.height/2+125);
-			this.context.fillStyle = "orange";
-			this.context.fillText(this.player.life, this.canvas.width/2-200, this.canvas.height/2+125);
-
-			this.context.fillStyle = "black";
-			this.context.fillText(this.player.life, this.canvas.width/2+150, this.canvas.height/2+125);
-			this.context.fillStyle = "orange";
-			this.context.fillText(this.player.life, this.canvas.width/2+143, this.canvas.height/2+125);
-
-
-			 //var time = setTimeout(this.initPlayer, 3000);
-				//this.initPlayer();
+				//if(this.shoots)
+				this.moveShoots(delta);
+				this.drawMap();
+				this.drawScore(this.player.life, this.player2.life);
+				this.drawCharacters();
+				this.drawBullet();
 			}
 		};
