@@ -47,6 +47,7 @@ Bullet.prototype.detectPlayer = function()
 		//alert("Player1: " + world.player.life + "\nPlayer2: " + world.player2.life);
 		return true;
 	}
+	
 	return false;
 
 };

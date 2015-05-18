@@ -205,7 +205,7 @@ World.prototype.drawMap = function()
 		this.player2.draw(this.context);
 	};
 
-	World.prototype.drawScore = function(player1, player2)
+	World.prototype.drawScore = function()
 	{
 		var vida = 10;
 		
@@ -216,30 +216,28 @@ World.prototype.drawMap = function()
 		this.context.fillRect(this.canvas.width-50,15, -vida*30, 25);
 
 		this.context.fillStyle = "red";
-		this.context.fillRect(50,15, player1*30, 25);
-		this.context.fillRect(this.canvas.width-50,15, -player2*30, 25);
+		this.context.fillRect(50,15, this.player.life*30, 25);
+		this.context.fillRect(this.canvas.width-50,15, -this.player2.life*30, 25);
 
-		
-
-		if(player1*10 <= 20)
+		if(this.player.life*10 <= 20)
 		{
 			this.context.fillStyle = "black";
-			this.context.fillText(player1*10 + ".0", 60,35);
+			this.context.fillText(this.player.life*10 + ".0", 60,35);
 		}
-		if(player2*10 <= 20)
+		if(this.player2.life*10 <= 20)
 		{
 			this.context.fillStyle = "black";
-			this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
+			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-110,35);
 		}
-		if(player1*10 > 20)
+		if(this.player.life*10 > 20)
 		{
 			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(player1*10 + ".0", 60,35);
+			this.context.fillText(this.player.life*10 + ".0", 60,35);
 		}
-		if(player2*10 > 20)	
+		if(this.player2.life*10 > 20)	
 		{
 			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(player2*10 + ".0", this.canvas.width-110,35);
+			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-110,35);
 		}
 
 		this.context.fillStyle = "black";
@@ -254,16 +252,52 @@ World.prototype.drawMap = function()
 				this.bullets[i].draw(this.context);
 		};
 
+		World.prototype.gameOver = function()
+		{
+			if(this.player.life <= 0 || this.player2.life <=0)
+			{
+				this.player.life  = 0;
+				this.player2.life = 0;
+				return true;
+			}
+
+			return;
+		}
+
 		World.prototype.loop = function()
 		{
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
 
-			this.moveCharacters(delta);
+			if(!this.gameOver())
+			{
+				this.moveCharacters(delta);
 			//if(this.shoots)
 			this.moveShoots(delta);
 			this.drawMap();
 			this.drawScore(this.player.life, this.player2.life);
 			this.drawCharacters();
 			this.drawBullet();
+		}
+		else
+		{
+			this.context.font = "100px transformer";	
+
+			this.context.drawImage(Images.get("team1"), this.canvas.width/2-250,this.canvas.height/2-150, 150, 150);
+			this.context.drawImage(Images.get("team2"), this.canvas.width/2+100,this.canvas.height/2-150, 150, 150);
+			
+			this.context.fillStyle = "black";
+			this.context.fillText(this.player.life, this.canvas.width/2-193, this.canvas.height/2+125);
+			this.context.fillStyle = "orange";
+			this.context.fillText(this.player.life, this.canvas.width/2-200, this.canvas.height/2+125);
+
+			this.context.fillStyle = "black";
+			this.context.fillText(this.player.life, this.canvas.width/2+150, this.canvas.height/2+125);
+			this.context.fillStyle = "orange";
+			this.context.fillText(this.player.life, this.canvas.width/2+143, this.canvas.height/2+125);
+
+
+			 var time = setTimeout(this.initPlayer, 3000);
+				//this.initPlayer();
+			}
 		};
