@@ -297,7 +297,7 @@ World.prototype.drawMap = function()
 			this.context.fillText(this.player.life, this.canvas.width/2+143, this.canvas.height/2+125);
 
 
-			 var time = setTimeout(this.initPlayer, 3000);
+			 //var time = setTimeout(this.initPlayer, 3000);
 				//this.initPlayer();
 			}
 		};
