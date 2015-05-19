@@ -214,7 +214,7 @@ World.prototype.drawMap = function()
 	{
 		var vida = 10;
 		
-		this.context.font = "bold 20px arial"; //Estilo de letra y tamaño.
+		this.context.font = "bold 22px transformer"; //Estilo de letra y tamaño.
 
 		this.context.fillStyle = "yellow"; //Para mostrar la vida.
 		this.context.fillRect(50,15, vida*30, 25);
@@ -227,7 +227,7 @@ World.prototype.drawMap = function()
 		if(this.player.life*10 <= 20)
 		{
 			this.context.fillStyle = "black";
-			this.context.fillText(this.player.life*10 + ".0", 60,35);
+			this.context.fillText(this.player.life*10 + ".0", 55,36);
 		}
 		if(this.player2.life*10 <= 20)
 		{
@@ -236,13 +236,17 @@ World.prototype.drawMap = function()
 		}
 		if(this.player.life*10 > 20)
 		{
-			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(this.player.life*10 + ".0", 60,35);
+			this.context.fillStyle = "black"; // Mostrar el numero de vida.
+			this.context.fillText(this.player.life*10 + ".0", 60,33);
+			this.context.fillStyle = "white"; 
+			this.context.fillText(this.player.life*10 + ".0", 55,36);
 		}
 		if(this.player2.life*10 > 20)	
 		{
+			this.context.fillStyle = "black"; // Mostrar el numero de vida.
+			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-110,33);
 			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-110,35);
+			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-115,36);
 		}
 
 		this.context.fillStyle = "black";
@@ -294,7 +298,6 @@ World.prototype.drawMap = function()
 			var that = this;
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
-			//alert(this.player.life + " " + this.player2.life);
 			this.drawMap();
 			this.drawScore(this.player.life, this.player2.life);
 			this.drawCharacters();
@@ -308,22 +311,8 @@ World.prototype.drawMap = function()
 				}
 
 				clearInterval(this.interval);
-				//this.interval   = setInterval(function(){that.initPlayer()},3000);
 				this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
-				//this.initPlayer();
 				setTimeout(this.nextRound, 3000);
-
-				//this.nextRound;
-				/*function sleep(milliseconds) {
-					var start = new Date().getTime();
-					for (var i = 0; i < 1e7; i++) {
-						if ((new Date().getTime() - start) > milliseconds){
-							that.initPlayer();
-						}
-					}
-				}
-				sleep(1000);
-				*/
 			}
 			else
 			{
