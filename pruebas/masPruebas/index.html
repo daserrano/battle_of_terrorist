@@ -34,7 +34,7 @@
 		var	contador = 0;
 		
 
-		function dime(pers, col){
+	/*	function dime(pers, col){
 			contador++;
 			if(pers < 5)
 				persona1 = pers;
@@ -46,7 +46,7 @@
 				color2 = col;
 				gameInit();
 			}
-		}
+		}*/
 
 		function gameInit()
 		{
@@ -86,7 +86,7 @@
 
 
 
-				switch(persona1){
+			/*	switch(persona1){
 
 					case 1:{
 						if (color1 == "rojo")
@@ -168,7 +168,9 @@
 						break;
 
 					}
-				}
+				}*/
+					var spritePlayer2 = new Sprite(Images.get("green4"));
+					var spritePlayer1 = new Sprite(Images.get("blue4"));
 
 				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player1", spritePlayer1);

@@ -1,3 +1,7 @@
+
+		World.contadorPlayer1 = 0;
+		World.contadorPlayer2 = 0;
+
 	function World(idCanvas)
 	{
 
@@ -37,28 +41,25 @@
 		this.player2;
 		this.initPlayer();
 
-		this.contadorPlayer1 = 0;
-		this.contadorPlayer2 = 0;
-
 		this.shoots;
 		this.bullets = [];
 
 		var self = this;
 		this.timePassed = new Date().getTime();
-		this.interval   = setInterval(function(){self.loop()},20); //Loop y cada cuanto tiempo debe actualizar.
+		this.interval   = setInterval(function(){self.loop()},10); //Loop y cada cuanto tiempo debe actualizar.
 	}
 
 	World.prototype.initPlayer = function()
 	{
 		var x = Math.floor((Math.random()*2)+1);
-	var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
+		var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
-	var z = Math.floor((Math.random()*2)+22);
-	var t = Math.floor((Math.random()*3)+9);
+		var z = Math.floor((Math.random()*2)+22);
+		var t = Math.floor((Math.random()*3)+9);
 
-	this.player  = new Player(this, 40, 40, x+0.5, y+0.5, "player1");
-	this.player2 = new Player(this, 40, 40, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
-	var self    = this;
+		this.player  = new Player(this, 40, 40, x+0.5, y+0.5, "player1");
+		this.player2 = new Player(this, 40, 40, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
+		var self    = this;
 
 	document.body.onkeydown = function(e)
 	{
@@ -258,9 +259,8 @@ World.prototype.drawMap = function()
 
 		World.prototype.drawResults = function(player1, player2)
 		{
-			var that = this;
 			this.context.font = "100px transformer";	
-
+			
 			this.context.drawImage(Images.get("team1"), this.canvas.width/2-250,this.canvas.height/2-150, 150, 150);
 			this.context.drawImage(Images.get("team2"), this.canvas.width/2+100,this.canvas.height/2-150, 150, 150);
 			
@@ -272,45 +272,62 @@ World.prototype.drawMap = function()
 			this.context.fillStyle = "black";
 			this.context.fillText(player2, this.canvas.width/2+150, this.canvas.height/2+125);
 			this.context.fillStyle = "orange";
-			this.context.fillText(player2, this.canvas.width/2+143, this.canvas.height/2+125);
-
-			setTimeout(this.nextRound, 3000);
-
-			this.nextRound = function()
-			{
-				that.initPlayer();
-			}
+			this.context.fillText(player2, this.canvas.width/2+143, this.canvas.height/2+125);			
 		}
 
 		World.prototype.gameOver = function()
 		{
-			if(this.player.life <= 0 || this.player2.life <=0)
+			if(this.player.life <= 0 || this.player2.life <= 0)
 			{
 				if(this.player.life <= 0)
-					this.contadorPlayer2++;
+					World.contadorPlayer2++;
 				if(this.player2.life <= 0)
-					this.contadorPlayer1++;
+					World.contadorPlayer1++;
 
-				this.drawResults(this.contadorPlayer1, this.contadorPlayer2);
 				return true;
 			}
-
 			return;
 		}
 
 		World.prototype.loop = function()
 		{
+			var that = this;
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
+			//alert(this.player.life + " " + this.player2.life);
+			this.drawMap();
+			this.drawScore(this.player.life, this.player2.life);
+			this.drawCharacters();
+			this.drawBullet();
 
-			if(!this.gameOver())
+			if(this.gameOver())
+			{
+				this.nextRound = function()
+				{
+					new World("canvas1");
+				}
+
+				clearInterval(this.interval);
+				//this.interval   = setInterval(function(){that.initPlayer()},3000);
+				this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
+				//this.initPlayer();
+				setTimeout(this.nextRound, 3000);
+
+				//this.nextRound;
+				/*function sleep(milliseconds) {
+					var start = new Date().getTime();
+					for (var i = 0; i < 1e7; i++) {
+						if ((new Date().getTime() - start) > milliseconds){
+							that.initPlayer();
+						}
+					}
+				}
+				sleep(1000);
+				*/
+			}
+			else
 			{
 				this.moveCharacters(delta);
-				//if(this.shoots)
 				this.moveShoots(delta);
-				this.drawMap();
-				this.drawScore(this.player.life, this.player2.life);
-				this.drawCharacters();
-				this.drawBullet();
 			}
 		};
