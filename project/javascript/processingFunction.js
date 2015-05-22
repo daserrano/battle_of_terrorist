@@ -490,9 +490,8 @@ var sketch
 var p
 function cargarCanvas(){
   canvas = document.getElementById("canvas1");
- /* p = new Processing(canvas, sketchProc);
+  p = new Processing(canvas, sketchProc);
   sketch = p.externals.sketch; 
-  sketch.options.crispLines = true;*/
-  gameInit();
+  sketch.options.crispLines = true;
 }
 
