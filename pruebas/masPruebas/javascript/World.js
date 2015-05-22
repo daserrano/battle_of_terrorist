@@ -1,53 +1,53 @@
 
-		World.contadorPlayer1 = 0;
-		World.contadorPlayer2 = 0;
+World.contadorPlayer1 = 0;
+World.contadorPlayer2 = 0;
 
-	function World(idCanvas)
-	{
+function World(idCanvas)
+{
 
-		this.canvas  = document.getElementById(idCanvas);
-		this.context = this.canvas.getContext('2d');
+	this.canvas  = document.getElementById(idCanvas);
+	this.context = this.canvas.getContext('2d');
 
-		this.cellWidth  = 50;
-		this.cellHeight = 50;
+	this.cellWidth  = 50;
+	this.cellHeight = 50;
 
-		this.allTiles = 
-		[
-		new Tile(this.cellWidth, this.cellHeight, true, Images.get("ground6")),
-		new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3")),
-		new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel1")),
-		new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel2"))
-		];
+	this.allTiles = 
+	[
+	new Tile(this.cellWidth, this.cellHeight, true, Images.get("ground6")),
+	new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3")),
+	new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel1")),
+	new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel2"))
+	];
 
-		this.map = 
-		[
-		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-		[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
-		[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-		[1, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-		[1, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-		[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-		[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-		];
+	this.map = 
+	[
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
+	[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+	[1, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+	[1, 2, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+	[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+	[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+	];
 
-		this.canvas.width  = this.cellWidth*this.map[0].length;
-		this.canvas.height = this.cellHeight*this.map.length;
+	this.canvas.width  = this.cellWidth*this.map[0].length;
+	this.canvas.height = this.cellHeight*this.map.length;
 
-		this.player;
-		this.player2;
-		this.initPlayer();
+	this.player;
+	this.player2;
+	this.initPlayer();
 
-		this.shoots;
-		this.bullets = [];
+	this.shoots;
+	this.bullets = [];
 
-		var self = this;
-		this.timePassed = new Date().getTime();
+	var self = this;
+	this.timePassed = new Date().getTime();
 		this.interval   = setInterval(function(){self.loop()},10); //Loop y cada cuanto tiempo debe actualizar.
 	}
 
@@ -63,10 +63,10 @@
 		this.player2 = new Player(this, 40, 40, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
 		var self    = this;
 
-	document.body.onkeydown = function(e)
-	{
-		switch(e.keyCode)
+		document.body.onkeydown = function(e)
 		{
+			switch(e.keyCode)
+			{
 			case 38: // Up
 			e.preventDefault();
 			self.player2.up = true;
@@ -283,15 +283,19 @@ World.prototype.drawMap = function()
 
 		World.prototype.gameOver = function()
 		{
-			if(this.player.life <= 0 || this.player2.life <= 0)
+			if(this.player.life <= 0)
 			{
-				if(this.player.life <= 0)
-					World.contadorPlayer2++;
-				if(this.player2.life <= 0)
-					World.contadorPlayer1++;
-
+				this.player.life = 0;
+				World.contadorPlayer2++;
 				return true;
 			}
+			if(this.player2.life <= 0)
+			{
+				this.player2.life = 0;
+				World.contadorPlayer1++;
+				return true;
+			}
+
 			return;
 		}
 
@@ -301,9 +305,6 @@ World.prototype.drawMap = function()
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
 			this.drawMap();
-			this.drawScore(this.player.life, this.player2.life);
-			this.drawCharacters();
-			this.drawBullet();
 
 			if(this.gameOver())
 			{
@@ -321,4 +322,7 @@ World.prototype.drawMap = function()
 				this.moveCharacters(delta);
 				this.moveShoots(delta);
 			}
+			this.drawScore(this.player.life, this.player2.life);
+			this.drawCharacters();
+			this.drawBullet();
 		};
