@@ -14,24 +14,100 @@
 		this.allTiles = 
 		[
 		new Tile(this.cellWidth, this.cellHeight, true, Images.get("ground6")),
-		new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3"))
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline3")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline4")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline5")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline6")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline7")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline8")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline9")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline10")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline11")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline12")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline13")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline14")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline15")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline16")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline17")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline18")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline19")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline20")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline21")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline22")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline23")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline24")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline25")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline26")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline27")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline28")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline29")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline30")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline31")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline32")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline33")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline34")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("pipeline35")),
+		//39
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square3")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square4")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square5")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square6")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square7")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square8")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square9")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square10")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square11")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("square12")),
+//51
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("box1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("box2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("stairs1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("stairs2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("stairs3")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("weapon1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("weapon2")),
+		//58
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("table1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("table2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("table3")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("table4")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("table5")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("bed1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("bed2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("bed3")),
+		//66
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("maquina1")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("maquina2")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("maquina3")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("maquina4")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("maquina5")),
+		new Tile(this.cellWidth, this.cellHeight, false, Images.get("maquina6"))
+
+
 		];
 
 		this.map = 
 		[
-		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-		[1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1],
-		[1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-		[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-		[1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-		[1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-		[1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
-		[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
-		[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		[4, 9, 9, 9, 9, 9, 9, 9, 9, 13, 11, 14, 9, 9, 13, 9, 9, 9, 9, 14, 13, 13, 9, 9, 17],
+		[5, 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18],
+		[7, 0, 0, 54, 0, 0, 0, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 71, 69, 69, 0, 19],
+		[7, 0, 0, 53, 0, 0, 0, 0, 0, 39, 40, 41, 0, 40, 41, 42, 0, 0, 0, 0, 70, 0, 0, 0, 20],
+		[7, 3, 0, 0, 0, 0, 0, 0, 0, 43, 0, 0, 0, 0, 0, 44, 0, 0, 0, 0, 0, 0, 1, 0, 20],
+		[7, 2, 0, 0, 0, 0, 1, 0, 0, 45, 0, 0, 0, 0, 0, 46, 0, 0, 1, 0, 0, 0, 0, 0, 20],
+		[6, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 20],
+		[6, 0, 0, 0, 0, 0, 1, 0, 0, 43, 0, 0, 0, 0, 0, 44, 0, 0, 1, 0, 0, 0, 0, 0, 19],
+		[7, 0, 1, 0, 62, 0, 0, 0, 0, 45, 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 0, 0, 0, 19],
+		[7, 0, 0, 0, 61, 0, 0, 0, 0, 47, 48, 49, 0, 48, 49, 50, 0, 0, 0, 0, 0, 65, 0, 0, 20],
+		[26, 0, 58, 59, 60, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 64, 0, 0, 20],
+		[27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 20],
+		[8, 12, 23, 22, 22, 22, 22, 22, 22, 22, 22, 22, 37, 16, 22, 22, 22, 12, 22, 22, 22, 22, 22, 12, 21]
 		];
 
 		this.canvas.width  = this.cellWidth*this.map[0].length;
@@ -46,7 +122,7 @@
 
 		var self = this;
 		this.timePassed = new Date().getTime();
-		this.interval   = setInterval(function(){self.loop()},10); //Loop y cada cuanto tiempo debe actualizar.
+		this.interval   = setInterval(function(){self.loop()},40); //Loop y cada cuanto tiempo debe actualizar.
 	}
 
 	World.prototype.initPlayer = function()
@@ -214,7 +290,7 @@ World.prototype.drawMap = function()
 	{
 		var vida = 10;
 		
-		this.context.font = "bold 20px arial"; //Estilo de letra y tamaño.
+		this.context.font = "bold 22px transformer"; //Estilo de letra y tamaño.
 
 		this.context.fillStyle = "yellow"; //Para mostrar la vida.
 		this.context.fillRect(50,15, vida*30, 25);
@@ -227,7 +303,7 @@ World.prototype.drawMap = function()
 		if(this.player.life*10 <= 20)
 		{
 			this.context.fillStyle = "black";
-			this.context.fillText(this.player.life*10 + ".0", 60,35);
+			this.context.fillText(this.player.life*10 + ".0", 55,36);
 		}
 		if(this.player2.life*10 <= 20)
 		{
@@ -236,13 +312,17 @@ World.prototype.drawMap = function()
 		}
 		if(this.player.life*10 > 20)
 		{
-			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(this.player.life*10 + ".0", 60,35);
+			this.context.fillStyle = "black"; // Mostrar el numero de vida.
+			this.context.fillText(this.player.life*10 + ".0", 60,33);
+			this.context.fillStyle = "white"; 
+			this.context.fillText(this.player.life*10 + ".0", 55,36);
 		}
 		if(this.player2.life*10 > 20)	
 		{
+			this.context.fillStyle = "black"; // Mostrar el numero de vida.
+			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-110,33);
 			this.context.fillStyle = "white"; // Mostrar el numero de vida.
-			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-110,35);
+			this.context.fillText(this.player2.life*10 + ".0", this.canvas.width-115,36);
 		}
 
 		this.context.fillStyle = "black";
@@ -294,7 +374,6 @@ World.prototype.drawMap = function()
 			var that = this;
 			var delta = (new Date().getTime()) - this.timePassed;
 			this.timePassed = new Date().getTime();
-			//alert(this.player.life + " " + this.player2.life);
 			this.drawMap();
 			this.drawScore(this.player.life, this.player2.life);
 			this.drawCharacters();
@@ -308,22 +387,8 @@ World.prototype.drawMap = function()
 				}
 
 				clearInterval(this.interval);
-				//this.interval   = setInterval(function(){that.initPlayer()},3000);
 				this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
-				//this.initPlayer();
 				setTimeout(this.nextRound, 3000);
-
-				//this.nextRound;
-				/*function sleep(milliseconds) {
-					var start = new Date().getTime();
-					for (var i = 0; i < 1e7; i++) {
-						if ((new Date().getTime() - start) > milliseconds){
-							that.initPlayer();
-						}
-					}
-				}
-				sleep(1000);
-				*/
 			}
 			else
 			{
