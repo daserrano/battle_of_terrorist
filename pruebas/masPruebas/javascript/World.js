@@ -216,9 +216,27 @@ World.prototype.drawMap = function()
 	{
 		var vida = 10;
 		
+		this.context.font = "bold 40px transformer"; //Estilo de letra y tamaño.
+
+		this.context.drawImage(Images.get("team1"), 400, 0, 50, 50);
+		this.context.drawImage(Images.get("team2"), 550, 5, 45, 45);
+
+		//Puntuacion de ambos jugadores.
+		this.context.fillStyle = "black";
+		this.context.fillText(World.contadorPlayer1, 469, 40);
+		this.context.fillStyle = "white";
+		this.context.fillText(World.contadorPlayer1, 465, 40);
+
+		this.context.fillStyle = "black";
+		this.context.fillText(World.contadorPlayer2, 519, 40);
+		this.context.fillStyle = "white";
+		this.context.fillText("-", 495, 35);
+		this.context.fillText(World.contadorPlayer2, 515, 40);
+
 		this.context.font = "bold 22px transformer"; //Estilo de letra y tamaño.
 
-		this.context.fillStyle = "yellow"; //Para mostrar la vida.
+		//Vida de los jugadores.
+		this.context.fillStyle = "yellow"; 
 		this.context.fillRect(50,15, vida*30, 25);
 		this.context.fillRect(this.canvas.width-50,15, -vida*30, 25);
 
@@ -283,6 +301,7 @@ World.prototype.drawMap = function()
 
 		World.prototype.gameOver = function()
 		{
+
 			if(this.player.life <= 0)
 			{
 				this.player.life = 0;
