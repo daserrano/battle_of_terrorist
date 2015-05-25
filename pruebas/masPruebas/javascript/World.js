@@ -342,13 +342,13 @@ World.prototype.drawMap = function()
 
         this.context.fillStyle = "black";
         this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
-        if(mn == 1 && sg >= 55)
+        if(mn == 1 && sg >= 25)
         	this.context.fillStyle = "red";
-        else if(mn == 1 && sg>= 45)
+        else if(mn == 1 && sg>= 15)
         	this.context.fillStyle = "yellow";
         else
         	this.context.fillStyle = "white";
-        
+
         this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
     }
 
