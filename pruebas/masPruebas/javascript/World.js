@@ -1,4 +1,3 @@
-
 World.contadorPlayer1 = 0;
 World.contadorPlayer2 = 0;
 
@@ -13,7 +12,7 @@ function World(idCanvas)
 
 	this.allTiles = 
 	[
-	new Tile(this.cellWidth, this.cellHeight, true, Images.get("ground6")),
+	new Tile(this.cellWidth, this.cellHeight, true,  Images.get("ground6")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("ground3")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel1")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("barrel2"))
@@ -48,7 +47,8 @@ function World(idCanvas)
 
 	var self = this;
 	this.timePassed = new Date().getTime();
-		this.interval   = setInterval(function(){self.loop()},10); //Loop y cada cuanto tiempo debe actualizar.
+	emp=new Date();
+		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
 	}
 
 	World.prototype.initPlayer = function()
@@ -318,30 +318,69 @@ World.prototype.drawMap = function()
 			return;
 		}
 
-		World.prototype.loop = function()
+		World.prototype.drawTime = function()
 		{
-			var that = this;
-			var delta = (new Date().getTime()) - this.timePassed;
-			this.timePassed = new Date().getTime();
-			this.drawMap();
 
-			if(this.gameOver())
-			{
-				this.nextRound = function()
-				{
-					new World("canvas1");
-				}
 
-				clearInterval(this.interval);
-				this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
-				setTimeout(this.nextRound, 3000);
-			}
-			else
-			{
-				this.moveCharacters(delta);
-				this.moveShoots(delta);
-			}
-			this.drawScore(this.player.life, this.player2.life);
-			this.drawCharacters();
-			this.drawBullet();
-		};
+     actual=new Date(); //fecha a cada instante	
+        //tiempo del crono (cro) = fecha instante (actual) - fecha inicial (emp)	
+     cro=actual-emp; //milisegundos transcurridos.	
+     cr=new Date(); //pasamos el num. de milisegundos a objeto fecha.	
+     cr.setTime(cro); 
+        //obtener los distintos formatos de la fecha:	
+     cs=cr.getMilliseconds(); //milisegundos 	
+     cs=cs/10; //paso a centésimas de segundo.	
+     cs=Math.round(cs); //redondear las centésimas	
+     sg=cr.getSeconds(); //segundos 	
+     mn=cr.getMinutes(); //minutos
+        //poner siempre 2 cifras en los números			 
+        if (cs<10) {cs="0"+cs;} 
+        if (sg<10) {sg="0"+sg;} 
+        if (mn<10) {mn="0"+mn;} 
+
+        this.context.font = "40px transformer";	
+        this.context.fillStyle = "black";
+        this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
+        this.context.fillStyle = "white";
+        this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
+    }
+
+    World.prototype.loop = function()
+    {
+
+    	var that = this;
+    	var delta = (new Date().getTime()) - this.timePassed;
+    	this.timePassed = new Date().getTime();
+
+    	var time = function()
+    	{
+    		that.drawTime();
+    	}
+    	this.drawMap();
+
+    	if(this.gameOver())
+    	{
+    		this.nextRound = function()
+    		{
+    			new World("canvas1");
+    		}
+
+    		clearInterval(this.interval);
+    		this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
+    		setTimeout(this.nextRound, 3000);
+    	}
+    	else
+    	{
+    		this.moveCharacters(delta);
+    		this.moveShoots(delta);
+    	}
+    	this.drawScore(this.player.life, this.player2.life);
+    	this.drawCharacters();
+    	this.drawBullet();
+
+    	//emp=new Date(); //fecha inicial (en el momento de pulsar)
+    	//clearInterval(this.interval);
+    	//setTimeout(time, 100);
+      marcha=1; //indicamos que se ha puesto en marcha.
+      this.drawTime();
+  };
