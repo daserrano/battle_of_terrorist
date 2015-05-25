@@ -339,9 +339,16 @@ World.prototype.drawMap = function()
         if (mn<10) {mn="0"+mn;} 
 
         this.context.font = "40px transformer";	
+
         this.context.fillStyle = "black";
         this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
-        this.context.fillStyle = "white";
+        if(mn == 1 && sg >= 55)
+        	this.context.fillStyle = "red";
+        else if(mn == 1 && sg>= 45)
+        	this.context.fillStyle = "yellow";
+        else
+        	this.context.fillStyle = "white";
+        
         this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
     }
 
@@ -378,9 +385,6 @@ World.prototype.drawMap = function()
     	this.drawCharacters();
     	this.drawBullet();
 
-    	//emp=new Date(); //fecha inicial (en el momento de pulsar)
-    	//clearInterval(this.interval);
-    	//setTimeout(time, 100);
-      marcha=1; //indicamos que se ha puesto en marcha.
+      //marcha=1; //indicamos que se ha puesto en marcha.
       this.drawTime();
   };
