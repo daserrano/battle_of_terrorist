@@ -1,5 +1,6 @@
 World.contadorPlayer1 = 0;
 World.contadorPlayer2 = 0;
+World.timeCount = 3;
 
 function World(idCanvas)
 {
@@ -46,6 +47,7 @@ function World(idCanvas)
 	this.bullets = [];
 
 	var self = this;
+	this.init = true;
 	this.timePassed = new Date().getTime();
 	emp=new Date();
 		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
@@ -321,71 +323,111 @@ World.prototype.drawMap = function()
 		World.prototype.drawTime = function()
 		{
 
-     	now = new Date();
+			now = new Date();
         //tiempo del crono (cro) = fecha instante (actual) - fecha inicial (emp)	
         cro=now-emp;
     	 cr=new Date(); //paso el num. de milisegundos a objeto fecha.	
-     	cr.setTime(cro);
-     	cs=cr.getMilliseconds();
+    	 cr.setTime(cro);
+    	 cs=cr.getMilliseconds();
     	cs=cs/10; //paso a centésimas de segundo.	
      	cs=Math.round(cs); //redondear las centésimas	
      	sg=cr.getSeconds();  	
-    	mn=cr.getMinutes(); 
+     	mn=cr.getMinutes(); 
 
      	   //poner siempre 2 cifras en los números			 
-        if (cs<10)
-        	cs="0"+cs;
-        if (sg<10) 
-        	sg="0"+sg;
-        if (mn<10) 
-        	mn="0"+mn; 
+     	   if (cs<10)
+     	   	cs="0"+cs;
+     	   if (sg<10) 
+     	   	sg="0"+sg;
+     	   if (mn<10) 
+     	   	mn="0"+mn; 
 
-        this.context.font = "40px transformer";	
+     	   this.context.font = "40px transformer";	
 
-        this.context.fillStyle = "black";
-        this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
-        
-        if(mn == 1 && sg >= 25)
-        	this.context.fillStyle = "red";
-        else if(mn == 1 && sg>= 15)
-        	this.context.fillStyle = "yellow";
-        else
-        	this.context.fillStyle = "white";
+     	   this.context.fillStyle = "black";
+     	   this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
 
-        this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
-    }
+     	   if(mn == 1 && sg >= 25)
+     	   	this.context.fillStyle = "red";
+     	   else if(mn == 1 && sg>= 15)
+     	   	this.context.fillStyle = "yellow";
+     	   else
+     	   	this.context.fillStyle = "white";
 
-    World.prototype.loop = function()
-    {
+     	   this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
+     	}
 
-    	var that = this;
-    	var delta = (new Date().getTime()) - this.timePassed;
-    	this.timePassed = new Date().getTime();
+     	World.prototype.countdown = function()
+     	{
+     		this.context.font = "140px transformer";	
 
-    	var time = function()
-    	{
-    		that.drawTime();
-    	}
-    	this.drawMap();
+     		this.context.fillStyle = "black";
+     		this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
+     		this.context.fillStyle = "yellow";
+     		this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
 
-    	if(this.gameOver())
-    	{
-    		this.nextRound = function()
-    		{
-    			new World("canvas1");
-    		}
+     		if(World.timeCount == 0)
+     		{
+     			this.context.fillStyle = "black";
+     			this.context.fillText("GO!", this.canvas.width/2-35, this.canvas.height/2+20);
+     			this.context.fillStyle = "yellow";
+     			this.context.fillText("GO!", this.canvas.width/2-50, this.canvas.height/2);
+     			this.init = false;
+     			return true;
+     		}
+     		
+     		World.timeCount--;
+     		
+     		return false;
+     	}
 
-    		clearInterval(this.interval);
-    		this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
-    		setTimeout(this.nextRound, 3000);
-    	}
-    	else
-    	{
-    		this.moveCharacters(delta);
-    		this.moveShoots(delta);
-    	}
-    	this.drawScore(this.player.life, this.player2.life);
-    	this.drawCharacters();
-    	this.drawBullet();
-    	this.drawTime();
-    };
+     	World.prototype.loop = function()
+     	{
+     		var that = this;
+     		var delta = (new Date().getTime()) - this.timePassed;
+     		this.timePassed = new Date().getTime();
+
+     		var time = function()
+     		{
+     			that.drawTime();
+     		}
+
+     		this.drawCount = function()
+     		{
+     			that.drawMap();
+     			that.drawScore(that.player.life, that.player2.life);
+     			that.drawCharacters();
+     			that.drawBullet();
+     			that.countdown();
+     		}
+
+     		this.drawMap();
+     		this.drawScore(this.player.life, this.player2.life);
+     		this.drawCharacters();
+     		this.drawBullet();
+     		if(!this.countdown())
+     		{
+     			clearInterval(this.interval);
+     			setInterval(this.drawCount, 1000);
+     		}
+     		else
+     		{
+     			if(this.gameOver())
+     			{
+     				this.nextRound = function()
+     				{
+     					new World("canvas1");
+     				}
+
+     				clearInterval(this.interval);
+     				this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
+     				setTimeout(this.nextRound, 3000);
+     			}
+     			else
+     			{
+     				this.moveCharacters(delta);
+     				this.moveShoots(delta);
+     			}
+     			this.drawTime();
+     		}
+     	};
