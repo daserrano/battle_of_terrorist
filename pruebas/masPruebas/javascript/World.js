@@ -50,6 +50,7 @@ function World(idCanvas)
 	this.init = true;
 	this.timePassed = new Date().getTime();
 	emp=new Date();
+
 		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
 	}
 
@@ -361,10 +362,6 @@ World.prototype.drawMap = function()
      	{
      		this.context.font = "140px transformer";	
 
-     		this.context.fillStyle = "black";
-     		this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
-     		this.context.fillStyle = "yellow";
-     		this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
 
      		if(World.timeCount == 0)
      		{
@@ -373,12 +370,18 @@ World.prototype.drawMap = function()
      			this.context.fillStyle = "yellow";
      			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
      			this.init = false;
+     			return false;
+     		}
+     		else
+     		{
+     			this.context.fillStyle = "black";
+     			this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
+     			this.context.fillStyle = "yellow";
+     			this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
+     			World.timeCount--;
+
      			return true;
      		}
-     		
-     		World.timeCount--;
-     		
-     		return false;
      	}
 
      	World.prototype.loop = function()
@@ -401,33 +404,33 @@ World.prototype.drawMap = function()
      			that.countdown();
      		}
 
-     		this.drawMap();
-     		this.drawScore(this.player.life, this.player2.life);
-     		this.drawCharacters();
-     		this.drawBullet();
-     		if(!this.countdown())
+     		if(this.countdown())
      		{
      			clearInterval(this.interval);
      			setInterval(this.drawCount, 1000);
      		}
+
+     		this.drawMap();
+     		this.drawScore(this.player.life, this.player2.life);
+     		this.drawCharacters();
+     		this.drawBullet();
+
+     		if(this.gameOver())
+     		{
+     			this.nextRound = function()
+     			{
+     				new World("canvas1");
+     			}
+
+     			clearInterval(this.interval);
+     			this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
+     			setTimeout(this.nextRound, 3000);
+     		}
      		else
      		{
-     			if(this.gameOver())
-     			{
-     				this.nextRound = function()
-     				{
-     					new World("canvas1");
-     				}
-
-     				clearInterval(this.interval);
-     				this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
-     				setTimeout(this.nextRound, 3000);
-     			}
-     			else
-     			{
-     				this.moveCharacters(delta);
-     				this.moveShoots(delta);
-     			}
-     			this.drawTime();
+     			this.moveCharacters(delta);
+     			this.moveShoots(delta);
+     			
      		}
+     		this.drawTime();
      	};
