@@ -321,27 +321,30 @@ World.prototype.drawMap = function()
 		World.prototype.drawTime = function()
 		{
 
-
-     actual=new Date(); //fecha a cada instante	
+     	now = new Date();
         //tiempo del crono (cro) = fecha instante (actual) - fecha inicial (emp)	
-     cro=actual-emp; //milisegundos transcurridos.	
-     cr=new Date(); //pasamos el num. de milisegundos a objeto fecha.	
-     cr.setTime(cro); 
-        //obtener los distintos formatos de la fecha:	
-     cs=cr.getMilliseconds(); //milisegundos 	
-     cs=cs/10; //paso a centésimas de segundo.	
-     cs=Math.round(cs); //redondear las centésimas	
-     sg=cr.getSeconds(); //segundos 	
-     mn=cr.getMinutes(); //minutos
-        //poner siempre 2 cifras en los números			 
-        if (cs<10) {cs="0"+cs;} 
-        if (sg<10) {sg="0"+sg;} 
-        if (mn<10) {mn="0"+mn;} 
+        cro=now-emp;
+    	 cr=new Date(); //paso el num. de milisegundos a objeto fecha.	
+     	cr.setTime(cro);
+     	cs=cr.getMilliseconds();
+    	cs=cs/10; //paso a centésimas de segundo.	
+     	cs=Math.round(cs); //redondear las centésimas	
+     	sg=cr.getSeconds();  	
+    	mn=cr.getMinutes(); 
+
+     	   //poner siempre 2 cifras en los números			 
+        if (cs<10)
+        	cs="0"+cs;
+        if (sg<10) 
+        	sg="0"+sg;
+        if (mn<10) 
+        	mn="0"+mn; 
 
         this.context.font = "40px transformer";	
 
         this.context.fillStyle = "black";
         this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
+        
         if(mn == 1 && sg >= 25)
         	this.context.fillStyle = "red";
         else if(mn == 1 && sg>= 15)
@@ -384,7 +387,5 @@ World.prototype.drawMap = function()
     	this.drawScore(this.player.life, this.player2.life);
     	this.drawCharacters();
     	this.drawBullet();
-
-      //marcha=1; //indicamos que se ha puesto en marcha.
-      this.drawTime();
-  };
+    	this.drawTime();
+    };

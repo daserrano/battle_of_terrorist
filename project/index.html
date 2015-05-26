@@ -17,76 +17,75 @@
 	<script type="text/javascript" src="javascript/Bullet.js"></script>
 	<script type="text/javascript" src="javascript/Collision.js"></script>
 	<style>
-		@font-face{
-			font-family: "transformer";
-			src: url("style/transformer.ttf");
-		} 
+	@font-face{
+		font-family: "transformer";
+		src: url("style/transformer.ttf");
+	} 
 	</style>
 	<script>
 
-		var world;
-		var Sprites;
-		var Images;
-		var persona;
-		var color1;
-		var spritePlayer1;
-		var persona1, persona2;
-		var	contador = 0;
-		
+	var world;
+	var Sprites;
+	var Images;
+	var persona;
+	var color1;
+	var spritePlayer1;
+	var persona1, persona2;
+	var	contador = 0;
 
-	function dime(pers, col){
-			contador++;
-			if(pers < 5)
-				persona1 = pers;
-			if(pers >= 5)
-				persona2 = pers;
-			if(contador == 1)
-				color1 = col;
-			if(contador == 2){
-				color2 = col;
-				gameInit();
-			}
+
+	function dime(pers, col)
+	{
+		contador++;
+		if(pers < 5)
+			persona1 = pers;
+		if(pers >= 5)
+			persona2 = pers;
+		if(contador == 1)
+			color1 = col;
+		if(contador == 2){
+			color2 = col;
+			gameInit();
 		}
+	}
 
-		function gameInit()
-		{
-			Images  = new SaveImages();
-			Sprites = new SaveSprites();
-			Images.load(
-				[
-				["team1",  "images/game/team1.png"],
-				["team2",  "images/game/team2.png"],
-				["green1", 		"images/game/personaje1_verde.png"],
-				["green2", 		"images/game/personaje2_verde.png"],
-				["green3", 		"images/game/personaje3_verde.png"],
-				["green4", 		"images/game/personaje4_verde.png"],
-				["red1",   		"images/game/personaje1_rojo.png"],
-				["red2",   		"images/game/personaje2_rojo.png"],
-				["red3",   		"images/game/personaje3_rojo.png"],
-				["red4",   		"images/game/personaje4_rojo.png"],
-				["blue1", 		"images/game/personaje1_azul.png"],
-				["blue2", 		"images/game/personaje2_azul.png"],
-				["blue3", 		"images/game/personaje3_azul.png"],
-				["blue4", 		"images/game/personaje4_azul.png"],
-				["bulletRight", "images/game/playerShootRight.png"],
-				["bulletLeft",  "images/game/playerShootLeft.png"],
-				["bulletUp",    "images/game/playerShootUp.png"],
-				["bulletDown",  "images/game/playerShootDown.png"],
-				["bulletMain",  "images/game/playerShootMain.png"],
-				["ground",  "images/game/floor/suelo1.png"],
-				["ground2",  "images/game/floor/suelo2.png"],
-				["ground3",  "images/game/floor/suelo3.png"],
-				["ground4",  "images/game/floor/suelo4.png"],
-				["ground5",  "images/game/floor/suelo5.png"],
-				["ground6",  "images/game/floor/suelo6.png"],
-				["barrel1",  "images/game/barrel/barrilModificado_1.png"],
-				["barrel2",  "images/game/barrel/barrilModificado_2.png"]
-				]);
+	function gameInit()
+	{
+		Images  = new SaveImages();
+		Sprites = new SaveSprites();
+		Images.load(
+			[
+			["team1",  "images/game/team1.png"],
+			["team2",  "images/game/team2.png"],
+			["green1", 		"images/game/personaje1_verde.png"],
+			["green2", 		"images/game/personaje2_verde.png"],
+			["green3", 		"images/game/personaje3_verde.png"],
+			["green4", 		"images/game/personaje4_verde.png"],
+			["red1",   		"images/game/personaje1_rojo.png"],
+			["red2",   		"images/game/personaje2_rojo.png"],
+			["red3",   		"images/game/personaje3_rojo.png"],
+			["red4",   		"images/game/personaje4_rojo.png"],
+			["blue1", 		"images/game/personaje1_azul.png"],
+			["blue2", 		"images/game/personaje2_azul.png"],
+			["blue3", 		"images/game/personaje3_azul.png"],
+			["blue4", 		"images/game/personaje4_azul.png"],
+			["bulletRight", "images/game/playerShootRight.png"],
+			["bulletLeft",  "images/game/playerShootLeft.png"],
+			["bulletUp",    "images/game/playerShootUp.png"],
+			["bulletDown",  "images/game/playerShootDown.png"],
+			["bulletMain",  "images/game/playerShootMain.png"],
+			["ground",  "images/game/floor/suelo1.png"],
+			["ground2",  "images/game/floor/suelo2.png"],
+			["ground3",  "images/game/floor/suelo3.png"],
+			["ground4",  "images/game/floor/suelo4.png"],
+			["ground5",  "images/game/floor/suelo5.png"],
+			["ground6",  "images/game/floor/suelo6.png"],
+			["barrel1",  "images/game/barrel/barrilModificado_1.png"],
+			["barrel2",  "images/game/barrel/barrilModificado_2.png"]
+			]);
 
-			Images.completed = function() 
-			{
-
-
+Images.completed = function() 
+{
 
 			switch(persona1){
 
@@ -171,33 +170,36 @@
 
 					}
 				}
+				var spritePlayer2 = new Sprite(Images.get("green4"));
+				var spritePlayer1 = new Sprite(Images.get("blue4"));
 
 				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player1", spritePlayer1);
 
+				//var spritePlayer2 = new Sprite(Images.get("red1"));
 				spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player2", spritePlayer2);
 				world = new World("canvas1");
 			}
 		}
 
-	</script>
-</head>
-<body onload="cargarCanvas();"> <!-- To load canvas --> 
-	<div id = "main" > <!-- All the page -->
-		<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
-		<ul id="menu">
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOME</a></li>
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> NEWS </a></li>
-		</ul>
-		<div id = "footer"> </div>
-		<div id = "gameplay"> <!-- The game goes here -->
-			<canvas id = "canvas1"> </canvas>
-		</div> <!-- ***End gameplay*** -->
-	</br></br></br></br></br></br></br></br></br>
+		</script>
+	</head>
+	<body onload="cargarCanvas();"> <!-- To load canvas --> 
+		<div id = "main" > <!-- All the page -->
+			<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
+			<ul id="menu">
+				<li><a href = "#" class = "hvr-shutter-out-vertical"> HOME</a></li>
+				<li><a href = "#" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
+				<li><a href = "#" class = "hvr-shutter-out-vertical"> NEWS </a></li>
+			</ul>
+			<div id = "footer"> </div>
+			<div id = "gameplay"> <!-- The game goes here -->
+				<canvas id = "canvas1"> </canvas>
+			</div> <!-- ***End gameplay*** -->
+		</br></br></br></br></br></br></br></br></br>
 
-</div> <!-- ***End main*** -->
+	</div> <!-- ***End main*** -->
 
 </body>
 </html>
