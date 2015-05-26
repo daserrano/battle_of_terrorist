@@ -369,9 +369,9 @@ World.prototype.drawMap = function()
      		if(World.timeCount == 0)
      		{
      			this.context.fillStyle = "black";
-     			this.context.fillText("GO!", this.canvas.width/2-35, this.canvas.height/2+20);
+     			this.context.fillText("GO!", this.canvas.width/2-80, this.canvas.height/2+20);
      			this.context.fillStyle = "yellow";
-     			this.context.fillText("GO!", this.canvas.width/2-50, this.canvas.height/2);
+     			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
      			this.init = false;
      			return true;
      		}
