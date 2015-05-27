@@ -51,12 +51,43 @@ function World(idCanvas)
 	this.timePassed = new Date().getTime();
 	emp=new Date();
 
-		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
-	}
-
-	World.prototype.initPlayer = function()
+	World.prototype.countdown = function()
 	{
-		var x = Math.floor((Math.random()*2)+1);
+		this.context.font = "140px transformer";	
+
+		if(World.timeCount == 0)
+		{
+			this.context.fillStyle = "black";
+			this.context.fillText("GO!", this.canvas.width/2-80, this.canvas.height/2+20);
+			this.context.fillStyle = "yellow";
+			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
+			this.init = false;
+			return true;
+		}
+		else
+		{
+			this.context.fillStyle = "green";
+     			this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+     			this.context.fillStyle = "black";
+     			this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
+     			this.context.fillStyle = "yellow";
+     			this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
+     			World.timeCount--;
+
+     			return true;
+     		}
+     	}
+
+     	if(this.init == true)
+     		this.interval = setInterval(function(){self.countdown()}, 1000);
+
+     	else
+		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
+}
+
+World.prototype.initPlayer = function()
+{
+	var x = Math.floor((Math.random()*2)+1);
 		var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
 		var z = Math.floor((Math.random()*2)+22);
@@ -358,10 +389,9 @@ World.prototype.drawMap = function()
      	   this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
      	}
 
-     	World.prototype.countdown = function()
+     	/*World.prototype.countdown = function()
      	{
      		this.context.font = "140px transformer";	
-
 
      		if(World.timeCount == 0)
      		{
@@ -382,7 +412,7 @@ World.prototype.drawMap = function()
 
      			return true;
      		}
-     	}
+     	}*/
 
      	World.prototype.loop = function()
      	{
@@ -390,25 +420,25 @@ World.prototype.drawMap = function()
      		var delta = (new Date().getTime()) - this.timePassed;
      		this.timePassed = new Date().getTime();
 
-     		var time = function()
+     		/*var time = function()
      		{
      			that.drawTime();
-     		}
+     		}*/
 
-     		this.drawCount = function()
+     		/*this.drawCount = function()
      		{
      			that.drawMap();
      			that.drawScore(that.player.life, that.player2.life);
      			that.drawCharacters();
      			that.drawBullet();
      			that.countdown();
-     		}
+     		}*/
 
-     		if(this.countdown())
+     		/*if(this.countdown())
      		{
      			clearInterval(this.interval);
      			setInterval(this.drawCount, 1000);
-     		}
+     		}*/
 
      		this.drawMap();
      		this.drawScore(this.player.life, this.player2.life);
@@ -430,7 +460,6 @@ World.prototype.drawMap = function()
      		{
      			this.moveCharacters(delta);
      			this.moveShoots(delta);
-     			
+     			this.drawTime();
      		}
-     		this.drawTime();
      	};
