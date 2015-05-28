@@ -228,6 +228,7 @@ new Tile(this.cellWidth, this.cellHeight, false, Images.get("weapon2")),
 		//[ 8, 12, 23, 22,  22,  22,  22, 22, 22,  22,  22,  22,  22,  22,   22,  22,  22,  16,  22,   22,  22,  12,  22,  22, 22,  22, 22, 12, 21]
 		//];
 //
+if()
 
 		this.map =
 		[     
