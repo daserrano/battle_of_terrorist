@@ -190,11 +190,11 @@ function World(idCanvas)
 
 
 		this.map = [];
-		if(World.contadorPlayer1 + World.contadorPlayer2 < 5){
-			this.numMap = 0;
+		if(World.contadorPlayer1 + World.contadorPlayer2 < 2){
+			this.numMap = 1;
 		}
 		else
-			this.numMap = 1;
+			this.numMap = 0;
 
 
 
