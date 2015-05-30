@@ -1,7 +1,6 @@
 World.countPlayer1 = 0;
 World.countPlayer2 = 0;
 World.timeCount = 3;
-World.countRound = 0;
 
 function World(idCanvas)
 {
@@ -189,25 +188,15 @@ function World(idCanvas)
 
 	this.map = [];
 
-	if(World.countRound == 2)
+	if((World.countPlayer1 + World.countPlayer2) % 5 == 0)
 	{
-		World.countPlayer1 = 0;
-		World.countPlayer2 = 0;
-	}
-
-	if(World.countPlayer1 + World.countPlayer2 < 2)
-	{
-		//alert(World.countRound);
-		World.numMap = 0;
-		World.countRound++;
-	}
-	else
-	{
-		//alert(World.countRound);
-		World.numMap = 1;
-		World.countRound++;
-		if(World.countRound == 2)
-			this.beginAgain = true;
+		if(World.numMap == 0)
+			World.numMap = 1;
+		else
+			World.numMap = 0;
+	
+	World.countPlayer1 = 0;
+	World.countPlayer2 = 0;
 	}
 
 	this.map[0] = 
@@ -293,10 +282,6 @@ function World(idCanvas)
 		}
 	}
 
-	/*if(this.init == true)
-		this.interval = setInterval(function(){self.countdown()}, 1000);
-
-		else*/
 		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
 }
 
