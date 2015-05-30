@@ -1,6 +1,7 @@
-World.contadorPlayer1 = 0;
-World.contadorPlayer2 = 0;
+World.countPlayer1 = 0;
+World.countPlayer2 = 0;
 World.timeCount = 3;
+World.countRound = 0;
 
 function World(idCanvas)
 {
@@ -186,30 +187,43 @@ function World(idCanvas)
 	new Tile(this.cellWidth, this.cellHeight, true, Images.get("alfombra12"))
 	];
 
-	
 	this.map = [];
-	if(World.contadorPlayer1 + World.contadorPlayer2 < 2)
-			World.numMap = 0;
-		else
-			World.numMap = 1;
 
+	if(World.countRound == 2)
+	{
+		World.countPlayer1 = 0;
+		World.countPlayer2 = 0;
+	}
 
-
+	if(World.countPlayer1 + World.countPlayer2 < 2)
+	{
+		//alert(World.countRound);
+		World.numMap = 0;
+		World.countRound++;
+	}
+	else
+	{
+		//alert(World.countRound);
+		World.numMap = 1;
+		World.countRound++;
+		if(World.countRound == 2)
+			this.beginAgain = true;
+	}
 
 	this.map[0] = 
 	[
 	[ 4,   9,   9,   9,  9,  9,  9,  9,  9,  13,  11,  14,   9,   9,  13,   9,  9,  9,  9, 14,  13, 13,  9,  9, 17],
-	[ 5,  75,  75,  55, 75, 75, 75, 75, 75,  75,  75,  75,  35,  75,  75,  75, 75, 75, 75, 75,  75, 75, 75, 75, 18],
-	[ 7,  75,  75,  54, 75, 75, 75, 15, 75,  75,  75,  75,  75,  75,  75,  75, 75, 76, 75, 75,  71, 69, 69, 75, 19],
-	[ 7,  75,  75,  53, 75, 75, 75, 75, 75,  39,  40,  41, 114,  40,  41,  42,  0,  0,  0,  0,  70,  0,  0,  0, 20],
-	[ 7,  75,  75,  75, 75, 75,  0,  0,  0,  43, 109, 110, 110, 110, 111,  44,  0,  0,  0,  0,   0,  0, 56,  0, 20],
-	[ 7,  75,  75,  75, 75, 75,  3,  0,  0,  45, 112, 113, 114, 113, 115,  46,  0,  0, 74,  0,   0,  0,  0, 65, 20],
-	[ 6,  75,  75,  75, 75, 75,  3,  0,  0, 114, 112, 114, 119, 114, 115, 114,  0,  0, 73,  0,   0,  0,  0,  0, 20],
-	[ 6,  85,  75,  75, 75, 75,  2,  0,  0,  43, 112, 113, 114, 113, 115,  44,  0,  0, 72,  0,   0,  0,  0,  0, 19],
-	[ 7, 152, 100, 152, 62, 75,  0,  0,  0,  45, 116, 117, 117, 117, 118,  46,  0,  0,  0,  0,   0,  0,  0,  0, 19],
-	[ 7, 152, 152, 152, 61, 75,  0,  0,  0,  47,  48,  49, 114,  48,  49,  50,  0,  0,  0,  0,   0, 38,  0,  0, 20],
-	[26, 152,  58,  59, 92, 75,  0, 52,  0,   0,   0,   0,   0,   0,   0,   0,  0, 51,  0,  0,   0, 65,  0,  0, 20],
-	[27,  75,  75,  75, 75, 75,  0,  0,  0,   0,   0,   0,  38,   0,   0,   0,  0,  0,  0,  0,   0, 57,  0,  0, 20],
+	[ 5,  75,   0,  55,  0, 75,  0, 75,  0,  75,   0,  75,  35,  75,  75,  75,  0, 75,  0, 75,   0, 75,  0, 75, 18],
+	[ 7,  75,   0,  54,  0, 75,  0, 15,  0,  75,   0,  75,   0,  75,  75,  75,  0, 76,  0, 75,  71, 69, 69, 75, 19],
+	[ 7,  75,   0,  53,  0, 75,  0, 75,  0,  39,  40,  41, 114,  40,  41,  42,  0, 75,  0, 75,  70, 75,  0, 75, 20],
+	[ 7,  75,   0,  75,  0, 75,  0, 75,  0,  43, 109, 110, 110, 110, 111,  44,  0, 75,  0, 75,   0, 75, 56, 75, 20],
+	[ 7,  75,   0,  75,  0, 75,  3, 75,  0,  45, 112, 113, 114, 113, 115,  46,  0, 75, 74, 75,   0, 75,  0, 65, 20],
+	[ 6,  75,   0,  75,  0, 75,  3, 75,  0, 114, 112, 114, 119, 114, 115, 114,  0, 75, 73, 75,   0, 75,  0, 75, 20],
+	[ 6,  85,   0,  75,  0, 75,  2, 75,  0,  43, 112, 113, 114, 113, 115,  44,  0, 75, 72, 75,   0, 75,  0, 75, 19],
+	[ 7, 152, 100, 152, 62, 75,  0, 75,  0,  45, 116, 117, 117, 117, 118,  46,  0, 75,  0, 75,   0, 75,  0, 75, 19],
+	[ 7, 152, 152, 152, 61, 75,  0, 75,  0,  47,  48,  49, 114,  48,  49,  50,  0, 75,  0, 75,   0, 38,  0, 75, 20],
+	[26, 152,  58,  59, 92, 75,  0, 52,  0,  75,   0,  75,   0,  75,   0,  75,  0, 51,  0, 75,   0, 65,  0, 75, 20],
+	[27,  75,   0,  75,  0, 75,  0, 75,  0,  75,   0,  75,  38,  75,   0,  75,  0, 75,  0, 75,   0, 57,  0, 75, 20],
 	[ 8,  12,  23,  22, 22, 22, 22, 22, 22,  22,  22,  22,  37,  16,  22,  22, 22, 12, 22, 22,  22, 22, 22, 12, 21]
 	];
 
@@ -282,7 +296,7 @@ function World(idCanvas)
 	/*if(this.init == true)
 		this.interval = setInterval(function(){self.countdown()}, 1000);
 
-	else*/
+		else*/
 		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
 }
 
@@ -295,7 +309,7 @@ World.prototype.initPlayer = function()
 		var t = Math.floor((Math.random()*3)+9);
 
 		this.player  = new Player(this, 50, 50, x+0.5, y+0.5, "player1");
-		this.player2 = new Player(this, 50, 50, z+0.5, t+0.5/* 2.5, 5.5*/, "player2");
+		this.player2 = new Player(this, 50, 50, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
 		var self    = this;
 
 		document.body.onkeydown = function(e)
@@ -458,15 +472,15 @@ World.prototype.drawMap = function()
 
 		//Puntuacion de ambos jugadores.
 		this.context.fillStyle = "black";
-		this.context.fillText(World.contadorPlayer1, 469, 40);
+		this.context.fillText(World.countPlayer1, 469, 40);
 		this.context.fillStyle = "white";
-		this.context.fillText(World.contadorPlayer1, 465, 40);
+		this.context.fillText(World.countPlayer1, 465, 40);
 
 		this.context.fillStyle = "black";
-		this.context.fillText(World.contadorPlayer2, 519, 40);
+		this.context.fillText(World.countPlayer2, 519, 40);
 		this.context.fillStyle = "white";
 		this.context.fillText("-", 495, 35);
-		this.context.fillText(World.contadorPlayer2, 515, 40);
+		this.context.fillText(World.countPlayer2, 515, 40);
 
 		this.context.font = "bold 22px transformer"; //Estilo de letra y tamaño.
 
@@ -540,13 +554,13 @@ World.prototype.drawMap = function()
 			if(this.player.life <= 0)
 			{
 				this.player.life = 0;
-				World.contadorPlayer2++;
+				World.countPlayer2++;
 				return true;
 			}
 			if(this.player2.life <= 0)
 			{
 				this.player2.life = 0;
-				World.contadorPlayer1++;
+				World.countPlayer1++;
 				return true;
 			}
 
@@ -654,7 +668,7 @@ World.prototype.drawMap = function()
      			}
 
      			clearInterval(this.interval);
-     			this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
+     			this.drawResults(World.countPlayer1, World.countPlayer2);
      			setTimeout(this.nextRound, 3000);
      		}
      		else
