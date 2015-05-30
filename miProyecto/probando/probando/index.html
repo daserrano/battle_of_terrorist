@@ -17,43 +17,45 @@
 	<script type="text/javascript" src="javascript/Bullet.js"></script>
 	<script type="text/javascript" src="javascript/Collision.js"></script>
 	<style>
-	@font-face{
-		font-family: "transformer";
-		src: url("style/transformer.ttf");
-	} 
+		@font-face{
+			font-family: "transformer";
+			src: url("style/transformer.ttf");
+		} 
 	</style>
 	<script>
 
-	var world;
-	var Sprites;
-	var Images;
-	var persona;
-	var color1;
-	var spritePlayer1;
-	var persona1, persona2;
-	var	contador = 0;
+		var world;
+		var Sprites;
+		var Images;
+		var persona;
+		var color1;
+		var spritePlayer1;
+		var persona1, persona2;
+		var	contador = 0;
+		
 
+	/*	function dime(pers, col){
+			contador++;
+			if(pers < 5)
+				persona1 = pers;
+			if(pers >= 5)
+				persona2 = pers;
+			if(contador == 1)
+				color1 = col;
+			if(contador == 2){
+				color2 = col;
+				gameInit();
+			}
+		}*/
 
-	function dime(pers, col)
-	{
-		contador++;
-		if(pers < 5)
-			persona1 = pers;
-		if(pers >= 5)
-			persona2 = pers;
-		if(contador == 1)
-			color1 = col;
-		if(contador == 2){
-			color2 = col;
-			gameInit();
-		}
-	}
+		function gameInit()
+		{
+			Images  = new SaveImages();
+			Sprites = new SaveSprites();
 
-	function gameInit()
-	{
-		Images  = new SaveImages();
-		Sprites = new SaveSprites();
-		Images.load(
+			
+
+			Images.load(
 				[
 				["0",  "images/game/0.png"],
 				["1",  "images/game/1.png"],
@@ -240,43 +242,45 @@
 Images.completed = function() 
 {
 
-			switch(persona1){
+
+
+			/*	switch(persona1){
 
 					case 1:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("6"));
+							var spritePlayer1 = new Sprite(Images.get("red1"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("10"));
+							var spritePlayer1 = new Sprite(Images.get("blue1"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("2"));
+							var spritePlayer1 = new Sprite(Images.get("green1"));
 						break;
 					}
 					case 2:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("7"));
+							var spritePlayer1 = new Sprite(Images.get("red2"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("11"));
+							var spritePlayer1 = new Sprite(Images.get("blue2"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("3"));
+							var spritePlayer1 = new Sprite(Images.get("green2"));
 						break;
 					}
 					case 3:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("8"));
+							var spritePlayer1 = new Sprite(Images.get("red3"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("12"));
+							var spritePlayer1 = new Sprite(Images.get("blue3"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("4"));
+							var spritePlayer1 = new Sprite(Images.get("green3"));
 						break;
 
 					}
 					case 4:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("9"));
+							var spritePlayer1 = new Sprite(Images.get("red4"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("13"));
+							var spritePlayer1 = new Sprite(Images.get("blue4"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("5"));
+							var spritePlayer1 = new Sprite(Images.get("green4"));
 						break;
 
 					}
@@ -284,47 +288,47 @@ Images.completed = function()
 				switch(persona2){
 					case 5:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("6"));
+							var spritePlayer2 = new Sprite(Images.get("red1"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("10"));
+							var spritePlayer2 = new Sprite(Images.get("blue1"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("2"));
+							var spritePlayer2 = new Sprite(Images.get("green1"));
 						break;
 
 					}
 					case 6:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("7"));
+							var spritePlayer2 = new Sprite(Images.get("red2"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("11"));
+							var spritePlayer2 = new Sprite(Images.get("blue2"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("3"));
+							var spritePlayer2 = new Sprite(Images.get("green2"));
 						break;
 
 					}
 					case 7:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("8"));
+							var spritePlayer2 = new Sprite(Images.get("red3"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("12"));
+							var spritePlayer2 = new Sprite(Images.get("blue3"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("4"));
+							var spritePlayer2 = new Sprite(Images.get("green3"));
 						break;
 
 					}
 					case 8:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("9"));
+							var spritePlayer2 = new Sprite(Images.get("red4"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("13"));
+							var spritePlayer2 = new Sprite(Images.get("blue4"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("5"));
+							var spritePlayer2 = new Sprite(Images.get("green4"));
 						break;
 
 					}
-				}
-				//var spritePlayer2 = new Sprite(Images.get("green4"));
-				//var spritePlayer1 = new Sprite(Images.get("blue4"));
+				}*/
+				var spritePlayer2 = new Sprite(Images.get("5"));
+				var spritePlayer1 = new Sprite(Images.get("13"));
 
 				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player1", spritePlayer1);
@@ -336,23 +340,23 @@ Images.completed = function()
 			}
 		}
 
-		</script>
-	</head>
-	<body onload="cargarCanvas();"> <!-- To load canvas --> 
-		<div id = "main" > <!-- All the page -->
-			<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
-			<ul id="menu">
-				<li><a href = "#" class = "hvr-shutter-out-vertical"> HOME</a></li>
-				<li><a href = "#" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
-				<li><a href = "#" class = "hvr-shutter-out-vertical"> NEWS </a></li>
-			</ul>
-			<div id = "footer"> </div>
-			<div id = "gameplay"> <!-- The game goes here -->
-				<canvas id = "canvas1"> </canvas>
-			</div> <!-- ***End gameplay*** -->
-		</br></br></br></br></br></br></br></br></br>
+	</script>
+</head>
+<body onload="cargarCanvas();"> <!-- To load canvas --> 
+	<div id = "main" > <!-- All the page -->
+		<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
+		<ul id="menu">
+			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOME</a></li>
+			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
+			<li><a href = "#" class = "hvr-shutter-out-vertical"> NEWS </a></li>
+		</ul>
+		<div id = "footer"> </div>
+		<div id = "gameplay"> <!-- The game goes here -->
+			<canvas id = "canvas1"> </canvas>
+		</div> <!-- ***End gameplay*** -->
+	</br></br></br></br></br></br></br></br></br>
 
-	</div> <!-- ***End main*** -->
+</div> <!-- ***End main*** -->
 
 </body>
 </html>
