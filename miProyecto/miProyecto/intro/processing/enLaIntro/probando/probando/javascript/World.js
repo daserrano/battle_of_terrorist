@@ -186,14 +186,18 @@ function World(idCanvas)
 	new Tile(this.cellWidth, this.cellHeight, true, Images.get("alfombra11")),
 	new Tile(this.cellWidth, this.cellHeight, true, Images.get("alfombra12"))
 
-		];
+	];
 
-		this.map = [];
-		if(World.contadorPlayer1 + World.contadorPlayer2 < 2){
-			World.numMap = 0;
-		}
-		else
+	this.map = [];
+
+	if((World.contadorPlayer1 + World.contadorPlayer2)%5 == 0 && (World.contadorPlayer1 + World.contadorPlayer2 >0)){
+		if(World.numMap == 0)
 			World.numMap = 1;
+		else
+			World.numMap = 0;
+	}
+		//else
+		//	World.numMap = 1;
 
 		this.map[0] = 
 		[
