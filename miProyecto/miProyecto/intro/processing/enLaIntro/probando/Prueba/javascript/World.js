@@ -1,8 +1,6 @@
 
 World.contadorPlayer1 = 0;
 World.contadorPlayer2 = 0;
-World.numMap = 0;
-
 
 function World(idCanvas)
 {
@@ -192,13 +190,11 @@ function World(idCanvas)
 
 
 		this.map = [];
-		
-	if((World.contadorPlayer1 + World.contadorPlayer2)%5 == 0 && (World.contadorPlayer1 + World.contadorPlayer2 >0)){
-		if(World.numMap == 0)
-			World.numMap = 1;
+		if(World.contadorPlayer1 + World.contadorPlayer2 < 2){
+			this.numMap = 1;
+		}
 		else
-			World.numMap = 0;
-	}
+			this.numMap = 0;
 
 
 
@@ -243,8 +239,9 @@ function World(idCanvas)
 		];
 
 
-	this.canvas.width  = this.cellWidth*this.map[World.numMap][0].length;
-		this.canvas.height = this.cellHeight*this.map[World.numMap].length;
+
+		this.canvas.width  = this.cellWidth*this.map[this.numMap][0].length;
+		this.canvas.height = this.cellHeight*this.map[this.numMap].length;
 
 		this.player;
 		this.player2;
@@ -383,7 +380,7 @@ World.prototype.cellWalked = function(px, py)
 	var x = parseInt(px);
 	var y = parseInt(py);
 
-	return this.allTiles[this.map[World.numMap][y][x]].walk;
+	return this.allTiles[this.map[this.numMap][y][x]].walk;
 }
 
 World.prototype.moveCharacters = function(delta)
@@ -405,12 +402,12 @@ World.prototype.moveShoots = function(delta)
 
 World.prototype.drawMap = function()
 {
-	var y = this.map[World.numMap].length;
-	var x = this.map[World.numMap][0].length;
+	var y = this.map[this.numMap].length;
+	var x = this.map[this.numMap][0].length;
 
 	for(var yi=0; yi<y; yi++)
 		for(var xi=0; xi<x; xi++)
-			this.allTiles[this.map[World.numMap][yi][xi]].draw(this.context, xi, yi);
+			this.allTiles[this.map[this.numMap][yi][xi]].draw(this.context, xi, yi);
 	};
 
 	World.prototype.drawCharacters = function()
