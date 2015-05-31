@@ -194,9 +194,9 @@ function World(idCanvas)
 			World.numMap = 1;
 		else
 			World.numMap = 0;
-	
-	World.countPlayer1 = 0;
-	World.countPlayer2 = 0;
+
+		World.countPlayer1 = 0;
+		World.countPlayer2 = 0;
 	}
 
 	this.map[0] = 
@@ -255,7 +255,7 @@ function World(idCanvas)
 	this.timePassed = new Date().getTime();
 	emp=new Date();
 
-	World.prototype.countdown = function()
+	/*World.prototype.countdown = function()
 	{
 		this.context.font = "140px transformer";	
 
@@ -265,13 +265,10 @@ function World(idCanvas)
 			this.context.fillText("GO!", this.canvas.width/2-80, this.canvas.height/2+20);
 			this.context.fillStyle = "yellow";
 			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
-			this.init = false;
-			return true;
+			return false;
 		}
 		else
 		{
-			this.context.fillStyle = "green";
-			this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 			this.context.fillStyle = "black";
 			this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
 			this.context.fillStyle = "yellow";
@@ -281,13 +278,27 @@ function World(idCanvas)
 			return true;
 		}
 	}
+	this.drawCount = function()
+	{
+		self.drawMap();
+		self.countdown();
+		self.drawScore(self.player.life, self.player2.life);
+		self.drawCharacters();
+		self.drawBullet();
+	}
 
-		this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
-}
+	if(this.countdown())
+	{
+		clearInterval(this.interval);
+		setInterval(this.drawCount, 1000);
+	}*/
 
-World.prototype.initPlayer = function()
-{
-	var x = Math.floor((Math.random()*2)+1);
+			this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
+		}
+
+		World.prototype.initPlayer = function()
+		{
+			var x = Math.floor((Math.random()*2)+1);
 		var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
 		var z = Math.floor((Math.random()*2)+22);
@@ -523,12 +534,12 @@ World.prototype.drawMap = function()
 			this.context.drawImage(Images.get("team2"), this.canvas.width/2+100,this.canvas.height/2-150, 150, 150);
 			
 			this.context.fillStyle = "black";
-			this.context.fillText(player1, this.canvas.width/2-193, this.canvas.height/2+125);
+			this.context.fillText(player1, this.canvas.width/2-185, this.canvas.height/2+125);
 			this.context.fillStyle = "orange";
 			this.context.fillText(player1, this.canvas.width/2-200, this.canvas.height/2+125);
 
 			this.context.fillStyle = "black";
-			this.context.fillText(player2, this.canvas.width/2+150, this.canvas.height/2+125);
+			this.context.fillText(player2, this.canvas.width/2+158, this.canvas.height/2+125);
 			this.context.fillStyle = "orange";
 			this.context.fillText(player2, this.canvas.width/2+143, this.canvas.height/2+125);			
 		}
@@ -555,7 +566,25 @@ World.prototype.drawMap = function()
 		World.prototype.drawTime = function()
 		{
 
-			now = new Date();
+     	   	this.context.font = "40px transformer";	
+
+     	   	this.context.fillStyle = "black";
+     	   	this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
+
+     	   	if(mn == 1 && sg >= 25)
+     	   		this.context.fillStyle = "red";
+     	   	else if(mn == 1 && sg>= 15)
+     	   		this.context.fillStyle = "yellow";
+     	   	else
+     	   		this.context.fillStyle = "white";
+
+     	   	this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
+
+     	   }
+
+     	   World.prototype.finishTime = function()
+     	   {
+     	   	now = new Date();
         //tiempo del crono (cro) = fecha instante (actual) - fecha inicial (emp)	
         cro=now-emp;
     	 cr=new Date(); //paso el num. de milisegundos a objeto fecha.	
@@ -574,20 +603,22 @@ World.prototype.drawMap = function()
      	   if (mn<10) 
      	   	mn="0"+mn; 
 
-     	   this.context.font = "40px transformer";	
+     	   if (mn == 0 && sg >= 10)
+     	   	if(this.player.life > this.player2.life)
+     	   	{
+     	   		World.countPlayer1++;
+     	   		return true;
+     	   	}
+     	   	else if(this.player.life < this.player2.life)
+     	   	{
+     	   		World.countPlayer2++;
+     	   		return true;
+     	   	}
+     	   	else
+     	   		return true;
 
-     	   this.context.fillStyle = "black";
-     	   this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
-
-     	   if(mn == 1 && sg >= 25)
-     	   	this.context.fillStyle = "red";
-     	   else if(mn == 1 && sg>= 15)
-     	   	this.context.fillStyle = "yellow";
-     	   else
-     	   	this.context.fillStyle = "white";
-
-     	   this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
-     	}
+     	   	return;
+     	   }
 
      	/*World.prototype.countdown = function()
      	{
@@ -632,20 +663,20 @@ World.prototype.drawMap = function()
      			that.drawCharacters();
      			that.drawBullet();
      			that.countdown();
-     		}*/
+     		}
 
-     		/*if(this.countdown())
+     		if(this.countdown())
      		{
      			clearInterval(this.interval);
      			setInterval(this.drawCount, 1000);
-     		}*/
-
+     		}
+     		*/
      		this.drawMap();
      		this.drawScore(this.player.life, this.player2.life);
      		this.drawCharacters();
      		this.drawBullet();
 
-     		if(this.gameOver())
+     		if(this.gameOver() || this.finishTime())
      		{
      			this.nextRound = function()
      			{
