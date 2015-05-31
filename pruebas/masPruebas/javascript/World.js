@@ -1,8 +1,9 @@
 World.countPlayer1 = 0;
 World.countPlayer2 = 0;
-World.timeCount = 3;
+World.countRound = 0;
+//World.timeCount = 3;
 
-function World(idCanvas)
+function World(idCanvas, numMap)
 {
 
 	this.canvas  = document.getElementById(idCanvas);
@@ -186,18 +187,25 @@ function World(idCanvas)
 	new Tile(this.cellWidth, this.cellHeight, true, Images.get("alfombra12"))
 	];
 
-	this.map = [];
-
-	if((World.countPlayer1 + World.countPlayer2) % 5 == 0)
-	{
-		if(World.numMap == 0)
-			World.numMap = 1;
-		else
-			World.numMap = 0;
-
-		World.countPlayer1 = 0;
+		if(World.numMap == 0 && World.countRound == 5)
+		{
+			World.countPlayer1 = 0;
 		World.countPlayer2 = 0;
-	}
+			World.countRound = 0;
+			World.numMap = 1;
+		}
+		else if(World.numMap == 1 && World.countRound == 5)
+		{
+			World.countPlayer1 = 0;
+		World.countPlayer2 = 0;
+			World.countRound = 0;
+			World.numMap = 0;
+		}
+		else
+			World.numMap = numMap;
+
+
+	this.map = [];
 
 	this.map[0] = 
 	[
@@ -238,7 +246,6 @@ function World(idCanvas)
 	[ 6, 153, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 153, 153, 19],
 	[ 8,  12,  23,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  16,  22,  22,  22,  12,  22,  22, 22,   22,  22,  12, 21]
 	];
-
 
 	this.canvas.width  = this.cellWidth*this.map[World.numMap][0].length;
 	this.canvas.height = this.cellHeight*this.map[World.numMap].length;
@@ -301,8 +308,16 @@ function World(idCanvas)
 			var x = Math.floor((Math.random()*2)+1);
 		var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
-		var z = Math.floor((Math.random()*2)+22);
-		var t = Math.floor((Math.random()*3)+9);
+		if(World.numMap == 0)
+		{
+			var z = Math.floor((Math.random()*2)+22);
+			var t = Math.floor((Math.random()*3)+9);
+		}
+		else
+		{
+			var z = Math.floor((Math.random()*2)+26);
+			var t = Math.floor((Math.random()*3)+14);
+		}
 
 		this.player  = new Player(this, 50, 50, x+0.5, y+0.5, "player1");
 		this.player2 = new Player(this, 50, 50, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
@@ -534,12 +549,12 @@ World.prototype.drawMap = function()
 			this.context.drawImage(Images.get("team2"), this.canvas.width/2+100,this.canvas.height/2-150, 150, 150);
 			
 			this.context.fillStyle = "black";
-			this.context.fillText(player1, this.canvas.width/2-185, this.canvas.height/2+125);
+			this.context.fillText(player1, this.canvas.width/2-180, this.canvas.height/2+120);
 			this.context.fillStyle = "orange";
 			this.context.fillText(player1, this.canvas.width/2-200, this.canvas.height/2+125);
 
 			this.context.fillStyle = "black";
-			this.context.fillText(player2, this.canvas.width/2+158, this.canvas.height/2+125);
+			this.context.fillText(player2, this.canvas.width/2+163, this.canvas.height/2+120);
 			this.context.fillStyle = "orange";
 			this.context.fillText(player2, this.canvas.width/2+143, this.canvas.height/2+125);			
 		}
@@ -551,10 +566,12 @@ World.prototype.drawMap = function()
 			{
 				this.player.life = 0;
 				World.countPlayer2++;
+				World.countRound++;
 				return true;
 			}
 			if(this.player2.life <= 0)
 			{
+				World.countRound++;
 				this.player2.life = 0;
 				World.countPlayer1++;
 				return true;
@@ -566,25 +583,25 @@ World.prototype.drawMap = function()
 		World.prototype.drawTime = function()
 		{
 
-     	   	this.context.font = "40px transformer";	
+			this.context.font = "40px transformer";	
 
-     	   	this.context.fillStyle = "black";
-     	   	this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
+			this.context.fillStyle = "black";
+			this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
 
-     	   	if(mn == 1 && sg >= 25)
-     	   		this.context.fillStyle = "red";
-     	   	else if(mn == 1 && sg>= 15)
-     	   		this.context.fillStyle = "yellow";
-     	   	else
-     	   		this.context.fillStyle = "white";
+			if(mn == 1 && sg >= 25)
+				this.context.fillStyle = "red";
+			else if(mn == 1 && sg>= 15)
+				this.context.fillStyle = "yellow";
+			else
+				this.context.fillStyle = "white";
 
-     	   	this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
+			this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
 
-     	   }
+		}
 
-     	   World.prototype.finishTime = function()
-     	   {
-     	   	now = new Date();
+		World.prototype.finishTime = function()
+		{
+			now = new Date();
         //tiempo del crono (cro) = fecha instante (actual) - fecha inicial (emp)	
         cro=now-emp;
     	 cr=new Date(); //paso el num. de milisegundos a objeto fecha.	
@@ -603,20 +620,24 @@ World.prototype.drawMap = function()
      	   if (mn<10) 
      	   	mn="0"+mn; 
 
-     	   if (mn == 0 && sg >= 10)
+     	   if (mn == 0 && sg >= 3)
      	   	if(this.player.life > this.player2.life)
      	   	{
      	   		World.countPlayer1++;
+     	   		World.countRound++;
      	   		return true;
      	   	}
      	   	else if(this.player.life < this.player2.life)
      	   	{
      	   		World.countPlayer2++;
+     	   		World.countRound++;
      	   		return true;
      	   	}
      	   	else
+     	   	{
+     	   		World.countRound++;
      	   		return true;
-
+     	   	}
      	   	return;
      	   }
 
@@ -680,7 +701,7 @@ World.prototype.drawMap = function()
      		{
      			this.nextRound = function()
      			{
-     				new World("canvas1");
+     				new World("canvas1", World.numMap);
      			}
 
      			clearInterval(this.interval);
