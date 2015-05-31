@@ -34,14 +34,14 @@ function sketchProc(processing) {
       xpos = processing.width/1.5;
       ypos = processing.height/1.5;
 
-      primerPersonaje = processing.loadImage("images/game/178.png");
-      segundoPersonaje = processing.loadImage("images/game/179.png");
-      tercerPersonaje = processing.loadImage("images/game/180.png");
-      cuartoPersonaje = processing.loadImage("images/game/181.png");
-      MOD = processing.loadImage("images/game/183.png");  
+      primerPersonaje = processing.loadImage("images/game/1FIN.png");
+      segundoPersonaje = processing.loadImage("images/game/2FIN.png");
+      tercerPersonaje = processing.loadImage("images/game/3FIN.png");
+      cuartoPersonaje = processing.loadImage("images/game/4FIN.png");
+      MOD = processing.loadImage("images/game/ratonMOD.png");  
 
 
-      logo = processing.loadImage("images/game/182.png")
+      logo = processing.loadImage("images/game/logo1.png")
       processing.textFont(transformer, 65);
 
       rectCharacter1_X = 50;
@@ -445,10 +445,9 @@ if (rectOverCuadroConfirmacion1 && personaje <= 4 && confirmado == false && (col
   confirmado = true;
   color = undefined;
 
-
 }
+if (rectOverCuadroConfirmacion2 && personaje >= 5){
 
-if (rectOverCuadroConfirmacion2 && personaje >= 5 && color != undefined){
   personaje2 = personaje;
   color2 = color;
   dime(personaje2,color2);
@@ -491,7 +490,7 @@ var sketch
 var p
 function cargarCanvas(){
   canvas = document.getElementById("canvas1");
-  p = new Processing(canvas, sketchProc);
+ p = new Processing(canvas, sketchProc);
   sketch = p.externals.sketch; 
   sketch.options.crispLines = true;
 }

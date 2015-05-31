@@ -22,7 +22,3 @@ Collision.prototype.validPosition = function(player)
 
 	return true;
 };
-
-/*Collision.prototype.detectPlayer = function(player, px, py)
-{
-};*/
