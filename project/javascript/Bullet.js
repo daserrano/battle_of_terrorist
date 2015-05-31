@@ -62,22 +62,22 @@ Bullet.prototype.draw = function(context)
 			if(this.direction == "right")
 			{
 				//context.drawImage(Images.get("bulletMain"), ((this.pxi+0.3)*world.cellWidth), (this.pyi-0.1)*world.cellHeight, this.width, this.height);
-				context.drawImage(Images.get("bulletRight"), (this.px+0.3)*world.cellWidth, (this.py-0.1)*world.cellHeight, this.width, this.height);
+				context.drawImage(Images.get("14"), (this.px+0.3)*world.cellWidth, (this.py-0.1)*world.cellHeight, this.width, this.height);
 			}
 			if(this.direction == "down")
 			{
 				//context.drawImage(Images.get("bulletMain"), ((this.pxi-0.35)*world.cellWidth), (this.pyi+0.15)*world.cellHeight, this.width, this.height);
-				context.drawImage(Images.get("bulletDown"), (this.px-0.15)*world.cellWidth, (this.py+0.15)*world.cellHeight, this.width, this.height);
+				context.drawImage(Images.get("17"), (this.px-0.15)*world.cellWidth, (this.py+0.15)*world.cellHeight, this.width, this.height);
 			}
 			if(this.direction == "left")
 			{
 				//context.drawImage(Images.get("bulletMain"), ((this.pxi+0.3)*world.cellWidth), (this.pyi-0.1)*world.cellHeight, this.width, this.height);
-				context.drawImage(Images.get("bulletLeft"), (this.px-0.3)*world.cellWidth, (this.py-0.1)*world.cellHeight, this.width, this.height);
+				context.drawImage(Images.get("15"), (this.px-0.3)*world.cellWidth, (this.py-0.1)*world.cellHeight, this.width, this.height);
 			}
 			if(this.direction == "up")
 			{
 				//context.drawImage(Images.get("bulletMain"), ((this.pxi+0.3)*world.cellWidth), (this.pyi-0.1)*world.cellHeight, this.width, this.height);
-				context.drawImage(Images.get("bulletUp"), this.px*world.cellWidth, (this.py-0.4)*world.cellHeight, this.width, this.height);
+				context.drawImage(Images.get("16"), this.px*world.cellWidth, (this.py-0.4)*world.cellHeight, this.width, this.height);
 			}
 			context.restore();
 		}
