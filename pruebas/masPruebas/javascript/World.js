@@ -76,7 +76,7 @@ function World(idCanvas, numMap)
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("weapon2")),
 	//58
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("table1")),
-	new Tile(this.cellWidth, this.cellHeight, false, Images.get("table2")),
+	new Tile(this.cellWidth, this.cellHeight, true, Images.get("table2")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("table3")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("table4")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("table5")),
@@ -187,22 +187,26 @@ function World(idCanvas, numMap)
 	new Tile(this.cellWidth, this.cellHeight, true, Images.get("alfombra12"))
 	];
 
-		if(World.numMap == 0 && World.countRound == 5)
-		{
-			World.countPlayer1 = 0;
+
+if(World.countRound == 20)
+	location.reload(true);
+
+	if(World.numMap == 0 && World.countRound == 5)
+	{
+		World.countPlayer1 = 0;
 		World.countPlayer2 = 0;
-			World.countRound = 0;
-			World.numMap = 1;
-		}
-		else if(World.numMap == 1 && World.countRound == 5)
-		{
-			World.countPlayer1 = 0;
+		World.countRound = 0;
+		World.numMap = 1;
+	}
+	else if(World.numMap == 1 && World.countRound == 5)
+	{
+		World.countPlayer1 = 0;
 		World.countPlayer2 = 0;
-			World.countRound = 0;
-			World.numMap = 0;
-		}
-		else
-			World.numMap = numMap;
+		World.countRound = 0;
+		World.numMap = 0;
+	}
+	else
+		World.numMap = numMap;
 
 
 	this.map = [];
@@ -256,6 +260,15 @@ function World(idCanvas, numMap)
 
 	this.shoots;
 	this.bullets = [];
+
+	if(World.numMap == 0)
+	{
+		var positionSecrets = 
+		[
+		[3, 10],
+		[12, 1],
+		[23, 4]]
+	}
 
 	var self = this;
 	this.init = true;
@@ -620,7 +633,7 @@ World.prototype.drawMap = function()
      	   if (mn<10) 
      	   	mn="0"+mn; 
 
-     	   if (mn == 0 && sg >= 3)
+     	   if (mn == 1 && sg >= 30)
      	   	if(this.player.life > this.player2.life)
      	   	{
      	   		World.countPlayer1++;
@@ -665,6 +678,17 @@ World.prototype.drawMap = function()
      			return true;
      		}
      	}*/
+
+     	World.prototype.cantSee = function()
+     	{
+     		if(World.numMap == 0)
+     		{
+     			//this.allTiles[this.map[World.numMap][yi][xi]].draw(this.context, xi, yi);
+     				this.allTiles[this.map[World.numMap][10][3]].draw(this.context, 3, 10);
+     				this.allTiles[this.map[World.numMap][4][23]].draw(this.context, 23, 4);
+
+     		}
+     	}
 
      	World.prototype.loop = function()
      	{
@@ -713,5 +737,6 @@ World.prototype.drawMap = function()
      			this.moveCharacters(delta);
      			this.moveShoots(delta);
      			this.drawTime();
+     			this.cantSee();
      		}
      	};

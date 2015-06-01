@@ -372,6 +372,7 @@ function World(idCanvas, numMap)
 			case 32: //Space
 			e.preventDefault();
 			break;
+
 		}
 	};
 	document.body.onkeyup = function(e)
@@ -462,6 +463,9 @@ World.prototype.drawMap = function()
 {
 	var y = this.map[World.numMap].length;
 	var x = this.map[World.numMap][0].length;
+
+	this.context.fillStyle = "black";
+	//this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 	for(var yi=0; yi<y; yi++)
 		for(var xi=0; xi<x; xi++)
