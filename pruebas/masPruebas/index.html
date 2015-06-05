@@ -17,22 +17,22 @@
 	<script type="text/javascript" src="javascript/Bullet.js"></script>
 	<script type="text/javascript" src="javascript/Collision.js"></script>
 	<style>
-		@font-face{
-			font-family: "transformer";
-			src: url("style/transformer.ttf");
-		} 
+	@font-face{
+		font-family: "transformer";
+		src: url("style/transformer.ttf");
+	} 
 	</style>
 	<script>
 
-		var world;
-		var Sprites;
-		var Images;
-		var persona;
-		var color1;
-		var spritePlayer1;
-		var persona1, persona2;
-		var	contador = 0;
-		
+	var world;
+	var Sprites;
+	var Images;
+	var persona;
+	var color1;
+	var spritePlayer1;
+	var persona1, persona2;
+	var	contador = 0;
+
 
 	/*	function dime(pers, col){
 			contador++;
@@ -234,8 +234,8 @@
 				["alfombra12",  "images/game/table/alfombra12.png"]
 				]);
 
-			Images.completed = function() 
-			{
+Images.completed = function() 
+{
 
 
 
@@ -322,8 +322,8 @@
 
 					}
 				}*/
-					var spritePlayer2 = new Sprite(Images.get("green4"));
-					var spritePlayer1 = new Sprite(Images.get("blue4"));
+				var spritePlayer2 = new Sprite(Images.get("green4"));
+				var spritePlayer1 = new Sprite(Images.get("blue4"));
 
 				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player1", spritePlayer1);
@@ -335,23 +335,34 @@
 			}
 		}
 
-	</script>
-</head>
-<body onload="cargarCanvas();"> <!-- To load canvas --> 
-	<div id = "main" > <!-- All the page -->
-		<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
-		<ul id="menu">
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOME</a></li>
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> NEWS </a></li>
-		</ul>
-		<div id = "footer"> </div>
-		<div id = "gameplay"> <!-- The game goes here -->
-			<canvas id = "canvas1"> </canvas>
-		</div> <!-- ***End gameplay*** -->
-	</br></br></br></br></br></br></br></br></br>
+		</script>
+	</head>
+	<body onload="cargarCanvas();"> <!-- To load canvas --> 
+		<div id = "main" > <!-- All the page -->
+			<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
+			<ul id="menu">
+				<li><a href = "index.html" class = "hvr-shutter-out-vertical"> HOME</a></li>
+				<li><a href = "#modal" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
+				<li><a href = "#canvas1" class = "hvr-shutter-out-vertical"> PLAY </a></li>
+			</ul>
+			<div id = "footer"> </div>
+			<div id = "gameplay"> <!-- The game goes here -->
+				<div id="modal" class="modalmask">
+					<div class="modalbox movedown">
+						<a href="#close" title="Close" class="close">X</a>
+						<h2>CONTROLLERS</h2>
+						<h3 align="left"> PLAYER 1 </h3>
+							<img src = "images/web/player1.png">
+						<h3 align="left"> PLAYER 2 </h3>
+						<img src = "images/web/player2.png">
+						<h2> + </h2>
+					</div>
+				</div>
+				<canvas id = "canvas1"> </canvas>
+			</div> <!-- ***End gameplay*** -->
+		</br></br></br></br></br></br></br></br></br>
 
-</div> <!-- ***End main*** -->
+	</div> <!-- ***End main*** -->
 
 </body>
 </html>
