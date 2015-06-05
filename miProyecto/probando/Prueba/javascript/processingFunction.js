@@ -219,7 +219,7 @@ else{
   }
 
   }
-  if(personaje >= 5 && (color == "rojo" || color == "azul" || color == "verde") && confirmado == true){
+  if(personaje >= 5 && (color == "rojo" || color == "azul" || color == "verde") /*&& confirmado == true*/){
    rectDone2 = true;
    if(llenarCuadroConfirmacion2 == true){
               processing.fill(204, 204, 0);
@@ -369,7 +369,7 @@ estoyEnUno = false;
 
 
 if(revisionColores == true){
-  if (rectOverColorRed || color == "rojo"){
+  if ((rectOverColorRed || color == "rojo")){
    // if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
    //   escribeTexto();
    // else
@@ -555,13 +555,13 @@ llenarCuadroVerde = true;
     else if(overRect(rectCharacter8_X, rectCharacter8_Y, 93.5, 50)){
       rectOverCharacter8 = true;
     }
-    else if(overRect(rectColorRedX, rectColorRedY, 213, 50)){
+    else if(overRect(rectColorRedX, rectColorRedY, 213, 50) && personaje != undefined){
       rectOverColorRed = true;
     }
-    else if(overRect(rectColorBlueX, rectColorBlueY, 213, 50)){
+    else if(overRect(rectColorBlueX, rectColorBlueY, 213, 50) && personaje != undefined){
       rectOverColorBlue = true;
     }
-    else if(overRect(rectColorGreenX, rectColorGreenY, 213, 50)){
+    else if(overRect(rectColorGreenX, rectColorGreenY, 213, 50) && personaje != undefined){
       rectOverColorGreen = true;
     }
     //else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) && color != undefined){
@@ -638,6 +638,9 @@ if (rectOverCuadroConfirmacion1 && personaje <= 4 && confirmado == false && (col
   dime(personaje1,color1);
   confirmado = true;
   color = undefined;
+    if(confirmado == true && confirmado2 == true)
+  processing.exit();
+
 
 }
 if (rectOverCuadroConfirmacion2 && personaje >= 5 && color != undefined){
@@ -646,6 +649,7 @@ if (rectOverCuadroConfirmacion2 && personaje >= 5 && color != undefined){
   color2 = color;
   dime(personaje2,color2);
   confirmado2 = true;
+  if(confirmado == true && confirmado2 == true)
   processing.exit();
 
 }
