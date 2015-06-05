@@ -1,10 +1,9 @@
+World.countPlayer1 = 0;
+World.countPlayer2 = 0;
+World.countRound = 0;
+//World.timeCount = 3;
 
-World.contadorPlayer1 = 0;
-World.contadorPlayer2 = 0;
-World.numMap = 0;
-
-
-function World(idCanvas)
+function World(idCanvas, numMap)
 {
 
 	this.canvas  = document.getElementById(idCanvas);
@@ -178,7 +177,7 @@ function World(idCanvas)
 		new Tile(this.cellWidth, this.cellHeight, true, Images.get("168")),
 		new Tile(this.cellWidth, this.cellHeight, true, Images.get("169")),
 		//147
-		new Tile(this.cellWidth, this.cellHeight, false, Images.get("170")),
+		new Tile(this.cellWidth, this.cellHeight, true, Images.get("170")),
 		new Tile(this.cellWidth, this.cellHeight, false, Images.get("171")),
 		new Tile(this.cellWidth, this.cellHeight, true, Images.get("172")),
 		new Tile(this.cellWidth, this.cellHeight, true, Images.get("173")),
@@ -190,84 +189,140 @@ function World(idCanvas)
 		];
 
 
-
-		this.map = [];
-		
-	if((World.contadorPlayer1 + World.contadorPlayer2)%5 == 0 && (World.contadorPlayer1 + World.contadorPlayer2 >0)){
-		if(World.numMap == 0)
+		if(World.numMap == 0 && World.countRound == 5)
+		{
+			World.countPlayer1 = 0;
+		World.countPlayer2 = 0;
+			World.countRound = 0;
 			World.numMap = 1;
-		else
+		}
+		else if(World.numMap == 1 && World.countRound == 5)
+		{
+			World.countPlayer1 = 0;
+		World.countPlayer2 = 0;
+			World.countRound = 0;
 			World.numMap = 0;
-	}
+		}
+		else
+			World.numMap = numMap;
 
 
+	this.map = [];
 
-		this.map[0] = 
-		[
-		[4, 9, 9, 9, 9, 9, 9, 9, 9, 13, 11, 14, 9, 9, 13, 9, 9, 9, 9, 14, 13, 13, 9, 9, 17],
-		[5, 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18],
-		[7, 0, 0, 54, 0, 0, 0, 57, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 71, 69, 69, 0, 19],
-		[7, 0, 0, 53, 0, 0, 0, 0, 0, 39, 40, 41, 0, 40, 41, 42, 0, 0, 0, 0, 70, 0, 0, 0, 20],
-		[7, 3, 0, 0, 0, 0, 0, 0, 0, 43, 109, 110, 110, 110, 111, 44, 0, 0, 0, 0, 0, 0, 76, 0, 20],
-		[7, 2, 0, 0, 0, 0, 62, 0, 0, 45, 112, 113, 114, 113, 115, 46, 0, 0, 74, 0, 0, 0, 0, 0, 20],
-		[6, 0, 0, 0, 0, 0, 61, 0, 0, 114, 112, 114, 119, 114, 115, 114, 0, 0, 73, 0, 0, 0, 0, 0, 20],
-		[6, 0, 0, 0, 0, 0, 61, 0, 0, 43, 112, 113, 114, 113, 115, 44, 0, 0, 72, 0, 0, 0, 0, 0, 19],
-		[7, 0, 76, 0, 62, 0, 0, 0, 0, 45, 116, 117, 117, 117, 118, 46, 0, 0, 0, 0, 0, 0, 0, 0, 19],
-		[7, 0, 0, 0, 61, 0, 0, 0, 0, 47, 48, 49, 0, 48, 49, 50, 0, 0, 0, 0, 0, 65, 0, 0, 20],
-		[26, 0, 58, 59, 60, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 0, 64, 0, 0, 20],
-		[27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 38, 0, 0, 0, 0, 0, 0, 0, 0, 63, 0, 0, 20],
-		[8, 12, 23, 22, 22, 22, 22, 22, 22, 22, 22, 22, 37, 16, 22, 22, 22, 12, 22, 22, 22, 22, 22, 12, 21]
-		];
+	this.map[0] = 
+	[
+	[ 4,   9,   9,   9,  9,  9,  9,  9,  9,  13,  11,  14,   9,   9,  13,   9,  9,  9,  9, 14,  13, 13,  9,  9, 17],
+	[ 5,  75,   0,  55,  0, 75,  0, 75,  0,  75,   0,  75,  35,  75,  75,  75,  0, 75,  0, 75,   0, 75,  0, 75, 18],
+	[ 7,  75,   0,  54,  0, 75,  0, 15,  0,  75,   0,  75,   0,  75,  75,  75,  0, 76,  0, 75,  71, 69, 69, 75, 19],
+	[ 7,  75,   0,  53,  0, 75,  0, 75,  0,  39,  40,  41, 114,  40,  41,  42,  0, 75,  0, 75,  70, 75,  0, 75, 20],
+	[ 7,  75,   0,  75,  0, 75,  0, 75,  0,  43, 109, 110, 110, 110, 111,  44,  0, 75,  0, 75,   0, 75, 56, 75, 20],
+	[ 7,  75,   0,  75,  0, 75,  3, 75,  0,  45, 112, 113, 114, 113, 115,  46,  0, 75, 74, 75,   0, 75,  0, 65, 20],
+	[ 6,  75,   0,  75,  0, 75,  3, 75,  0, 114, 112, 114, 119, 114, 115, 114,  0, 75, 73, 75,   0, 75,  0, 75, 20],
+	[ 6,  85,   0,  75,  0, 75,  2, 75,  0,  43, 112, 113, 114, 113, 115,  44,  0, 75, 72, 75,   0, 75,  0, 75, 19],
+	[ 7, 152, 100, 152, 62, 75,  0, 75,  0,  45, 116, 117, 117, 117, 118,  46,  0, 75,  0, 75,   0, 75,  0, 75, 19],
+	[ 7, 152, 152, 152, 61, 75,  0, 75,  0,  47,  48,  49, 114,  48,  49,  50,  0, 75,  0, 75,   0, 38,  0, 75, 20],
+	[26, 152,  58,  59, 92, 75,  0, 52,  0,  75,   0,  75,   0,  75,   0,  75,  0, 51,  0, 75,   0, 65,  0, 75, 20],
+	[27,  75,   0,  75,  0, 75,  0, 75,  0,  75,   0,  75,  38,  75,   0,  75,  0, 75,  0, 75,   0, 57,  0, 75, 20],
+	[ 8,  12,  23,  22, 22, 22, 22, 22, 22,  22,  22,  22,  37,  16,  22,  22, 22, 12, 22, 22,  22, 22, 22, 12, 21]
+	];
 
 
-		this.map[1] =
-		[     
-		[ 4,  9,  9,  9,   9,   9,   9,  9,  9,   9,   9,   9,   9,  13,   11,  14,   9,   9,  13,    9,   9,   9,   9,  14, 13,  13,  9,  9, 17],
-		[ 5,  0,  0, 80,   85,   64,  85, 64, 85,  64,  85,  64,  85,  64,   85,  64,  85,  64,  85,   87,  80,   136,   137,   137,  137,   137,  137,  138, 18],
-		[ 7,  0,  0, 80,   149,   63,   149,  63,  149,  63,   149,  63,   149,  63,    149,  63,   149,  63,   149,   86,  80,   139,   140,   120,  121,   122,  140,  141, 19],
-		[ 7,  0,  0,  0,   149,   149,   149,  149,  149,   149,   149,   149,   149,   149,    149,   149,   149,   149,   149,   149,  80,   139,   123,   124,  125,   126,  127,  141, 20],
-		[ 7,  0,  0,  0,   149,   149,   149,  149,  149,   149,   149,   149,   149,   149,    149,   149,   149,   149,   149,   149,  150,   139,   128,   129,  130,   131,  132,  141, 20],
-		[ 7,  0,  0,  80,   149,   149,   149,  149,  149,   149,   149,   149,   149,   149,    149,   149,   149,   149,   149,   149,  151,   139,   140,   133,  134,   135,  140,  141, 20],
-		[ 7,  0,  0,  80,   149,   149,   149,  149,  149,   149,   149,   149,   149,   149,    149,   149,   149,   149,   149,   88,  80,   139,   140,   140,  140,   140,  140,  141, 20],
-		[ 7,  0,  0,  80,   147,   148,   147,  149,  147,   148,   147,   149,   149,   149,    149,   149,   149,   149,   149,   88,  80,   142,   143,   143,  143,   143,  143,  144, 20],
-		[ 7,  0,  0, 82,  83,  83,  83, 83, 83,  83,  83,  83,   0,   0,   83,  83,  83,  83,  83,   83,  83,  83,  83,  83, 83,  145, 146, 83, 20],
-		[ 6,  0,  0,  0,   0,   0,   0,  0,  0,   0,   0,   0,   0,   0,    0,   0,   0,   0,   0,    0,   0,   0,   0,   0,  0,   0,  0,  0, 20],
-		[ 6,  0,  0,  0,   0,   0,   0,  0,  0,   0,   0,   0,   0,   0,    0,   0,   0,   0,   0,    0,   0,   0,   0,   0,  0,   0,  0,  0, 20],
-		[ 7,  0,  0, 77,  78,   78,   0,  0,  78,  78,  78,  0,   0,   78,   78,  79,  77,  78,  78,   78,  78,  78,  78,  78, 78,  78, 79,  0, 19],
-		[ 7,  0,  0, 80,  97,   152,   152,  152,  90,  89,  92,  152,   152,   152,   94,  81,  80,  68,  66,   67,  66,  67,  66,  67, 66,  67, 81,  0, 20],
-		[26,  0,  0, 80,  98,   152,   152,  152,  152,   100,  152,   152,   152,   152,   95,  81,  80, 100, 100,    152,   152, 100, 100,   152,  152,   100, 81,  0, 20],
-		[27,  0,  0, 80,  99,   152,   152,  152,  152,   152,   152,   152,   152,   152,   96,  81,  80,   152,   152,    152,   152,   152,   152,   152,  152,   152, 81,  0, 20],
-		[ 6,  105,  106, 80,   152,   152,  152,  152,   152,   152,   152,   152,   152,   152,    152,   152,   152,   152,   152,    152,   152,   152,   152,   152,  152,   152,  0,  0, 20],
-		[ 6,  107,  108, 80,   152,   152,  152,  152,   152,   152,   152,   152,   152,   152,    152,   152,   152,   152,   152,    152,   152,   152,   152,   152,  152,   152,  0,  0, 19],
-		[ 8, 12, 23, 22,  22,  22,  22, 22, 22,  22,  22,  22,  22,  22,   22,  22,  22,  16,  22,   22,  22,  12,  22,  22, 22,  22, 22, 12, 21]
-		];
-
+	this.map[1] =
+	[     
+	[ 4,   9,   9,   9,   9,   9,   9,   9,   9,   9,   9,   9,   9,  13,  11,  14,   9,   9,  13,   9,   9,   9,   9,  14,  13,  13,   9,   9, 17],
+	[ 5, 153, 153,  80,  85,  64,  85,  64,  85,  64,  85,  64,  85,  64,  85,  64,  85,  87,  80, 136, 137, 137, 137, 137, 137, 137, 137, 138, 18],
+	[ 7, 153, 153,  80, 149,  63, 149,  63, 149,  63, 149,  63, 149,  63, 149,  63, 149,  86,  80, 139, 140, 140, 120, 121, 122, 140, 140, 141, 19],
+	[ 7, 153, 153, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149,  80, 139, 140, 123, 124, 125, 126, 127, 140, 141, 20],
+	[ 7, 153, 153, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 149, 150, 139, 140, 128, 129, 130, 131, 132, 140, 141, 20],
+	[ 7, 153, 153,  80, 149, 147, 149, 149, 147, 147, 147, 149, 149, 149, 149, 149, 149, 149, 151, 139, 140, 140, 133, 134, 135, 140, 140, 141, 20],
+	[ 7, 153, 153,  80, 147, 148, 147, 149, 148, 148, 148, 149, 149, 149, 103,   1,   1,  88,  80, 139, 140, 140, 140, 140, 140, 140, 140, 141, 20],
+	[ 7, 153, 153,  80, 149, 147, 149, 149, 147, 147, 147, 149, 149, 149, 102,   1,   1,  88,  80, 142, 143, 143, 143, 143, 143, 143, 143, 144, 20],
+	[ 7, 153, 153,  82,  83,  83,  83,  83,  83,  83,  83,  83, 149, 149,  83,  83,  83,  83,  83,  83,  83,  83,  83,  83,  83, 145, 146,  83, 20],
+	[ 6, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 20],
+	[ 6, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 153, 20],
+	[ 7, 153,  77,  78,  78, 152, 152,  78,  78,  78, 152, 152,  78,  78,  79,  77,  78,  78,  78,  78,  78,  78,  78,  78,  78,  79, 153, 153, 19],
+	[ 7, 153,  80,  97, 152, 152, 152,  90,  89,  92, 152, 152, 152,  94,  81,  80,  68,  66,  67,  66,  67,  66,  67,  66,  67,  81, 153, 153, 20],
+	[26, 153,  80,  98, 152, 152, 152, 152, 100, 152, 152, 152, 152,  95,  81,  80, 100, 100, 152, 152, 100, 100, 152, 152, 100,  81, 153, 153, 20],
+	[27, 153,  80,  99, 152, 152, 152, 152, 152, 152, 152, 152, 152,  96,  81,  80, 152, 152, 152, 152, 152, 152, 152, 152, 152,  81, 153, 153, 20],
+	[ 6, 153, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 153, 153, 20],
+	[ 6, 153, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 152, 153, 153, 19],
+	[ 8,  12,  23,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  16,  22,  22,  22,  12,  22,  22, 22,   22,  22,  12, 21]
+	];
 
 	this.canvas.width  = this.cellWidth*this.map[World.numMap][0].length;
-		this.canvas.height = this.cellHeight*this.map[World.numMap].length;
+	this.canvas.height = this.cellHeight*this.map[World.numMap].length;
 
-		this.player;
-		this.player2;
-		this.initPlayer();
+	this.player;
+	this.player2;
+	this.initPlayer();
 
-		this.shoots;
-		this.bullets = [];
+	this.shoots;
+	this.bullets = [];
 
-		var self = this;
-		this.timePassed = new Date().getTime();
-		this.interval   = setInterval(function(){self.loop()},10); //Loop y cada cuanto tiempo debe actualizar.
+	var self = this;
+	this.init = true;
+	this.timePassed = new Date().getTime();
+	emp=new Date();
+
+	/*World.prototype.countdown = function()
+	{
+		this.context.font = "140px transformer";	
+
+		if(World.timeCount == 0)
+		{
+			this.context.fillStyle = "black";
+			this.context.fillText("GO!", this.canvas.width/2-80, this.canvas.height/2+20);
+			this.context.fillStyle = "yellow";
+			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
+			return false;
+		}
+		else
+		{
+			this.context.fillStyle = "black";
+			this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
+			this.context.fillStyle = "yellow";
+			this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
+			World.timeCount--;
+
+			return true;
+		}
+	}
+	this.drawCount = function()
+	{
+		self.drawMap();
+		self.countdown();
+		self.drawScore(self.player.life, self.player2.life);
+		self.drawCharacters();
+		self.drawBullet();
 	}
 
-	World.prototype.initPlayer = function()
+	if(this.countdown())
 	{
-		var x = Math.floor((Math.random()*2)+1);
+		clearInterval(this.interval);
+		setInterval(this.drawCount, 1000);
+	}*/
+
+			this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
+		}
+
+		World.prototype.initPlayer = function()
+		{
+			var x = Math.floor((Math.random()*2)+1);
 		var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
-		var z = Math.floor((Math.random()*2)+22);
-		var t = Math.floor((Math.random()*3)+9);
+		if(World.numMap == 0)
+		{
+			var z = Math.floor((Math.random()*2)+22);
+			var t = Math.floor((Math.random()*3)+9);
+		}
+		else
+		{
+			var z = Math.floor((Math.random()*2)+26);
+			var t = Math.floor((Math.random()*3)+14);
+		}
 
-		this.player  = new Player(this, 40, 40, x+0.5, y+0.5, "player1");
-		this.player2 = new Player(this, 40, 40, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
+		this.player  = new Player(this, 50, 50, x+0.5, y+0.5, "player1");
+		this.player2 = new Player(this, 50, 50, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
 		var self    = this;
 
 		document.body.onkeydown = function(e)
@@ -317,6 +372,7 @@ function World(idCanvas)
 			case 32: //Space
 			e.preventDefault();
 			break;
+
 		}
 	};
 	document.body.onkeyup = function(e)
@@ -408,6 +464,9 @@ World.prototype.drawMap = function()
 	var y = this.map[World.numMap].length;
 	var x = this.map[World.numMap][0].length;
 
+	this.context.fillStyle = "black";
+	//this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
 	for(var yi=0; yi<y; yi++)
 		for(var xi=0; xi<x; xi++)
 			this.allTiles[this.map[World.numMap][yi][xi]].draw(this.context, xi, yi);
@@ -423,9 +482,27 @@ World.prototype.drawMap = function()
 	{
 		var vida = 10;
 		
+		this.context.font = "bold 40px transformer"; //Estilo de letra y tamaño.
+
+		this.context.drawImage(Images.get("0"), 400, 0, 50, 50);
+		this.context.drawImage(Images.get("1"), 550, 5, 45, 45);
+
+		//Puntuacion de ambos jugadores.
+		this.context.fillStyle = "black";
+		this.context.fillText(World.countPlayer1, 469, 40);
+		this.context.fillStyle = "white";
+		this.context.fillText(World.countPlayer1, 465, 40);
+
+		this.context.fillStyle = "black";
+		this.context.fillText(World.countPlayer2, 519, 40);
+		this.context.fillStyle = "white";
+		this.context.fillText("-", 495, 35);
+		this.context.fillText(World.countPlayer2, 515, 40);
+
 		this.context.font = "bold 22px transformer"; //Estilo de letra y tamaño.
 
-		this.context.fillStyle = "yellow"; //Para mostrar la vida.
+		//Vida de los jugadores.
+		this.context.fillStyle = "yellow"; 
 		this.context.fillRect(50,15, vida*30, 25);
 		this.context.fillRect(this.canvas.width-50,15, -vida*30, 25);
 
@@ -478,54 +555,169 @@ World.prototype.drawMap = function()
 			this.context.drawImage(Images.get("1"), this.canvas.width/2+100,this.canvas.height/2-150, 150, 150);
 			
 			this.context.fillStyle = "black";
-			this.context.fillText(player1, this.canvas.width/2-193, this.canvas.height/2+125);
+			this.context.fillText(player1, this.canvas.width/2-180, this.canvas.height/2+120);
 			this.context.fillStyle = "orange";
 			this.context.fillText(player1, this.canvas.width/2-200, this.canvas.height/2+125);
 
 			this.context.fillStyle = "black";
-			this.context.fillText(player2, this.canvas.width/2+150, this.canvas.height/2+125);
+			this.context.fillText(player2, this.canvas.width/2+163, this.canvas.height/2+120);
 			this.context.fillStyle = "orange";
 			this.context.fillText(player2, this.canvas.width/2+143, this.canvas.height/2+125);			
 		}
 
 		World.prototype.gameOver = function()
 		{
-			if(this.player.life <= 0 || this.player2.life <= 0)
-			{
-				if(this.player.life <= 0)
-					World.contadorPlayer2++;
-				if(this.player2.life <= 0)
-					World.contadorPlayer1++;
 
+			if(this.player.life <= 0)
+			{
+				this.player.life = 0;
+				World.countPlayer2++;
+				World.countRound++;
 				return true;
 			}
+			if(this.player2.life <= 0)
+			{
+				World.countRound++;
+				this.player2.life = 0;
+				World.countPlayer1++;
+				return true;
+			}
+
 			return;
 		}
 
-		World.prototype.loop = function()
+		World.prototype.drawTime = function()
 		{
-			var that = this;
-			var delta = (new Date().getTime()) - this.timePassed;
-			this.timePassed = new Date().getTime();
-			this.drawMap();
-			this.drawScore(this.player.life, this.player2.life);
-			this.drawCharacters();
-			this.drawBullet();
 
-			if(this.gameOver())
-			{
-				this.nextRound = function()
-				{
-					new World("canvas1");
-				}
+			this.context.font = "40px transformer";	
 
-				clearInterval(this.interval);
-				this.drawResults(World.contadorPlayer1, World.contadorPlayer2);
-				setTimeout(this.nextRound, 3000);
-			}
+			this.context.fillStyle = "black";
+			this.context.fillText(mn + "." + sg + "." + cs, 685, 40);
+
+			if(mn == 1 && sg >= 25)
+				this.context.fillStyle = "red";
+			else if(mn == 1 && sg>= 15)
+				this.context.fillStyle = "yellow";
 			else
-			{
-				this.moveCharacters(delta);
-				this.moveShoots(delta);
-			}
-		};
+				this.context.fillStyle = "white";
+
+			this.context.fillText(mn + "." + sg + "." + cs, 680, 40);
+
+		}
+
+		World.prototype.finishTime = function()
+		{
+			now = new Date();
+        //tiempo del crono (cro) = fecha instante (actual) - fecha inicial (emp)	
+        cro=now-emp;
+    	 cr=new Date(); //paso el num. de milisegundos a objeto fecha.	
+    	 cr.setTime(cro);
+    	 cs=cr.getMilliseconds();
+    	cs=cs/10; //paso a centésimas de segundo.	
+     	cs=Math.round(cs); //redondear las centésimas	
+     	sg=cr.getSeconds();  	
+     	mn=cr.getMinutes(); 
+
+     	   //poner siempre 2 cifras en los números			 
+     	   if (cs<10)
+     	   	cs="0"+cs;
+     	   if (sg<10) 
+     	   	sg="0"+sg;
+     	   if (mn<10) 
+     	   	mn="0"+mn; 
+
+     	   if (mn == 1 && sg >= 30)
+     	   	if(this.player.life > this.player2.life)
+     	   	{
+     	   		World.countPlayer1++;
+     	   		World.countRound++;
+     	   		return true;
+     	   	}
+     	   	else if(this.player.life < this.player2.life)
+     	   	{
+     	   		World.countPlayer2++;
+     	   		World.countRound++;
+     	   		return true;
+     	   	}
+     	   	else
+     	   	{
+     	   		World.countRound++;
+     	   		return true;
+     	   	}
+     	   	return;
+     	   }
+
+     	/*World.prototype.countdown = function()
+     	{
+     		this.context.font = "140px transformer";	
+
+     		if(World.timeCount == 0)
+     		{
+     			this.context.fillStyle = "black";
+     			this.context.fillText("GO!", this.canvas.width/2-80, this.canvas.height/2+20);
+     			this.context.fillStyle = "yellow";
+     			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
+     			this.init = false;
+     			return false;
+     		}
+     		else
+     		{
+     			this.context.fillStyle = "black";
+     			this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
+     			this.context.fillStyle = "yellow";
+     			this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
+     			World.timeCount--;
+
+     			return true;
+     		}
+     	}*/
+
+     	World.prototype.loop = function()
+     	{
+     		var that = this;
+     		var delta = (new Date().getTime()) - this.timePassed;
+     		this.timePassed = new Date().getTime();
+
+     		/*var time = function()
+     		{
+     			that.drawTime();
+     		}*/
+
+     		/*this.drawCount = function()
+     		{
+     			that.drawMap();
+     			that.drawScore(that.player.life, that.player2.life);
+     			that.drawCharacters();
+     			that.drawBullet();
+     			that.countdown();
+     		}
+
+     		if(this.countdown())
+     		{
+     			clearInterval(this.interval);
+     			setInterval(this.drawCount, 1000);
+     		}
+     		*/
+     		this.drawMap();
+     		this.drawScore(this.player.life, this.player2.life);
+     		this.drawCharacters();
+     		this.drawBullet();
+
+     		if(this.gameOver() || this.finishTime())
+     		{
+     			this.nextRound = function()
+     			{
+     				new World("canvas1", World.numMap);
+     			}
+
+     			clearInterval(this.interval);
+     			this.drawResults(World.countPlayer1, World.countPlayer2);
+     			setTimeout(this.nextRound, 3000);
+     		}
+     		else
+     		{
+     			this.moveCharacters(delta);
+     			this.moveShoots(delta);
+     			this.drawTime();
+     		}
+     	};

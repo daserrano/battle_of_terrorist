@@ -24,7 +24,7 @@ function sketchProc(processing) {
   var dibujaConfirmar = false, dibujaConfirmar2 = false;
   var rectXCONF1, rectXCONF2, rectYCONF1, rectYCONF2;
 
-
+  var llenar1 = true, llenar2 = true, llenar3 = true, llenar4 = true, llenar5 = true, llenar6 = true, llenar7 = true, llenar8 = true, llenarCuadroRojo = true, llenarCuadroVerde = true, llenarCuadroAzul = true, llenarCuadroConfirmacion1 = true, llenarCuadroConfirmacion2 = true;
 
       //SETUP Processing
       processing.size(1250, 650);
@@ -82,7 +82,9 @@ function sketchProc(processing) {
   //DRAW
   processing.draw = function() { 
     processing.background(0);
+    processing.fill(204, 204, 0);
     processing.text("Elige un personaje", 310, 310);
+
 
     processing.image(logo, 475, 25, 300, 150, 7);
     processing.image(primerPersonaje, 75, 350,50,70);
@@ -107,108 +109,248 @@ function sketchProc(processing) {
       ypos = processing.constrain(ypos, 0, processing.height-MOD.height);
     }  
     processing.stroke(255);
+    if(llenar1 == true){
+    processing.fill(204, 204, 0);
     processing.rect(rectCharacter1_X, rectCharacter1_Y, 93.5, 50, 10);
+  }
+  else{
+    processing.noFill();
+    processing.rect(rectCharacter1_X, rectCharacter1_Y, 93.5, 50, 10);
+}
+if(llenar2 == true){
+    processing.fill(204, 204, 0);
     processing.rect(rectCharacter2_X, rectCharacter2_Y, 93.5, 50, 10);
-    processing.rect(rectCharacter3_X, rectCharacter3_Y, 93.5, 50, 10);
-    processing.rect(rectCharacter4_X, rectCharacter4_Y, 93.5, 50, 10);
+  }
 
+else{
+        processing.noFill();
+    processing.rect(rectCharacter2_X, rectCharacter2_Y, 93.5, 50, 10);
+
+
+}
+
+if(llenar3 == true){
+
+
+    processing.fill(204, 204, 0);
+    processing.rect(rectCharacter3_X, rectCharacter3_Y, 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+    processing.rect(rectCharacter3_X, rectCharacter3_Y, 93.5, 50, 10);
+}
+
+
+if(llenar4 == true){
+
+
+    processing.fill(204, 204, 0);
+    processing.rect(rectCharacter4_X, rectCharacter4_Y, 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+    processing.rect(rectCharacter4_X, rectCharacter4_Y, 93.5, 50, 10);
+}
+if(llenar5 == true){
+
+
+    processing.fill(204, 204, 0);
     processing.rect(rectCharacter5_X, rectCharacter5_Y, 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+    processing.rect(rectCharacter5_X, rectCharacter5_Y, 93.5, 50, 10);
+}
+if(llenar6 == true){
+
+
+    processing.fill(204, 204, 0);
     processing.rect(rectCharacter6_X, rectCharacter6_Y, 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+    processing.rect(rectCharacter6_X, rectCharacter6_Y, 93.5, 50, 10);
+}
+if(llenar7 == true){
+
+
+    processing.fill(204, 204, 0);
     processing.rect(rectCharacter7_X, rectCharacter7_Y, 93.5, 50, 10);
-    processing.rect(rectCharacter8_X, rectCharacter8_Y, 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+    processing.rect(rectCharacter7_X, rectCharacter7_Y, 93.5, 50, 10);
+}
+   
+    if(llenar8 == true){
+      processing.fill(204, 204, 0);
+      processing.rect(rectCharacter8_X, rectCharacter8_Y, 93.5, 50, 10);
+
+    }
+    else{
+
+      processing.noFill();
+      processing.rect(rectCharacter8_X, rectCharacter8_Y, 93.5, 50, 10);
+    }
+
+
+
 
     if((personaje ==1 || personaje == 2 || personaje == 3 ||personaje == 4) && (
       (color == "rojo" || color == "azul" || color == "verde")|| color1 != undefined)){
       rectDone = true;
+    if(llenarCuadroConfirmacion1 == true && confirmado == false){
+          processing.fill(204, 204, 0);
+
     processing.rect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100, 10);
+
+
+  }
+  else{
+      processing.noFill();
+
+        processing.rect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100, 10);
+
+  }
+
   }
   if(personaje >= 5 && (color == "rojo" || color == "azul" || color == "verde") && confirmado == true){
    rectDone2 = true;
+   if(llenarCuadroConfirmacion2 == true){
+              processing.fill(204, 204, 0);
+
    processing.rect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100, 10);
+
+ }
+ else{
+        processing.noFill();
+   processing.rect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100, 10);
+}
+
  }
 
 
  update(processing.mouseX, processing.mouseY);
 
- if (rectOverCharacter1) {
+ if (rectOverCharacter1 ||personaje == 1) {
   mostrarPersonaje1 = true;
   estoyEnUno = true;
   escribeTexto();
-  processing.noFill();
+    llenar1 = false;
+
+ // processing.noFill();
 } 
+else
+llenar1 = true;
 estoyEnUno = false;
 mostrarPersonaje1 = false;
-if (rectOverCharacter2) {
+if (rectOverCharacter2 || personaje == 2) {
   mostrarPersonaje2 = true;
   estoyEnUno = true;
   escribeTexto();
-  processing.noFill();
+    llenar2 = false;
+
+ // processing.noFill();
 } 
+else
+llenar2 = true;
 estoyEnUno = false;
 mostrarPersonaje2 = false;
-if (rectOverCharacter3) {
+if (rectOverCharacter3 || personaje == 3 ) {
   mostrarPersonaje3 = true;
   estoyEnUno = true;
   escribeTexto();
-  processing.noFill();
+    llenar3 = false;
+
+//  processing.noFill();
 } 
+else
+llenar3 = true;
 estoyEnUno = false;
 mostrarPersonaje3 = false;
-if (rectOverCharacter4) {
+if (rectOverCharacter4 || personaje == 4) {
   mostrarPersonaje4 = true;
   estoyEnUno = true;
   escribeTexto();
-  processing.noFill();
+    llenar4 = false;
+
+//  processing.noFill();
 } 
+else
+llenar4 = true;
 mostrarPersonaje4 = false;
 estoyEnUno = false;
-if (rectOverCharacter5) {
+if (rectOverCharacter5 ||personaje == 5) {
   mostrarPersonaje1_2 = true;
   estoyEnUno = true;
   escribeTexto2();
-  processing.noFill();
+    llenar5 = false;
+
+ // processing.noFill();
 } 
+else
+llenar5 = true;
 estoyEnUno = false;
 mostrarPersonaje1_2 = false;
-if (rectOverCharacter6) {
+if (rectOverCharacter6 ||personaje == 6) {
   mostrarPersonaje2_2 = true;
   estoyEnUno = true;
   escribeTexto2();
-  processing.noFill();
+    llenar6 = false;
+
+ // processing.noFill();
 } 
+else
+llenar6 = true;
 estoyEnUno = false;
 mostrarPersonaje2_2 = false;
-if (rectOverCharacter7) {
+if (rectOverCharacter7 ||personaje == 7) {
   mostrarPersonaje3_2 = true;
   estoyEnUno = true;
   escribeTexto2();
-  processing.noFill();
+    llenar7 = false;
+
+ // processing.noFill();
 } 
+else
+llenar7 = true;
 estoyEnUno = false;
 mostrarPersonaje3_2 = false;
-if (rectOverCharacter8) {
+if (rectOverCharacter8 ||personaje == 8) {
   mostrarPersonaje4_2 = true;
   estoyEnUno = true;
   escribeTexto2();
-  processing.noFill();
+  llenar8 = false;
 } 
+else
+llenar8 = true
+//llenar8 = true
 estoyEnUno = false;
 mostrarPersonaje4_2 = false;
-if (rectOverCuadroConfirmacion1){
+if (rectOverCuadroConfirmacion1 || confirmado == true){
+  llenarCuadroConfirmacion1 = false;
   estoyEnUno = true;
   processing.textFont(transformer, 25);
   if(confirmado == false && rectDone == true)
     processing.text("CONFIRMAR", 60, 550);
   else if (confirmado == true && (personaje != 5 && personaje != 6 && personaje != 7 && personaje != 8)){
     processing.text("CONFIRMADO!\nJUGADOR 1", 55, 550);
-crearRectangulosColores = false;
+    crearRectangulosColores = false;
       //dime(personaje, color);
     }
-   if(rectDone == true)
-    processing.noFill();
+   //if(rectDone == true)
+    //processing.noFill();
   }
+  else
+    llenarCuadroConfirmacion1 = true;
   estoyEnUno = false;
   if (rectOverCuadroConfirmacion2){
+    llenarCuadroConfirmacion2 = false;
     estoyEnUno = true;
     processing.textFont(transformer, 25);
     if(confirmado2 == false && rectDone2 == true)
@@ -218,54 +360,104 @@ crearRectangulosColores = false;
      // dime(personaje, color);
 
    }
-   if(rectDone2 == true)
-   processing.noFill();
- }
- estoyEnUno = false;
+  // if(rectDone2 == true)
+  // processing.noFill();
+}
+else
+llenarCuadroConfirmacion2 = true;
+estoyEnUno = false;
 
 
- if(revisionColores == true){
-  if (rectOverColorRed){
-    if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
-      escribeTexto();
-    else
-      escribeTexto2();
+if(revisionColores == true){
+  if (rectOverColorRed || color == "rojo"){
+   // if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
+   //   escribeTexto();
+   // else
+   //   escribeTexto2();
+    llenarCuadroRojo = false;
 //if(personaje == 1 || personaje == 2 || personaje == 3|| personaje == 4 && confirmado == false){
-if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){
-    processing.fill(235, 0, 0);
+  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){
+    //processing.fill(235, 0, 0);
     processing.text(" ROJO ", 300, 585);
-    processing.noFill();
-}
-  } 
-  if (rectOverColorBlue){
-    if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
-      escribeTexto();
-    else
-      escribeTexto2();
-if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    processing.fill(0, 0, 235);
-    processing.text(" AZUL ", 580, 585);
-    processing.noFill();
-}
-  } 
-  if (rectOverColorGreen){
-    if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
-      escribeTexto();
-    else
-      escribeTexto2();
-if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    processing.fill(0, 210, 0);
-    processing.text("VERDE ", 875, 585);
-    processing.noFill();
-}
-  } 
+    //processing.noFill();
+
+  }
+} 
+  else 
+    llenarCuadroRojo = true;
+if (rectOverColorBlue || color == "azul"){
+  llenarCuadroAzul = false;
+  if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
+    escribeTexto();
+  else
+    escribeTexto2();
+  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+ // processing.fill(0, 0, 235);
+ processing.text(" AZUL ", 580, 585);
+    //processing.noFill();
+  }
+} 
+else
+llenarCuadroAzul = true;
+if (rectOverColorGreen || color == "verde"){
+  llenarCuadroVerde = false;
+  if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
+    escribeTexto();
+  else
+    escribeTexto2();
+  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+  //processing.fill(0, 210, 0);
+  processing.text("VERDE ", 875, 585);
+    //processing.noFill();
+  }
+} 
+else
+llenarCuadroVerde = true;
     }//Si no hemos pinchado
-    if(rectOverCharacter1 == false && rectOverCharacter2 == false && rectOverCharacter3 == false && rectOverCharacter4 == false && rectOverCharacter5 == false && rectOverCharacter6 == false && rectOverCharacter7 == false && rectOverCharacter8 == false && rectOverColorRed == false && rectOverColorBlue == false && rectOverColorGreen == false && rectOverCuadroConfirmacion1 == false && rectOverCuadroConfirmacion2 == false){
-      processing.fill(204, 204, 0);
-    }
+    //if(rectOverCharacter1 == false && rectOverCharacter2 == false && rectOverCharacter3 == false && rectOverCharacter4 == false && rectOverCharacter5 == false && rectOverCharacter6 == false && rectOverCharacter7 == false && rectOverCharacter8 == false && rectOverColorRed == false && rectOverColorBlue == false && rectOverColorGreen == false && rectOverCuadroConfirmacion1 == false && rectOverCuadroConfirmacion2 == false){
+      //processing.fill(204, 204, 0);
+    //}
+    //if(rectOverCharacter8 == false)
+    //  llenar8 = true;
     if(crearRectangulosColores == true){
       revisionColores = true;
+      if(llenarCuadroRojo == true){
+    processing.fill(204, 204, 0);
       processing.rect(rectColorRedX, rectColorRedY, 213, 50, 22);
+
+    }
+    else{
+      processing.noFill();
+      processing.rect(rectColorRedX, rectColorRedY, 213, 50, 22);
+
+
+    }
+
+    if(llenarCuadroAzul == true){
+    processing.fill(204, 204, 0);
       processing.rect(rectColorBlueX, rectColorBlueY, 213, 50, 22);
+
+    }
+    else{
+      processing.noFill();
+      processing.rect(rectColorBlueX, rectColorBlueY, 213, 50, 22);
+
+
+    }
+
+     if(llenarCuadroVerde == true){
+    processing.fill(204, 204, 0);
+
       processing.rect(rectColorGreenX, rectColorGreenY, 213, 50, 22);
+    }
+    else{
+      processing.noFill();
+            processing.rect(rectColorGreenX, rectColorGreenY, 213, 50, 22);
+
+
+
+    }
+
     }
 
   };//draw
@@ -276,29 +468,29 @@ if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 
     if(mostrarPersonaje1 || personaje == 1 && estoyEnUno == false){
       processing.textFont(transformer, 25);
       processing.text("JACK", 70, 465);
-      processing.text("  ?  ", 210, 465);
-      processing.text("  ?  ", 354, 465);
-      processing.text("  ?  ", 495, 465);
+      //processing.text("  ?  ", 210, 465);
+     // processing.text("  ?  ", 354, 465);
+      //processing.text("  ?  ", 495, 465);
     }
     if(mostrarPersonaje2 || personaje == 2 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 65, 465);
+      //processing.text("  ?  ", 65, 465);
       processing.text("ELLIE", 210, 465);
-      processing.text("  ?  ", 354, 465);
-      processing.text("  ?  ", 495, 465);
+      //processing.text("  ?  ", 354, 465);
+     // processing.text("  ?  ", 495, 465);
     }
     if(mostrarPersonaje3 || personaje == 3 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 210, 465);
-      processing.text("  ?  ", 65, 465);
+      //processing.text("  ?  ", 210, 465);
+      //processing.text("  ?  ", 65, 465);
       processing.text("PAUL", 354, 465);
-      processing.text("  ?  ", 495, 465);
+     // processing.text("  ?  ", 495, 465);
     }
     if(mostrarPersonaje4 || personaje == 4 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 65, 465);
-      processing.text("  ?  ", 210, 465);
-      processing.text("  ?  ", 354, 465);
+      //processing.text("  ?  ", 65, 465);
+      //processing.text("  ?  ", 210, 465);
+      //processing.text("  ?  ", 354, 465);
       processing.text("BILLY", 500, 465);
     }
 
@@ -309,29 +501,29 @@ if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 
     if(mostrarPersonaje1_2 || personaje == 5 && estoyEnUno == false){
       processing.textFont(transformer, 25);
       processing.text("JACK", 695, 465);
-      processing.text("  ?  ", 825, 465);
-      processing.text("  ?  ", 970, 465);
-      processing.text("  ?  ", 1116, 465);
+      //processing.text("  ?  ", 825, 465);
+      //processing.text("  ?  ", 970, 465);
+      //processing.text("  ?  ", 1116, 465);
     }
     if(mostrarPersonaje2_2 || personaje == 6 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 695, 465);
+     // processing.text("  ?  ", 695, 465);
       processing.text("ELLIE", 830, 465);
-      processing.text("  ?  ", 970, 465);
-      processing.text("  ?  ", 1116, 465);
+      //processing.text("  ?  ", 970, 465);
+      //processing.text("  ?  ", 1116, 465);
     }
     if(mostrarPersonaje3_2 || personaje == 7 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 695, 465);
-      processing.text("  ?  ", 825, 465);
+      //processing.text("  ?  ", 695, 465);
+      //processing.text("  ?  ", 825, 465);
       processing.text("PAUL", 970, 465);
-      processing.text("  ?  ", 1116, 465);
+      //processing.text("  ?  ", 1116, 465);
     }
     if(mostrarPersonaje4_2 || personaje == 8 && estoyEnUno == false){
       processing.textFont(transformer, 25);
-      processing.text("  ?  ", 695, 465);
-      processing.text("  ?  ", 825, 465);
-      processing.text("  ?  ", 970, 465);
+      //processing.text("  ?  ", 695, 465);
+      //processing.text("  ?  ", 825, 465);
+      //processing.text("  ?  ", 970, 465);
       processing.text("BILLY", 1116, 465);
     }
 
@@ -373,33 +565,33 @@ if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 
       rectOverColorGreen = true;
     }
     //else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) && color != undefined){
-    else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100)){
-      rectOverCuadroConfirmacion1 = true;
-    }
+      else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100)){
+        rectOverCuadroConfirmacion1 = true;
+      }
     //else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100)&& color != undefined){
-    else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100)){
-      rectOverCuadroConfirmacion2 = true;
-    }
-    if( overRect(rectCharacter1_X, rectCharacter1_Y, 93.5, 50) == false && 
-      overRect(rectCharacter2_X, rectCharacter2_Y, 93.5, 50) == false && 
-      overRect(rectCharacter3_X, rectCharacter3_Y, 93.5, 50) == false && 
-      overRect(rectCharacter4_X, rectCharacter4_Y, 93.5, 50) == false &&
-      overRect(rectCharacter5_X, rectCharacter5_Y, 93.5, 50) == false && 
-      overRect(rectCharacter6_X, rectCharacter6_Y, 93.5, 50) == false && 
-      overRect(rectCharacter7_X, rectCharacter7_Y, 93.5, 50) == false && 
-      overRect(rectCharacter8_X, rectCharacter8_Y, 93.5, 50) == false &&
-      overRect(rectColorRedX, rectColorRedY, 213, 50) == false &&
-      overRect(rectColorBlueX, rectColorBlueY, 213, 50) == false &&
-      overRect(rectColorGreenX, rectColorGreenY, 213, 50) == false &&
-      overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) == false &&
-      overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100) == false
-      ){
+      else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100)){
+        rectOverCuadroConfirmacion2 = true;
+      }
+      if( overRect(rectCharacter1_X, rectCharacter1_Y, 93.5, 50) == false && 
+        overRect(rectCharacter2_X, rectCharacter2_Y, 93.5, 50) == false && 
+        overRect(rectCharacter3_X, rectCharacter3_Y, 93.5, 50) == false && 
+        overRect(rectCharacter4_X, rectCharacter4_Y, 93.5, 50) == false &&
+        overRect(rectCharacter5_X, rectCharacter5_Y, 93.5, 50) == false && 
+        overRect(rectCharacter6_X, rectCharacter6_Y, 93.5, 50) == false && 
+        overRect(rectCharacter7_X, rectCharacter7_Y, 93.5, 50) == false && 
+        overRect(rectCharacter8_X, rectCharacter8_Y, 93.5, 50) == false &&
+        overRect(rectColorRedX, rectColorRedY, 213, 50) == false &&
+        overRect(rectColorBlueX, rectColorBlueY, 213, 50) == false &&
+        overRect(rectColorGreenX, rectColorGreenY, 213, 50) == false &&
+        overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) == false &&
+        overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100) == false
+        ){
 
-      rectOverCharacter1 = rectOverCharacter2 = rectOverCharacter3 = rectOverCharacter4 = 
-    rectOverCharacter5 = rectOverCharacter6 = rectOverCharacter7 = rectOverCharacter8 = 
-    rectOverColorRed = rectOverColorBlue = rectOverColorGreen = 
-    rectOverCuadroConfirmacion1 = rectOverCuadroConfirmacion2 = false;
-  }
+        rectOverCharacter1 = rectOverCharacter2 = rectOverCharacter3 = rectOverCharacter4 = 
+      rectOverCharacter5 = rectOverCharacter6 = rectOverCharacter7 = rectOverCharacter8 = 
+      rectOverColorRed = rectOverColorBlue = rectOverColorGreen = 
+      rectOverCuadroConfirmacion1 = rectOverCuadroConfirmacion2 = false;
+    }
 } //update
 
 
@@ -408,6 +600,8 @@ processing.mousePressed = function() {
   if (rectOverCharacter1 && confirmado == false) {
     crearRectangulosColores = true;
     personaje = 1;
+      //llenar1 = false;
+
   }
   if (rectOverCharacter2 && confirmado == false) {    
    crearRectangulosColores = true;
@@ -490,7 +684,7 @@ var sketch
 var p
 function cargarCanvas(){
   canvas = document.getElementById("canvas1");
- p = new Processing(canvas, sketchProc);
+  p = new Processing(canvas, sketchProc);
   sketch = p.externals.sketch; 
   sketch.options.crispLines = true;
 }

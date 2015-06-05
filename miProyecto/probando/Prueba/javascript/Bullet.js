@@ -44,6 +44,8 @@ Bullet.prototype.detectPlayer = function()
 	if(parseInt(this.px) == parseInt(this.enemy.x) && parseInt(this.py) == parseInt(this.enemy.y))
 	{
 		this.enemy.life -= this.damage;
+		if(this.enemy.life <=0)
+			this.enemy.life = 0;
 		//alert("Player1: " + world.player.life + "\nPlayer2: " + world.player2.life);
 		return true;
 	}

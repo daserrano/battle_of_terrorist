@@ -34,7 +34,7 @@
 		var	contador = 0;
 		
 
-	/*	function dime(pers, col){
+	function dime(pers, col){
 			contador++;
 			if(pers < 5)
 				persona1 = pers;
@@ -46,15 +46,13 @@
 				color2 = col;
 				gameInit();
 			}
-		}*/
+		}
 
 		function gameInit()
 		{
 			Images  = new SaveImages();
 			Sprites = new SaveSprites();
-
 			
-
 			Images.load(
 				[
 				["0",  "images/game/0.png"],
@@ -235,52 +233,50 @@
 				["175",  "images/game/175.png"],
 				["176",  "images/game/176.png"],
 				["177",  "images/game/177.png"]
-
-
 				]);
 
-Images.completed = function() 
-{
+			Images.completed = function() 
+			{
 
 
 
-			/*	switch(persona1){
+				switch(persona1){
 
 					case 1:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("red1"));
+							var spritePlayer1 = new Sprite(Images.get("6"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("blue1"));
+							var spritePlayer1 = new Sprite(Images.get("10"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("green1"));
+							var spritePlayer1 = new Sprite(Images.get("2"));
 						break;
 					}
 					case 2:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("red2"));
+							var spritePlayer1 = new Sprite(Images.get("7"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("blue2"));
+							var spritePlayer1 = new Sprite(Images.get("11"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("green2"));
+							var spritePlayer1 = new Sprite(Images.get("3"));
 						break;
 					}
 					case 3:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("red3"));
+							var spritePlayer1 = new Sprite(Images.get("8"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("blue3"));
+							var spritePlayer1 = new Sprite(Images.get("12"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("green3"));
+							var spritePlayer1 = new Sprite(Images.get("4"));
 						break;
 
 					}
 					case 4:{
 						if (color1 == "rojo")
-							var spritePlayer1 = new Sprite(Images.get("red4"));
+							var spritePlayer1 = new Sprite(Images.get("9"));
 						if (color1 == "azul")
-							var spritePlayer1 = new Sprite(Images.get("blue4"));
+							var spritePlayer1 = new Sprite(Images.get("13"));
 						if (color1 == "verde")
-							var spritePlayer1 = new Sprite(Images.get("green4"));
+							var spritePlayer1 = new Sprite(Images.get("5"));
 						break;
 
 					}
@@ -288,47 +284,45 @@ Images.completed = function()
 				switch(persona2){
 					case 5:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("red1"));
+							var spritePlayer2 = new Sprite(Images.get("6"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("blue1"));
+							var spritePlayer2 = new Sprite(Images.get("10"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("green1"));
+							var spritePlayer2 = new Sprite(Images.get("2"));
 						break;
 
 					}
 					case 6:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("red2"));
+							var spritePlayer2 = new Sprite(Images.get("7"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("blue2"));
+							var spritePlayer2 = new Sprite(Images.get("11"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("green2"));
+							var spritePlayer2 = new Sprite(Images.get("3"));
 						break;
 
 					}
 					case 7:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("red3"));
+							var spritePlayer2 = new Sprite(Images.get("8"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("blue3"));
+							var spritePlayer2 = new Sprite(Images.get("12"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("green3"));
+							var spritePlayer2 = new Sprite(Images.get("4"));
 						break;
 
 					}
 					case 8:{
 						if (color2 == "rojo")
-							var spritePlayer2 = new Sprite(Images.get("red4"));
+							var spritePlayer2 = new Sprite(Images.get("9"));
 						if (color2 == "azul")
-							var spritePlayer2 = new Sprite(Images.get("blue4"));
+							var spritePlayer2 = new Sprite(Images.get("13"));
 						if (color2 == "verde")
-							var spritePlayer2 = new Sprite(Images.get("green4"));
+							var spritePlayer2 = new Sprite(Images.get("5"));
 						break;
 
 					}
-				}*/
-				var spritePlayer2 = new Sprite(Images.get("5"));
-				var spritePlayer1 = new Sprite(Images.get("13"));
+				}
 
 				spritePlayer1.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player1", spritePlayer1);
@@ -336,7 +330,7 @@ Images.completed = function()
 				//var spritePlayer2 = new Sprite(Images.get("red1"));
 				spritePlayer2.createDirection(4,4,0,5,0,0,{"up":3, "down":0, "right":2, "left":1});
 				Sprites.add("player2", spritePlayer2);
-				world = new World("canvas1");
+				world = new World("canvas1", 0);
 			}
 		}
 
