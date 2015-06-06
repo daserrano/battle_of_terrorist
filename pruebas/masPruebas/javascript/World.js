@@ -11,6 +11,7 @@ function World(idCanvas, numMap)
 
 	this.cellWidth  = 50;
 	this.cellHeight = 50;
+	this.numMap = numMap;
 
 	this.allTiles = 
 	[
@@ -188,25 +189,25 @@ function World(idCanvas, numMap)
 	];
 
 
-if(World.countRound == 20)
-	location.reload(true);
+	if(World.countRound == 20)
+		window.location.reload(true);
 
-	if(World.numMap == 0 && World.countRound == 5)
+	if(this.numMap == 0 && World.countRound == 5)
 	{
 		World.countPlayer1 = 0;
 		World.countPlayer2 = 0;
 		World.countRound = 0;
-		World.numMap = 1;
+		this.numMap = 1;
 	}
-	else if(World.numMap == 1 && World.countRound == 5)
+	else if(this.numMap == 1 && World.countRound == 5)
 	{
 		World.countPlayer1 = 0;
 		World.countPlayer2 = 0;
 		World.countRound = 0;
-		World.numMap = 0;
+		this.numMap = 0;
 	}
 	else
-		World.numMap = numMap;
+		this.numMap = numMap;
 
 
 	this.map = [];
@@ -251,8 +252,8 @@ if(World.countRound == 20)
 	[ 8,  12,  23,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  22,  16,  22,  22,  22,  12,  22,  22, 22,   22,  22,  12, 21]
 	];
 
-	this.canvas.width  = this.cellWidth*this.map[World.numMap][0].length;
-	this.canvas.height = this.cellHeight*this.map[World.numMap].length;
+	this.canvas.width  = this.cellWidth*this.map[this.numMap][0].length;
+	this.canvas.height = this.cellHeight*this.map[this.numMap].length;
 
 	this.player;
 	this.player2;
@@ -261,7 +262,7 @@ if(World.countRound == 20)
 	this.shoots;
 	this.bullets = [];
 
-	if(World.numMap == 0)
+	if(this.numMap == 0)
 	{
 		var positionSecrets = 
 		[
@@ -316,12 +317,62 @@ if(World.countRound == 20)
 			this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
 		}
 
+		World.prototype.changeMap = function(numMap)
+		{
+			var img = new Image();
+			img.src = "images/web/S.png";
+			var img2 = new Image();
+			img2.src = "images/web/N.png";
+
+			this.context.fillStyle = "black";
+			this.context.fillText("Quieres cambiar de mapa?", this.canvas.width/2-245, this.canvas.height/2-95);
+			this.context.fillStyle = "yellow";
+			this.context.fillText("Quieres cambiar de mapa?", this.canvas.width/2-250, this.canvas.height/2-100);
+
+			this.context.drawImage(img, this.canvas.width/2-200, this.canvas.height/2, 100, 100);
+			this.context.drawImage(img2, this.canvas.width/2+100, this.canvas.height/2, 100, 100);
+
+			clearInterval(this.interval);
+			document.body.onkeydown = function(e)
+			{
+				switch(e.keyCode)
+				{
+					case 83:
+					e.preventDefault();
+					World.countPlayer1 = 0;
+					World.countPlayer2 = 0;
+					World.countRound = 0;
+
+					if(numMap == 0)
+						new World("canvas1", 1);
+					else
+						new World("canvas1", 0);
+
+					break;
+					case 78:
+					e.preventDefault();
+					new World("canvas1", numMap);
+					break;
+				}
+			}
+			/*if(numMap == 0)
+			{
+				clearInterval(this.interval);
+				new World("canvas1", 1);
+			}
+			else
+			{
+				clearInterval(this.interval);
+				new World("canvas1", 0);
+			}*/
+		}
+
 		World.prototype.initPlayer = function()
 		{
 			var x = Math.floor((Math.random()*2)+1);
 		var y = Math.floor((Math.random()*3)+1); //Posicion aleatoria en el mapa.
 
-		if(World.numMap == 0)
+		if(this.numMap == 0)
 		{
 			var z = Math.floor((Math.random()*2)+22);
 			var t = Math.floor((Math.random()*3)+9);
@@ -440,6 +491,10 @@ if(World.countRound == 20)
 			self.shoots = new Bullet(self, self.player2, self.player);
 			self.bullets.push(self.shoots);
 			break;
+			case 80:
+			e.preventDefault();
+			self.changeMap(self.numMap);
+			break;
 		}
 	};
 };
@@ -449,7 +504,7 @@ World.prototype.cellWalked = function(px, py)
 	var x = parseInt(px);
 	var y = parseInt(py);
 
-	return this.allTiles[this.map[World.numMap][y][x]].walk;
+	return this.allTiles[this.map[this.numMap][y][x]].walk;
 }
 
 World.prototype.moveCharacters = function(delta)
@@ -471,12 +526,12 @@ World.prototype.moveShoots = function(delta)
 
 World.prototype.drawMap = function()
 {
-	var y = this.map[World.numMap].length;
-	var x = this.map[World.numMap][0].length;
+	var y = this.map[this.numMap].length;
+	var x = this.map[this.numMap][0].length;
 
 	for(var yi=0; yi<y; yi++)
 		for(var xi=0; xi<x; xi++)
-			this.allTiles[this.map[World.numMap][yi][xi]].draw(this.context, xi, yi);
+			this.allTiles[this.map[this.numMap][yi][xi]].draw(this.context, xi, yi);
 	};
 
 	World.prototype.drawCharacters = function()
@@ -681,11 +736,11 @@ World.prototype.drawMap = function()
 
      	World.prototype.cantSee = function()
      	{
-     		if(World.numMap == 0)
+     		if(this.numMap == 0)
      		{
-     			//this.allTiles[this.map[World.numMap][yi][xi]].draw(this.context, xi, yi);
-     				this.allTiles[this.map[World.numMap][10][3]].draw(this.context, 3, 10);
-     				this.allTiles[this.map[World.numMap][4][23]].draw(this.context, 23, 4);
+     			//this.allTiles[this.map[this.numMap][yi][xi]].draw(this.context, xi, yi);
+     			this.allTiles[this.map[this.numMap][10][3]].draw(this.context, 3, 10);
+     			this.allTiles[this.map[this.numMap][4][23]].draw(this.context, 23, 4);
 
      		}
      	}
@@ -725,7 +780,7 @@ World.prototype.drawMap = function()
      		{
      			this.nextRound = function()
      			{
-     				new World("canvas1", World.numMap);
+     				new World("canvas1", that.numMap);
      			}
 
      			clearInterval(this.interval);

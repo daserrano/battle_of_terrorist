@@ -55,195 +55,8 @@
 			Sprites = new SaveSprites();
 			
 				for(var i=0; i<= numImages; i++)
-				{
-					//if(numImages == 78)
 						 Images.load([ [i, "images/game/"+i+".png"]]);
-					/*else
-					Images.load([ [i, "images/game/"+i+".png"]]);*/
-				};
 
-/*			Images.load(
-				[
-				/*["0",  "images/game/0.png"],
-				["1",  "images/game/1.png"],
-				["2", 	"images/game/2.png"],
-				["3", 	"images/game/3.png"],
-				["4", 	"images/game/4.png"],
-				["5", 	"images/game/5.png"],
-				["6",   "images/game/6.png"],
-				["7",   "images/game/7.png"],
-				["8",   "images/game/8.png"],
-				["9",   "images/game/9.png"],
-				["10", 	"images/game/10.png"],
-				["11", 	"images/game/11.png"],
-				["12", 	"images/game/12.png"],
-				["13", 	"images/game/13.png"],
-				["14",  "images/game/14.png"],
-				["15",  "images/game/15.png"],
-				["16",  "images/game/16.png"],
-				["17",  "images/game/17.png"],
-				["18",  "images/game/18.png"],
-				["19",  "images/game/19.png"],
-				["20",  "images/game/20.png"],
-				["21",  "images/game/21.png"],
-				["22",  "images/game/22.png"],
-				["23",  "images/game/23.png"],
-				["24",  "images/game/24.png"],
-				["25",  "images/game/25.png"],
-				["26",  "images/game/26.png"],
-				["27",  "images/game/27.png"],
-				["28",  "images/game/28.png"],
-				["29",  "images/game/29.png"],
-				["30",  "images/game/30.png"],
-				["31",  "images/game/31.png"],
-				["32",  "images/game/32.png"],
-				["33",  "images/game/33.png"],
-				["34",  "images/game/34.png"],
-				["35",  "images/game/35.png"],
-				["36",  "images/game/36.png"],
-				["37",  "images/game/37.png"],
-				["38",  "images/game/38.png"],
-				["39",  "images/game/39.png"],
-				["40",  "images/game/40.png"],
-				["41",  "images/game/41.png"],
-				["42",  "images/game/42.png"],
-				["43",  "images/game/43.png"],
-				["44",  "images/game/44.png"],
-				["45",  "images/game/45.png"],
-				["46",  "images/game/46.png"],
-				["47",  "images/game/47.png"],
-				["48",  "images/game/48.png"],
-				["49",  "images/game/49.png"],
-				["50",  "images/game/50.png"],
-				["51",  "images/game/51.png"],
-				["52",  "images/game/52.png"],
-				["53",  "images/game/53.png"],
-				["54",  "images/game/54.png"],
-				["55",  "images/game/55.png"],
-				["56",  "images/game/56.png"],
-				["57",  "images/game/57.png"],
-				["58",  "images/game/58.png"],
-				["59",  "images/game/59.png"],
-				["60",  "images/game/60.png"],
-				["61",  "images/game/61.png"],
-				["62",  "images/game/62.png"],
-				["63",  "images/game/63.png"],
-				["64",  "images/game/64.png"],
-				["65",  "images/game/65.png"],
-				["66",  "images/game/66.png"],
-				["67",  "images/game/67.png"],
-				["68",  "images/game/68.png"],
-				["69",  "images/game/69.png"],
-				["70",  "images/game/70.png"],
-				["71",  "images/game/71.png"],
-				["72",  "images/game/72.png"],
-				["73",  "images/game/73.png"],
-				["74",  "images/game/74.png"],
-				["75",  "images/game/75.png"],
-				["76",  "images/game/76.png"],
-				["77",  "images/game/77.png"],
-				["78",  "images/game/78.png"],
-				["79",  "images/game/79.png"],
-				["80",  "images/game/80.png"],
-				["81",  "images/game/81.png"],
-				["82",  "images/game/82.png"],
-				["83",  "images/game/83.png"],
-				["84",  "images/game/84.png"],
-				["85",  "images/game/85.png"],
-				["86",  "images/game/86.png"],
-				["87",  "images/game/87.png"],
-				["88",  "images/game/88.png"],
-				["89",  "images/game/89.png"],
-				["90",  "images/game/90.png"],
-				["91",  "images/game/91.png"],
-				["92",  "images/game/92.png"],
-				["93",  "images/game/93.png"],
-				["94",  "images/game/94.png"],
-				["95",  "images/game/95.png"],
-				["96",  "images/game/96.png"],
-				["97",  "images/game/97.png"],
-				["98",  "images/game/98.png"],
-				["99",  "images/game/99.png"],
-				["100",  "images/game/100.png"],
-				["101",  "images/game/101.png"],
-				["102",  "images/game/102.png"],
-				["103",  "images/game/103.png"],
-				["104",  "images/game/104.png"],
-				["105",  "images/game/105.png"],
-				["106",  "images/game/106.png"],
-				["107",  "images/game/107.png"],
-				["108",  "images/game/108.png"],
-				["109",  "images/game/109.png"],
-				["110",  "images/game/110.png"],
-				["111",  "images/game/111.png"],
-				["112",  "images/game/112.png"],
-				["113",  "images/game/113.png"],
-				["114",  "images/game/114.png"],
-				["115",  "images/game/115.png"],
-				["116",  "images/game/116.png"],
-				["117",  "images/game/117.png"],
-				["118",  "images/game/118.png"],
-				["119",  "images/game/119.png"],
-				["120",  "images/game/120.png"],
-				["121",  "images/game/121.png"],
-				["122",  "images/game/122.png"],
-				["123",  "images/game/123.png"],
-				["124",  "images/game/124.png"],
-				["125",  "images/game/125.png"],
-				["126",  "images/game/126.png"],
-				["127",  "images/game/127.png"],
-				["128",  "images/game/128.png"],
-				["129",  "images/game/129.png"],
-				["130",  "images/game/130.png"],
-				["131",  "images/game/131.png"],
-				["132",  "images/game/132.png"],
-				["133",  "images/game/133.png"],
-				["134",  "images/game/134.png"],
-				["135",  "images/game/135.png"],
-				["136",  "images/game/136.png"],
-				["137",  "images/game/137.png"],
-				["138",  "images/game/138.png"],
-				["139",  "images/game/139.png"],
-				["140",  "images/game/140.png"],
-				["141",  "images/game/141.png"],
-				["142",  "images/game/142.png"],
-				["143",  "images/game/143.png"],
-				["144",  "images/game/144.png"],
-				["145",  "images/game/145.png"],
-				["146",  "images/game/146.png"],
-				["147",  "images/game/147.png"],
-				["148",  "images/game/148.png"],
-				["149",  "images/game/149.png"],
-				["150",  "images/game/150.png"],
-				["151",  "images/game/151.png"],
-				["152",  "images/game/152.png"],
-				["153",  "images/game/153.png"],
-				["154",  "images/game/154.png"],
-				["155",  "images/game/155.png"],
-				["156",  "images/game/156.png"],
-				["157",  "images/game/157.png"],
-				["158",  "images/game/158.png"],
-				["159",  "images/game/159.png"],
-				["160",  "images/game/160.png"],
-				["161",  "images/game/161.png"],
-				["162",  "images/game/162.png"],
-				["163",  "images/game/163.png"],
-				["164",  "images/game/164.png"],
-				["165",  "images/game/165.png"],
-				["166",  "images/game/166.png"],
-				["167",  "images/game/167.png"],
-				["168",  "images/game/168.png"],
-				["169",  "images/game/169.png"],
-				["170",  "images/game/170.png"],
-				["171",  "images/game/171.png"],
-				["172",  "images/game/172.png"],
-				["173",  "images/game/173.png"],
-				["174",  "images/game/174.png"],
-				["175",  "images/game/175.png"],
-				["176",  "images/game/176.png"],
-				["177",  "images/game/177.png"]
-				]);
-*/
 
 			Images.completed = function() 
 			{
@@ -346,16 +159,26 @@
 </head>
 <body onload="cargarCanvas();"> <!-- To load canvas --> 
 	<div id = "main" > <!-- All the page -->
-		<img src = "images/web/logo1.png" alt = "Logo" id = "Logo">
-		<ul id="menu">
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOME</a></li>
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
-			<li><a href = "#" class = "hvr-shutter-out-vertical"> NEWS </a></li>
-		</ul>
-		<div id = "footer"> </div>
-		<div id = "gameplay"> <!-- The game goes here -->
-			<canvas id = "canvas1"> </canvas>
-		</div> <!-- ***End gameplay*** -->
+			<a href="index.html"><img src = "images/web/logo1.png" alt = "Logo" id = "Logo"></a>
+			<ul id="menu">
+				<li><a href = "index.html" class = "hvr-shutter-out-vertical"> HOME</a></li>
+				<li><a href = "#modal" class = "hvr-shutter-out-vertical"> HOW TO PLAY </a></li>
+				<li><a href = "#canvas1" class = "hvr-shutter-out-vertical"> PLAY </a></li>
+			</ul>
+			<div id = "footer"> </div>
+			<div id = "gameplay"> <!-- The game goes here -->
+				<div id="modal" class="modalmask">
+					<div class="modalbox movedown">
+						<a href="#close" title="Close" class="close">X</a>
+						<h2>CONTROLLERS</h2>
+						<h3 align="left"> PLAYER 1 </h3>
+							<img src = "images/web/player1.png">
+						<h3 align="left"> PLAYER 2 </h3>
+						<img src = "images/web/player2.png">
+					</div>
+				</div>
+				<canvas id = "canvas1"> </canvas>
+			</div> <!-- ***End gameplay*** -->
 	</br></br></br></br></br></br></br></br></br>
 
 </div> <!-- ***End main*** -->

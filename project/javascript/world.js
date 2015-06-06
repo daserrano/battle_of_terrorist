@@ -76,7 +76,7 @@ function World(idCanvas, numMap)
 		new Tile(this.cellWidth, this.cellHeight, false, Images.get("80")),
 		//58
 		new Tile(this.cellWidth, this.cellHeight, false, Images.get("81")),
-		new Tile(this.cellWidth, this.cellHeight, false, Images.get("82")),
+		new Tile(this.cellWidth, this.cellHeight, true, Images.get("82")),
 		new Tile(this.cellWidth, this.cellHeight, false, Images.get("83")),
 		new Tile(this.cellWidth, this.cellHeight, false, Images.get("84")),
 		new Tile(this.cellWidth, this.cellHeight, false, Images.get("85")),
@@ -188,6 +188,8 @@ function World(idCanvas, numMap)
 
 		];
 
+if(World.countRound == 1)
+	window.location.reload(true);
 
 		if(World.numMap == 0 && World.countRound == 5)
 		{
@@ -322,7 +324,7 @@ function World(idCanvas, numMap)
 		}
 
 		this.player  = new Player(this, 50, 50, x+0.5, y+0.5, "player1");
-		this.player2 = new Player(this, 50, 50, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
+		this.player2 = new Player(this, 50, 50, z+0.5, t+0.5 /*2.5, 5.5*/, "player2");
 		var self    = this;
 
 		document.body.onkeydown = function(e)
