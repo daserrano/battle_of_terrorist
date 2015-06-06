@@ -333,6 +333,7 @@ function World(idCanvas, numMap)
 			this.context.drawImage(img2, this.canvas.width/2+100, this.canvas.height/2, 100, 100);
 
 			clearInterval(this.interval);
+
 			document.body.onkeydown = function(e)
 			{
 				switch(e.keyCode)
