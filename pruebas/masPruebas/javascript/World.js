@@ -276,43 +276,6 @@ function World(idCanvas, numMap)
 	this.timePassed = new Date().getTime();
 	emp=new Date();
 
-	/*World.prototype.countdown = function()
-	{
-		this.context.font = "140px transformer";	
-
-		if(World.timeCount == 0)
-		{
-			this.context.fillStyle = "black";
-			this.context.fillText("GO!", this.canvas.width/2-80, this.canvas.height/2+20);
-			this.context.fillStyle = "yellow";
-			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
-			return false;
-		}
-		else
-		{
-			this.context.fillStyle = "black";
-			this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
-			this.context.fillStyle = "yellow";
-			this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
-			World.timeCount--;
-
-			return true;
-		}
-	}
-	this.drawCount = function()
-	{
-		self.drawMap();
-		self.countdown();
-		self.drawScore(self.player.life, self.player2.life);
-		self.drawCharacters();
-		self.drawBullet();
-	}
-
-	if(this.countdown())
-	{
-		clearInterval(this.interval);
-		setInterval(this.drawCount, 1000);
-	}*/
 
 			this.interval   = setInterval(function(){self.loop()},30); //Loop y cada cuanto tiempo debe actualizar.
 		}
