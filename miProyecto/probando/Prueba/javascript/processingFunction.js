@@ -25,7 +25,7 @@ function sketchProc(processing) {
   var rectXCONF1, rectXCONF2, rectYCONF1, rectYCONF2;
 var whoProc;
   var llenar1 = true, llenar2 = true, llenar3 = true, llenar4 = true, llenar5 = true, llenar6 = true, llenar7 = true, llenar8 = true, llenarCuadroRojo = true, llenarCuadroVerde = true, llenarCuadroAzul = true, llenarCuadroConfirmacion1 = true, llenarCuadroConfirmacion2 = true;
-
+var personaje1, personaje2;
       //SETUP Processing
       processing.size(1250, 650);
       processing.frameRate(60);
@@ -332,17 +332,22 @@ llenar8 = true
 //llenar8 = true
 estoyEnUno = false;
 mostrarPersonaje4_2 = false;
+
+
+
 if (rectOverCuadroConfirmacion1 || confirmado == true){
   llenarCuadroConfirmacion1 = false;
   estoyEnUno = true;
   processing.textFont(transformer, 25);
-  if(confirmado == false && rectDone == true)
+  if(confirmado == false && rectDone == true && color != color1 && color != color2)
     processing.text("CONFIRMAR", 60, 550);
   else if (confirmado == true && (personaje != 5 && personaje != 6 && personaje != 7 && personaje != 8)){
     processing.text("CONFIRMADO!\nJUGADOR 1", 55, 550);
     crearRectangulosColores = false;
       //dime(personaje, color);
     }
+    else if(confirmado == false)
+          processing.text("ERROR:COLOR\nYA ELEGIDO", 55, 550);
    //if(rectDone == true)
     //processing.noFill();
   }
@@ -358,18 +363,25 @@ if (rectOverCuadroConfirmacion1 || confirmado == true){
     llenarCuadroConfirmacion2 = false;
     estoyEnUno = true;
     processing.textFont(transformer, 25);
-    if(confirmado2 == false && rectDone2 == true)
-      //if(color != color1 || color != color2)
+    if(confirmado2 == false && rectDone2 == true && color != color1 && color != color2)
       processing.text("CONFIRMAR", 1055, 550);
-    
+     // else
+     // processing.text("CONFIRMAR", 1055, 550);
+        
+      //if(color != color1 || color != color2)
+
 
       else if(confirmado2 == true && personaje > 4){
       processing.text("CONFIRMADO!\nJUGADOR 2", 1055, 550);
           crearRectangulosColores = false;
 
+
      // dime(personaje, color);
 
    }
+   else if(confirmado2 == false)
+         processing.text("ERROR:COLOR\nYA ELEGIDO", 1055, 550);
+
   // if(rectDone2 == true)
   // processing.noFill();
 }
@@ -386,7 +398,8 @@ if(revisionColores == true){
    //   writeText2();
     llenarCuadroRojo = false;
 //if(personaje == 1 || personaje == 2 || personaje == 3|| personaje == 4 && confirmado == false){
-  if(confirmado == false/* && confirmado2 == false*/|| confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8)   ){
+  if(personaje1 == undefined && personaje <5  || personaje2 == undefined && personaje >4){
+  //if(confirmado == false/* && confirmado2 == false*/|| confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8)   ){
     //processing.fill(235, 0, 0);
     processing.text(" ROJO ", 300, 585);
     //processing.noFill();
@@ -401,7 +414,8 @@ if (rectOverColorBlue || color == "azul"){
     writeText();
   else
     writeText2();
-  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+  if(personaje1 == undefined && personaje <5  || personaje2 == undefined && personaje >4 ){    
+ // if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
  // processing.fill(0, 0, 235);
  processing.text(" AZUL ", 580, 585);
     //processing.noFill();
@@ -415,7 +429,8 @@ if (rectOverColorGreen || color == "verde"){
     writeText();
   else
     writeText2();
-  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+  //if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+  if(personaje1 == undefined && personaje <5  || personaje2 == undefined && personaje >4 ){    
   //processing.fill(0, 210, 0);
   processing.text("VERDE ", 875, 585);
     //processing.noFill();
@@ -575,11 +590,11 @@ llenarCuadroVerde = true;
       rectOverColorGreen = true;
     }
     //else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) && color != undefined){
-      else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100)){
+      else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) && color != undefined){
         rectOverCuadroConfirmacion1 = true;
       }
     //else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100)&& color != undefined){
-      else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100)){
+      else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100) && color != undefined){
         rectOverCuadroConfirmacion2 = true;
       }
       if( overRect(rectCharacter1_X, rectCharacter1_Y, 93.5, 50) == false && 
@@ -661,6 +676,7 @@ whoProc = 2;
   color2 = color;
   dime(personaje2,color2,whoProc);
   confirmado2 = true;
+
     color = undefined;
 
   if(confirmado == true && confirmado2 == true)
