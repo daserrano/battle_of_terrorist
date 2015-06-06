@@ -32,6 +32,7 @@
 		var spritePlayer1;
 		var persona1, persona2;
 		var	contador = 0;
+		var numImages = 178;
 		
 
 	function dime(pers, col){
@@ -53,9 +54,17 @@
 			Images  = new SaveImages();
 			Sprites = new SaveSprites();
 			
-			Images.load(
+				for(var i=0; i<= numImages; i++)
+				{
+					//if(numImages == 78)
+						 Images.load([ [i, "images/game/"+i+".png"]]);
+					/*else
+					Images.load([ [i, "images/game/"+i+".png"]]);*/
+				};
+
+/*			Images.load(
 				[
-				["0",  "images/game/0.png"],
+				/*["0",  "images/game/0.png"],
 				["1",  "images/game/1.png"],
 				["2", 	"images/game/2.png"],
 				["3", 	"images/game/3.png"],
@@ -234,11 +243,10 @@
 				["176",  "images/game/176.png"],
 				["177",  "images/game/177.png"]
 				]);
+*/
 
 			Images.completed = function() 
 			{
-
-
 
 				switch(persona1){
 
