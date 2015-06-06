@@ -28,24 +28,23 @@
 		var Sprites;
 		var Images;
 		var persona;
-		var color1;
+		var color1, color2;
 		var spritePlayer1;
 		var persona1, persona2;
-		var	contador = 0;
 		
 
-	function dime(pers, col){
-			contador++;
+	function dime(pers, col, who){
 			if(pers < 5)
 				persona1 = pers;
 			if(pers >= 5)
 				persona2 = pers;
-			if(contador == 1)
+			if(who == 1)
 				color1 = col;
-			if(contador == 2){
+			if(who == 2){
 				color2 = col;
-				gameInit();
 			}
+			if(color1 != undefined && color2 != undefined)
+				gameInit();
 		}
 
 		function gameInit()

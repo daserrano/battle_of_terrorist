@@ -15,7 +15,7 @@ function World(idCanvas, numMap)
 	this.allTiles = 
 	[
 	new Tile(this.cellWidth, this.cellHeight, true, Images.get("24")),
-	new Tile(this.cellWidth, this.cellHeight, false, Images.get("21")),
+	new Tile(this.cellWidth, this.cellHeight, true, Images.get("21")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("25")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("26")),
 	new Tile(this.cellWidth, this.cellHeight, false, Images.get("27")),
