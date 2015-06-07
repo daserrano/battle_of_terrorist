@@ -264,11 +264,20 @@ function World(idCanvas, numMap)
 
 	if(World.numMap == 0)
 	{
-		var positionSecrets = 
+		this.positionSecrets = 
 		[
 		[3, 10],
-		[12, 1],
-		[23, 4]]
+		[12, 6],
+		[23, 4]
+		];
+	}
+	else if(World.numMap == 1)
+	{
+		this.positionSecrets = 
+		[
+		[10, 2],
+		[18, 13]
+		];
 	}
 
 	var self = this;
@@ -338,7 +347,7 @@ function World(idCanvas, numMap)
 		}
 
 		this.player  = new Player(this, 50, 50, x+0.5, y+0.5, "player1");
-		this.player2 = new Player(this, 50, 50, /*z+0.5, t+0.5*/ 2.5, 5.5, "player2");
+		this.player2 = new Player(this, 50, 50, z+0.5, t+0.5, "player2");
 		var self    = this;
 
 		document.body.onkeydown = function(e)
@@ -663,40 +672,11 @@ World.prototype.drawMap = function()
      	   	return;
      	   }
 
-     	/*World.prototype.countdown = function()
-     	{
-     		this.context.font = "140px transformer";	
-
-     		if(World.timeCount == 0)
-     		{
-     			this.context.fillStyle = "black";
-     			this.context.fillText("GO!", this.canvas.width/2-80, this.canvas.height/2+20);
-     			this.context.fillStyle = "yellow";
-     			this.context.fillText("GO!", this.canvas.width/2-100, this.canvas.height/2);
-     			this.init = false;
-     			return false;
-     		}
-     		else
-     		{
-     			this.context.fillStyle = "black";
-     			this.context.fillText(World.timeCount, this.canvas.width/2-20, this.canvas.height/2+20);
-     			this.context.fillStyle = "yellow";
-     			this.context.fillText(World.timeCount, this.canvas.width/2-40, this.canvas.height/2);
-     			World.timeCount--;
-
-     			return true;
-     		}
-     	}*/
-
      	World.prototype.cantSee = function()
      	{
-     		if(World.numMap == 0)
-     		{
-     			//this.allTiles[this.map[World.numMap][yi][xi]].draw(this.context, xi, yi);
-     			this.allTiles[this.map[World.numMap][10][3]].draw(this.context, 3, 10);
-     			this.allTiles[this.map[World.numMap][4][23]].draw(this.context, 23, 4);
 
-     		}
+		for(var y=0; y< this.positionSecrets.length; y++)
+				this.allTiles[this.map[World.numMap][this.positionSecrets[y][1]][this.positionSecrets[y][0]]].draw(this.context, this.positionSecrets[y][0], this.positionSecrets[y][1]);
      	}
 
      	World.prototype.loop = function()
