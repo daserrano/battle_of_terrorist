@@ -315,20 +315,10 @@ function World(idCanvas, numMap)
 					break;
 					case 78:
 					e.preventDefault();
-					new World("canvas1", numMap);
+					new World("canvas1", World.numMap);
 					break;
 				}
 			}
-			/*if(numMap == 0)
-			{
-				clearInterval(this.interval);
-				new World("canvas1", 1);
-			}
-			else
-			{
-				clearInterval(this.interval);
-				new World("canvas1", 0);
-			}*/
 		}
 
 		World.prototype.initPlayer = function()
@@ -457,7 +447,7 @@ function World(idCanvas, numMap)
 			break;
 			case 80:
 			e.preventDefault();
-			self.changeMap(self.numMap);
+			self.changeMap(World.numMap);
 			break;
 		}
 	};
