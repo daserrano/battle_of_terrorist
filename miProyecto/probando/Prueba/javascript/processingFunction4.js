@@ -21,8 +21,8 @@ function sketchProc(processing) {
   var rectDone = false;
   var rectDone2 = false;
   var rectColor = [];
-  var rectConfirmedBoxX = []
-  var rectConfirmedBoxY = []
+  var rectConfirmedBoxX = [];
+  var rectConfirmedBoxY = [];
 
 
       //SETUP Processing
@@ -100,70 +100,143 @@ function sketchProc(processing) {
       ypos = processing.constrain(ypos, 0, processing.height-MOD.height);
     }  
     processing.stroke(255);
-    for(var i = 1; i<14; i++)
-      createBoxes(i);
-    function createBoxes(id){
-      if(fill[id] == true){
-        processing.fill(204, 204, 0);
-        processing.rect(rectCharacterX[id], rectCharacterY[id], 93.5, 50, 10);
-      }
-      else{
-        processing.noFill();
-        processing.rect(rectCharacterX[id], rectCharacterY[id], 93.5, 50, 10);
-      }
-      if(id == 12 && confirmedCharacter1 == false || id == 13 && confirmedCharacter2 == false){
-        if(fill[id] == true){
-         processing.fill(204, 204, 0);
-         processing.rect(rectConfirmedBoxX[id-11], rectConfirmedBoxY[id-11], 150, 100, 10);
-       }
-       else{
-        processing.noFill();
-        processing.rect(rectConfirmedBoxX[id-11], rectConfirmedBoxY[id-11], 150, 100, 10);
+//    for(var i = 1; i<9; i++)
+//      createBoxes(i);
+//    function createBoxes(id){
+//      if(fill[id] == true){
+//        processing.fill(204, 204, 0);
+//        processing.rect(rectCharacterX[id], rectCharacterY[id], 93.5, 50, 10);
+//      }
+//      else{
+//        processing.noFill();
+//        processing.rect(rectCharacterX[id], rectCharacterY[id], 93.5, 50, 10);
+//}
+//}
+if(fill[1] == true){
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[1], rectCharacterY[1], 93.5, 50, 10);
+}
+else{
+  processing.noFill();
+  processing.rect(rectCharacterX[1], rectCharacterY[1], 93.5, 50, 10);
+}
+if(fill[2] == true){
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[2], rectCharacterY[2], 93.5, 50, 10);
+}
 
-      }
-return ;
+else{
+  processing.noFill();
+  processing.rect(rectCharacterX[2], rectCharacterY[2], 93.5, 50, 10);
 
-    }  
+
+}
+
+if(fill[3] == true){
+
+
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[3], rectCharacterY[3], 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+  processing.rect(rectCharacterX[3], rectCharacterY[3], 93.5, 50, 10);
+}
+
+
+if(fill[4] == true){
+
+
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[4], rectCharacterY[4], 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+  processing.rect(rectCharacterX[4], rectCharacterY[4], 93.5, 50, 10);
+}
+if(fill[5] == true){
+
+
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[5], rectCharacterY[5], 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+  processing.rect(rectCharacterX[5], rectCharacterY[5], 93.5, 50, 10);
+}
+if(fill[6] == true){
+
+
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[6], rectCharacterY[6], 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+  processing.rect(rectCharacterX[6], rectCharacterY[6], 93.5, 50, 10);
+}
+if(fill[7] == true){
+
+
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[7], rectCharacterY[7], 93.5, 50, 10);
+}
+else{
+
+  processing.noFill();
+  processing.rect(rectCharacterX[7], rectCharacterY[7], 93.5, 50, 10);
+}
+
+if(fill[8] == true){
+  processing.fill(204, 204, 0);
+  processing.rect(rectCharacterX[8], rectCharacterY[8], 93.5, 50, 10);
+
+}
+else{
+
+  processing.noFill();
+  processing.rect(rectCharacterX[8], rectCharacterY[8], 93.5, 50, 10);
+}
+
 
 
 
     if((character ==1 || character == 2 || character == 3 ||character == 4) && (
       (color == "rojo" || color == "azul" || color == "verde")|| color1 != undefined)){
       rectDone = true;
-    //if(fill[12] == true && confirmedCharacter1 == false){
-    // createBoxes(12);
+    if(fill[12] == true && confirmedCharacter1 == false){
+      processing.fill(204, 204, 0);
 
-      //processing.fill(204, 204, 0);
-
-      //processing.rect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100, 10);
+      processing.rect(rectConfirmedBoxX[1], rectConfirmedBoxY[1], 150, 100, 10);
 
 
-   // }
-    //else{
-    //  processing.noFill();
+    }
+    else{
+      processing.noFill();
 
-    //  processing.rect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100, 10);
+      processing.rect(rectConfirmedBoxX[1], rectConfirmedBoxY[1], 150, 100, 10);
 
-    //}
+    }
+
+  
+  if((character >= 5 && (color == "rojo" || color == "azul" || color == "verde")) || confirmedCharacter2 == true && character > 4  /*color2 != undefined*//*&& confirmedCharacter1 == true*/){
+   rectDone2 = true;
+   if(fill[13] == true && confirmedCharacter2 == false){
+    processing.fill(204, 204, 0);
+
+    processing.rect(rectConfirmedBoxX[2], rectConfirmedBoxY[2], 150, 100, 10);
+
+  }
+  else{
+    processing.noFill();
+    processing.rect(rectConfirmedBoxX[2], rectConfirmedBoxY[2], 150, 100, 10);
   }
 
 }
-if((character >= 5 && (color == "rojo" || color == "azul" || color == "verde")) || confirmedCharacter2 == true && character > 4  /*color2 != undefined*//*&& confirmedCharacter1 == true*/){
- rectDone2 = true;
- if(fill[13] == true && confirmedCharacter2 == false){
-  createBoxes(13);
-//  processing.fill(204, 204, 0);
-//
-//  processing.rect(rectConfirmedBox[2], rectConfirmedBox[4], 150, 100, 10);
-
 }
-//else{
-//  processing.noFill();
-//  processing.rect(rectConfirmedBox[2], rectConfirmedBox[4], 150, 100, 10);
-//}
-
-}
-
 
 update(processing.mouseX, processing.mouseY);
 
@@ -520,11 +593,11 @@ else
       rectOverCharacter[10] = true;
     }
     //else if(overRect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100) && color != undefined){
-      else if(overRect(rectConfirmedBoxX[1], rectConfirmedBoxX[2], 150, 100) && color != undefined){
+      else if(overRect(rectConfirmedBoxX[1], rectConfirmedBoxY[1], 150, 100) && color != undefined){
         rectOverConfirmation[1] = true;
       }
     //else if(overRect(rectConfirmedBox[2], rectConfirmedBox[4], 150, 100)&& color != undefined){
-      else if(overRect(rectConfirmedBoxY[1], rectConfirmedBoxY[2], 150, 100) && color != undefined){
+      else if(overRect(rectConfirmedBoxX[2], rectConfirmedBoxY[2], 150, 100) && color != undefined){
         rectOverConfirmation[2] = true;
       }
       if( overRect(rectCharacterX[1], rectCharacterY[1], 93.5, 50) == false && 
@@ -538,8 +611,8 @@ else
         overRect(rectColor[1], rectColor[4], 213, 50) == false &&
         overRect(rectColor[2], rectColor[5], 213, 50) == false &&
         overRect(rectColor[3], rectColor[6], 213, 50) == false &&
-        overRect(rectConfirmedBoxX[1], rectConfirmedBoxX[3], 150, 100) == false &&
-        overRect(rectConfirmedBoxY[2], rectConfirmedBoxY[4], 150, 100) == false
+        overRect(rectConfirmedBoxX[1], rectConfirmedBoxY[1], 150, 100) == false &&
+        overRect(rectConfirmedBoxX[2], rectConfirmedBoxY[2], 150, 100) == false
         ){
 
         rectOverCharacter[1] = rectOverCharacter[2] = rectOverCharacter[3] = rectOverCharacter[4] = 

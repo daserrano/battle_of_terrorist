@@ -100,7 +100,7 @@ function sketchProc(processing) {
       ypos = processing.constrain(ypos, 0, processing.height-MOD.height);
     }  
     processing.stroke(255);
-    for(var i = 1; i<14; i++)
+    for(var i = 1; i<9; i++)
       createBoxes(i);
     function createBoxes(id){
       if(fill[id] == true){
@@ -111,7 +111,7 @@ function sketchProc(processing) {
         processing.noFill();
         processing.rect(rectCharacterX[id], rectCharacterY[id], 93.5, 50, 10);
       }
-      if(id == 12 && confirmedCharacter1 == false || id == 13 && confirmedCharacter2 == false){
+      if(id == 12 || id == 13){
         if(fill[id] == true){
          processing.fill(204, 204, 0);
          processing.rect(rectConfirmedBoxX[id-11], rectConfirmedBoxY[id-11], 150, 100, 10);
@@ -121,7 +121,7 @@ function sketchProc(processing) {
         processing.rect(rectConfirmedBoxX[id-11], rectConfirmedBoxY[id-11], 150, 100, 10);
 
       }
-return ;
+
 
     }  
 
@@ -130,15 +130,15 @@ return ;
     if((character ==1 || character == 2 || character == 3 ||character == 4) && (
       (color == "rojo" || color == "azul" || color == "verde")|| color1 != undefined)){
       rectDone = true;
-    //if(fill[12] == true && confirmedCharacter1 == false){
-    // createBoxes(12);
+    if(fill[12] == true && confirmedCharacter1 == false){
+     createBoxes(12);
 
       //processing.fill(204, 204, 0);
 
       //processing.rect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100, 10);
 
 
-   // }
+    }
     //else{
     //  processing.noFill();
 
@@ -520,11 +520,11 @@ else
       rectOverCharacter[10] = true;
     }
     //else if(overRect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100) && color != undefined){
-      else if(overRect(rectConfirmedBoxX[1], rectConfirmedBoxX[2], 150, 100) && color != undefined){
+      else if(overRect(rectConfirmedBoxX[1], rectConfirmedBoxY[2], 150, 100) && color != undefined){
         rectOverConfirmation[1] = true;
       }
     //else if(overRect(rectConfirmedBox[2], rectConfirmedBox[4], 150, 100)&& color != undefined){
-      else if(overRect(rectConfirmedBoxY[1], rectConfirmedBoxY[2], 150, 100) && color != undefined){
+      else if(overRect(rectConfirmedBoxX[1], rectConfirmedBoxY[2], 150, 100) && color != undefined){
         rectOverConfirmation[2] = true;
       }
       if( overRect(rectCharacterX[1], rectCharacterY[1], 93.5, 50) == false && 

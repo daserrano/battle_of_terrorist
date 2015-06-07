@@ -23,9 +23,9 @@ function sketchProc(processing) {
   mostrarPersonaje3_2= false, mostrarPersonaje4_2= false;
   var dibujaConfirmar = false, dibujaConfirmar2 = false;
   var rectXCONF1, rectXCONF2, rectYCONF1, rectYCONF2;
-
+var whoProc;
   var llenar1 = true, llenar2 = true, llenar3 = true, llenar4 = true, llenar5 = true, llenar6 = true, llenar7 = true, llenar8 = true, llenarCuadroRojo = true, llenarCuadroVerde = true, llenarCuadroAzul = true, llenarCuadroConfirmacion1 = true, llenarCuadroConfirmacion2 = true;
-
+var personaje1, personaje2;
       //SETUP Processing
       processing.size(1250, 650);
       processing.frameRate(60);
@@ -219,9 +219,9 @@ else{
   }
 
   }
-  if(personaje >= 5 && (color == "rojo" || color == "azul" || color == "verde") && confirmado == true){
+  if((personaje >= 5 && (color == "rojo" || color == "azul" || color == "verde")) || confirmado2 == true && personaje > 4  /*color2 != undefined*//*&& confirmado == true*/){
    rectDone2 = true;
-   if(llenarCuadroConfirmacion2 == true){
+   if(llenarCuadroConfirmacion2 == true && confirmado2 == false){
               processing.fill(204, 204, 0);
 
    processing.rect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100, 10);
@@ -240,7 +240,7 @@ else{
  if (rectOverCharacter1 ||personaje == 1) {
   mostrarPersonaje1 = true;
   estoyEnUno = true;
-  escribeTexto();
+  writeText();
     llenar1 = false;
 
  // processing.noFill();
@@ -252,7 +252,7 @@ mostrarPersonaje1 = false;
 if (rectOverCharacter2 || personaje == 2) {
   mostrarPersonaje2 = true;
   estoyEnUno = true;
-  escribeTexto();
+  writeText();
     llenar2 = false;
 
  // processing.noFill();
@@ -264,7 +264,7 @@ mostrarPersonaje2 = false;
 if (rectOverCharacter3 || personaje == 3 ) {
   mostrarPersonaje3 = true;
   estoyEnUno = true;
-  escribeTexto();
+  writeText();
     llenar3 = false;
 
 //  processing.noFill();
@@ -276,7 +276,7 @@ mostrarPersonaje3 = false;
 if (rectOverCharacter4 || personaje == 4) {
   mostrarPersonaje4 = true;
   estoyEnUno = true;
-  escribeTexto();
+  writeText();
     llenar4 = false;
 
 //  processing.noFill();
@@ -288,7 +288,7 @@ estoyEnUno = false;
 if (rectOverCharacter5 ||personaje == 5) {
   mostrarPersonaje1_2 = true;
   estoyEnUno = true;
-  escribeTexto2();
+  writeText2();
     llenar5 = false;
 
  // processing.noFill();
@@ -300,7 +300,7 @@ mostrarPersonaje1_2 = false;
 if (rectOverCharacter6 ||personaje == 6) {
   mostrarPersonaje2_2 = true;
   estoyEnUno = true;
-  escribeTexto2();
+  writeText2();
     llenar6 = false;
 
  // processing.noFill();
@@ -312,7 +312,7 @@ mostrarPersonaje2_2 = false;
 if (rectOverCharacter7 ||personaje == 7) {
   mostrarPersonaje3_2 = true;
   estoyEnUno = true;
-  escribeTexto2();
+  writeText2();
     llenar7 = false;
 
  // processing.noFill();
@@ -324,7 +324,7 @@ mostrarPersonaje3_2 = false;
 if (rectOverCharacter8 ||personaje == 8) {
   mostrarPersonaje4_2 = true;
   estoyEnUno = true;
-  escribeTexto2();
+  writeText2();
   llenar8 = false;
 } 
 else
@@ -332,34 +332,56 @@ llenar8 = true
 //llenar8 = true
 estoyEnUno = false;
 mostrarPersonaje4_2 = false;
+
+
+
 if (rectOverCuadroConfirmacion1 || confirmado == true){
   llenarCuadroConfirmacion1 = false;
   estoyEnUno = true;
   processing.textFont(transformer, 25);
-  if(confirmado == false && rectDone == true)
+  if(confirmado == false && rectDone == true && color != color1 && color != color2)
     processing.text("CONFIRMAR", 60, 550);
   else if (confirmado == true && (personaje != 5 && personaje != 6 && personaje != 7 && personaje != 8)){
     processing.text("CONFIRMADO!\nJUGADOR 1", 55, 550);
     crearRectangulosColores = false;
       //dime(personaje, color);
     }
+    else if(confirmado == false)
+          processing.text("ERROR:COLOR\nYA ELEGIDO", 55, 550);
    //if(rectDone == true)
     //processing.noFill();
   }
+
   else
     llenarCuadroConfirmacion1 = true;
   estoyEnUno = false;
-  if (rectOverCuadroConfirmacion2){
+
+
+
+
+  if (rectOverCuadroConfirmacion2 ||confirmado2 == true){
     llenarCuadroConfirmacion2 = false;
     estoyEnUno = true;
     processing.textFont(transformer, 25);
-    if(confirmado2 == false && rectDone2 == true)
+    if(confirmado2 == false && rectDone2 == true && color != color1 && color != color2)
       processing.text("CONFIRMAR", 1055, 550);
-    else if(confirmado2 == true){
+     // else
+     // processing.text("CONFIRMAR", 1055, 550);
+        
+      //if(color != color1 || color != color2)
+
+
+      else if(confirmado2 == true && personaje > 4){
       processing.text("CONFIRMADO!\nJUGADOR 2", 1055, 550);
+          crearRectangulosColores = false;
+
+
      // dime(personaje, color);
 
    }
+   else if(confirmado2 == false)
+         processing.text("ERROR:COLOR\nYA ELEGIDO", 1055, 550);
+
   // if(rectDone2 == true)
   // processing.noFill();
 }
@@ -369,14 +391,15 @@ estoyEnUno = false;
 
 
 if(revisionColores == true){
-  if (rectOverColorRed || color == "rojo"){
+  if ((rectOverColorRed || color == "rojo")){
    // if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
-   //   escribeTexto();
+   //   writeText();
    // else
-   //   escribeTexto2();
+   //   writeText2();
     llenarCuadroRojo = false;
 //if(personaje == 1 || personaje == 2 || personaje == 3|| personaje == 4 && confirmado == false){
-  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){
+  if(personaje1 == undefined && personaje <5  || personaje2 == undefined && personaje >4){
+  //if(confirmado == false/* && confirmado2 == false*/|| confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8)   ){
     //processing.fill(235, 0, 0);
     processing.text(" ROJO ", 300, 585);
     //processing.noFill();
@@ -388,10 +411,11 @@ if(revisionColores == true){
 if (rectOverColorBlue || color == "azul"){
   llenarCuadroAzul = false;
   if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
-    escribeTexto();
+    writeText();
   else
-    escribeTexto2();
-  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+    writeText2();
+  if(personaje1 == undefined && personaje <5  || personaje2 == undefined && personaje >4 ){    
+ // if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
  // processing.fill(0, 0, 235);
  processing.text(" AZUL ", 580, 585);
     //processing.noFill();
@@ -402,10 +426,11 @@ llenarCuadroAzul = true;
 if (rectOverColorGreen || color == "verde"){
   llenarCuadroVerde = false;
   if(personaje == 1 ||personaje == 2 ||personaje == 3 ||personaje == 4)
-    escribeTexto();
+    writeText();
   else
-    escribeTexto2();
-  if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+    writeText2();
+  //if(confirmado == false || confirmado == true && (personaje == 5 || personaje == 6 || personaje == 7 || personaje == 8) ){    
+  if(personaje1 == undefined && personaje <5  || personaje2 == undefined && personaje >4 ){    
   //processing.fill(0, 210, 0);
   processing.text("VERDE ", 875, 585);
     //processing.noFill();
@@ -464,7 +489,7 @@ llenarCuadroVerde = true;
 
    //FUNCTIONS
 
-   function escribeTexto(){
+   function writeText(){
     if(mostrarPersonaje1 || personaje == 1 && estoyEnUno == false){
       processing.textFont(transformer, 25);
       processing.text("JACK", 70, 465);
@@ -496,7 +521,7 @@ llenarCuadroVerde = true;
 
   }
 
-  function escribeTexto2(){
+  function writeText2(){
 
     if(mostrarPersonaje1_2 || personaje == 5 && estoyEnUno == false){
       processing.textFont(transformer, 25);
@@ -555,21 +580,21 @@ llenarCuadroVerde = true;
     else if(overRect(rectCharacter8_X, rectCharacter8_Y, 93.5, 50)){
       rectOverCharacter8 = true;
     }
-    else if(overRect(rectColorRedX, rectColorRedY, 213, 50)){
+    else if(overRect(rectColorRedX, rectColorRedY, 213, 50) && personaje != undefined /*&& (personaje>4 && confirmado2 == false) || (personaje<5 && confirmado == false)*/){
       rectOverColorRed = true;
     }
-    else if(overRect(rectColorBlueX, rectColorBlueY, 213, 50)){
+    else if(overRect(rectColorBlueX, rectColorBlueY, 213, 50) && personaje != undefined){
       rectOverColorBlue = true;
     }
-    else if(overRect(rectColorGreenX, rectColorGreenY, 213, 50)){
+    else if(overRect(rectColorGreenX, rectColorGreenY, 213, 50) && personaje != undefined){
       rectOverColorGreen = true;
     }
     //else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) && color != undefined){
-      else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100)){
+      else if(overRect(rectCuadroConfirmacion1X, rectCuadroConfirmacion1Y, 150, 100) && color != undefined){
         rectOverCuadroConfirmacion1 = true;
       }
     //else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100)&& color != undefined){
-      else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100)){
+      else if(overRect(rectCuadroConfirmacion2X, rectCuadroConfirmacion2Y, 150, 100) && color != undefined){
         rectOverCuadroConfirmacion2 = true;
       }
       if( overRect(rectCharacter1_X, rectCharacter1_Y, 93.5, 50) == false && 
@@ -631,21 +656,30 @@ if (rectOverCharacter8 && confirmado2 == false) {
   crearRectangulosColores = true;
   personaje = 8;
 }
-if (rectOverCuadroConfirmacion1 && personaje <= 4 && confirmado == false && (color == "rojo" || color == "azul" || color == "verde")){
 
+if (rectOverCuadroConfirmacion1 && personaje <= 4 && confirmado == false && (color == "rojo" || color == "azul" || color == "verde") && color != color2){
+  whoProc = 1;
   personaje1 = personaje;
   color1 = color;
-  dime(personaje1,color1);
+  dime(personaje1,color1,whoProc);
   confirmado = true;
   color = undefined;
+    if(confirmado == true && confirmado2 == true)
+  processing.exit();
+
 
 }
-if (rectOverCuadroConfirmacion2 && personaje >= 5 && color != undefined){
 
+if (rectOverCuadroConfirmacion2 && personaje >= 5 && color != undefined && color != color1){
+whoProc = 2;
   personaje2 = personaje;
   color2 = color;
-  dime(personaje2,color2);
+  dime(personaje2,color2,whoProc);
   confirmado2 = true;
+
+    color = undefined;
+
+  if(confirmado == true && confirmado2 == true)
   processing.exit();
 
 }
