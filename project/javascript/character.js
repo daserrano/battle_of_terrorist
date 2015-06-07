@@ -11,7 +11,7 @@ function Character(world, width, height, x, y, sprite)
 	this.dx = 0;
 	this.dy = 0;
 
-	this.velocity  = 0.004;
+	this.velocity  = 0.003;
 
 	this.sprite           = sprite;
 	this.direction        = "down";

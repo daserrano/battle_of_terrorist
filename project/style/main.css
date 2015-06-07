@@ -69,6 +69,7 @@ canvas {
 	text-decoration: none;
 	border-radius: 2px 2px 25px 2px;
 }
+
 .modalmask {
     position: fixed;
     font-family: transformer;
@@ -91,7 +92,7 @@ canvas {
 .modalbox{
 	letter-spacing: 0px;
     width: 700px;
-    height: 400px;
+    height: 600px;
     position: relative;
     padding: 5px 20px 13px 20px;
     background: #FFF;
@@ -104,7 +105,7 @@ canvas {
     margin: 0 auto;
 }
 .modalmask:target .movedown{       
-    margin: 15% auto;
+    margin: 10% auto;
 }
 .close:hover {
     background: #FAAC58;

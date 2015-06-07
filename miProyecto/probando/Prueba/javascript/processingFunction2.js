@@ -21,8 +21,8 @@ function sketchProc(processing) {
   var rectDone = false;
   var rectDone2 = false;
   var rectColor = [];
-  var rectConfirmedBoxX = []
-  var rectConfirmedBoxY = []
+  var rectConfirmedBox = []
+  //var rectConfirmedBoxY = []
 
 
       //SETUP Processing
@@ -63,10 +63,10 @@ function sketchProc(processing) {
       rectColor[5] = 550;
       rectColor[3] = 806;
       rectColor[6] = 550;
-      rectConfirmedBoxX[1] = 50;
-      rectConfirmedBoxY[1] = 500;
-      rectConfirmedBoxX[2] = 1045;
-      rectConfirmedBoxY[2] = 500;
+      rectConfirmedBox[1] = 50;
+      rectConfirmedBox[2] = 500;
+      rectConfirmedBox[3] = 1045;
+      rectConfirmedBox[4] = 500;
 
       
 
@@ -111,19 +111,7 @@ function sketchProc(processing) {
         processing.noFill();
         processing.rect(rectCharacterX[id], rectCharacterY[id], 93.5, 50, 10);
       }
-      if(id == 12 || id == 13){
-        if(fill[id] == true){
-         processing.fill(204, 204, 0);
-         processing.rect(rectConfirmedBoxX[id-11], rectConfirmedBoxY[id-11], 150, 100, 10);
-       }
-       else{
-        processing.noFill();
-        processing.rect(rectConfirmedBoxX[id-11], rectConfirmedBoxY[id-11], 150, 100, 10);
-
-      }
-
-
-    }  
+      
 
 
 
@@ -131,20 +119,19 @@ function sketchProc(processing) {
       (color == "rojo" || color == "azul" || color == "verde")|| color1 != undefined)){
       rectDone = true;
     if(fill[12] == true && confirmedCharacter1 == false){
-     createBoxes(12);
 
-      //processing.fill(204, 204, 0);
+      processing.fill(204, 204, 0);
 
-      //processing.rect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100, 10);
+      processing.rect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100, 10);
 
 
     }
-    //else{
-    //  processing.noFill();
+   else{
+      processing.noFill();
 
-    //  processing.rect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100, 10);
+      processing.rect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100, 10);
 
-    //}
+    }
   }
 
 }
@@ -520,11 +507,11 @@ else
       rectOverCharacter[10] = true;
     }
     //else if(overRect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100) && color != undefined){
-      else if(overRect(rectConfirmedBoxX[1], rectConfirmedBoxY[2], 150, 100) && color != undefined){
+      else if(overRect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100) && color != undefined){
         rectOverConfirmation[1] = true;
       }
     //else if(overRect(rectConfirmedBox[2], rectConfirmedBox[4], 150, 100)&& color != undefined){
-      else if(overRect(rectConfirmedBoxX[1], rectConfirmedBoxY[2], 150, 100) && color != undefined){
+      else if(overRect(rectConfirmedBox[2], rectConfirmedBox[4], 150, 100) && color != undefined){
         rectOverConfirmation[2] = true;
       }
       if( overRect(rectCharacterX[1], rectCharacterY[1], 93.5, 50) == false && 
@@ -538,8 +525,8 @@ else
         overRect(rectColor[1], rectColor[4], 213, 50) == false &&
         overRect(rectColor[2], rectColor[5], 213, 50) == false &&
         overRect(rectColor[3], rectColor[6], 213, 50) == false &&
-        overRect(rectConfirmedBoxX[1], rectConfirmedBoxX[3], 150, 100) == false &&
-        overRect(rectConfirmedBoxY[2], rectConfirmedBoxY[4], 150, 100) == false
+        overRect(rectConfirmedBox[1], rectConfirmedBox[3], 150, 100) == false &&
+        overRect(rectConfirmedBox[2], rectConfirmedBox[4], 150, 100) == false
         ){
 
         rectOverCharacter[1] = rectOverCharacter[2] = rectOverCharacter[3] = rectOverCharacter[4] = 

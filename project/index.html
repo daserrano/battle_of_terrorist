@@ -17,13 +17,14 @@
 	<script type="text/javascript" src="javascript/Bullet.js"></script>
 	<script type="text/javascript" src="javascript/Collision.js"></script>
 	<style>
-		@font-face{
-			font-family: "transformer";
-			src: url("style/transformer.ttf");
-		} 
+	@font-face{
+		font-family: "transformer";
+		src: url("style/transformer.ttf");
+	} 
 	</style>
 	<script>
 
+	
 		var world;
 		var Sprites;
 		var Images;
@@ -49,6 +50,7 @@
 			
 		}
 
+		
 		function gameInit()
 		{
 			Images  = new SaveImages();
@@ -155,10 +157,10 @@
 			}
 		}
 
-	</script>
-</head>
-<body onload="cargarCanvas();"> <!-- To load canvas --> 
-	<div id = "main" > <!-- All the page -->
+		</script>
+	</head>
+	<body onload="cargarCanvas();"> <!-- To load canvas --> 
+		<div id = "main" > <!-- All the page -->
 			<a href="index.html"><img src = "images/web/logo1.png" alt = "Logo" id = "Logo"></a>
 			<ul id="menu">
 				<li><a href = "index.html" class = "hvr-shutter-out-vertical"> HOME</a></li>
@@ -175,13 +177,15 @@
 							<img src = "images/web/player1.png">
 						<h3 align="left"> PLAYER 2 </h3>
 						<img src = "images/web/player2.png">
+						<h3 align="left"> OTHER MAP </h3>
+						<img src = "images/web/P.png" width="80px">
 					</div>
 				</div>
 				<canvas id = "canvas1"> </canvas>
 			</div> <!-- ***End gameplay*** -->
-	</br></br></br></br></br></br></br></br></br>
+		</br></br></br></br></br></br></br></br></br>
 
-</div> <!-- ***End main*** -->
+	</div> <!-- ***End main*** -->
 
 </body>
 </html>
