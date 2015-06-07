@@ -151,8 +151,6 @@ if (rectOverCharacter[1] ||character == 1) {
   estoyEnUno = true;
   writeText();
   fill[1] = false;
-
- // processing.noFill();
 } 
 else
   fill[1] = true;
@@ -163,8 +161,6 @@ if (rectOverCharacter[2] || character == 2) {
   estoyEnUno = true;
   writeText();
   fill[2] = false;
-
- // processing.noFill();
 } 
 else
   fill[2] = true;
