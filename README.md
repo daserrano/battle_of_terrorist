@@ -4,59 +4,42 @@ Battle of terrorist
 
 It's a game of war based on JavaScript. You'll can play with another player and make your own tournament!
 
-Coming soon...
+You can play in two differents stages and you can choose between four differents characters and three differents colours.
+
+==================
+
+How to play?
+
+If you haven't installed github: 
+
+- Windows: https://windows.github.com/
+
+- Linux Ubuntu: `sudo apt-get install git`
+
+- Mac: https://mac.github.com/
+
+Well, now on the console write the following:
+
+`git clone https:\\github.com/daserrano/battle_of_terrorist`
+
+And, go to `project` and open `index.html`
+
+==================
+
+Controllers of player1:
+
+  W
+A S D      SPACE
+
+Controllers of player2:
+
+      UP
+LEFT DOWN RIGHT   INTRO
 
 
-Sublime
-===================
-
-Install the next packages.
 
 
-Installing packages
-===================
-
-`Preferences > Package Control > Install Package > Nameofpackage`
-
-
-1. Emmet
-===================
-
-When you have installed it. 
-
-`Preferences > Package Settings > Emmet > Key Bindings - User`
-
-Write this:
-
-
- `[{ "keys": ["f12"], "command": "reindent", "args": {"single_line": false} }]`
-
-
-Used to index the document.
-
-
-2. JSLint
-===================
-
-Used to write according to standard.
-
-
-3. Sublime Linter
-===================
-
-It's very useful, real-time check code.
-
-
-4. Alignment
-===================
-
-To align blocks.
-
-With:
-
-`[ Ctrl ]  +  [ Alt ] + [ a ]`
-
-
+We hope that you enjoy it! 
 
 
 
