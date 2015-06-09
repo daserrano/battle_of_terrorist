@@ -6,9 +6,8 @@ It's a game of war based on JavaScript. You'll can play with another player and 
 
 You can play in two differents stages and you can choose between four differents characters and three differents colours.
 
-==================
-
 How to play?
+==================
 
 If you haven't installed github: 
 
@@ -24,17 +23,18 @@ Well, now on the console write the following:
 
 And, go to `project` and open `index.html`
 
+Controllers of player1:
 ==================
 
-Controllers of player1:
+      W
+    A S D      SPACE
 
-  W
-A S D      SPACE
 
 Controllers of player2:
+==================
 
-      UP
-LEFT DOWN RIGHT   INTRO
+          UP
+    LEFT DOWN RIGHT   INTRO
 
 
 
